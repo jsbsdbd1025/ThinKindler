@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="appbar_height">56dp</dimen>
+    <!--Appbar value-->
+    <dimen name="appbar_elevation">4dp</dimen>
+    <!-- 文字大小-->
+    <dimen name="card_radius">2dp</dimen>
+
+    <!--divide-->
+    <dimen name="divide_line">1dp</dimen>
+    <dimen name="divide_block">16dp</dimen>
+
+    <!--button-->
+    <dimen name="button_height">48dp</dimen>
+
+    <dimen name="hintTextSize">12sp</dimen>
+    <dimen name="contentTextSize">14sp</dimen>
+    <dimen name="titleTextSize">16sp</dimen>
+    <dimen name="appbarTextSize">20sp</dimen>
+
+    <dimen name="margin_tiny">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_large">32dp</dimen>
+    <dimen name="margin_huge">64dp</dimen>
+
+    <dimen name="avatar_huge">64dp</dimen>
+</resources>

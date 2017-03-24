@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FlashView">
+        <attr name="effect">
+            <enum name="accordion" value="0"/>
+            <enum name="cube" value="1"/>
+            <enum name="def" value="2"/>
+            <enum name="depthPage" value="3"/>
+            <enum name="inRightDown" value="4"/>
+            <enum name="inRightUp" value="5"/>
+            <enum name="rotate" value="6"/>
+            <enum name="zoomOutPage" value="7"/>
+
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="IRecyclerView">
+        <attr name="refreshHeaderLayout" format="reference"/>
+        <attr name="loadMoreFooterLayout" format="reference"/>
+        <attr name="refreshEnabled" format="boolean"/>
+        <attr name="loadMoreEnabled" format="boolean"/>
+        <attr name="refreshFinalMoveOffset" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="ViewPagerIndicator">
+        <attr name="visible_tab_count" format="integer"/>
+        <attr name="tab_text_size" format="integer"/>
+        <attr name="color_text_normal" format="color"/>
+        <attr name="color_text_high" format="color"/>
+        <attr name="color_baseline" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="CustomButton">
+        <attr name="src" format="reference"/>
+        <attr name="text" format="reference"/>
+        <attr name="textsize" format="integer"/>
+        <attr name="textcolor" format="color"/>
+        <attr name="background" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="PullToZoomView">
+        <attr name="headerView" format="reference"/>
+        <attr name="contentView" format="reference"/>
+        <attr name="zoomView" format="reference"/>
+        <attr name="isHeaderParallax" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="GifView">
+        <attr name="gif" format="reference"/>
+        <attr name="paused" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="CustomTheme">
+        <attr name="gifViewStyle" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="TagFlowLayout">
+        <attr name="auto_select_effect" format="boolean"></attr>
+        <attr name="max_select" format="integer"></attr>
+        <attr name="gravity">
+            <enum name="left" value="-1" />
+            <enum name="center" value="0" />
+            <enum name="right" value="1" />
+        </attr>
+    </declare-styleable>
+
+</resources>

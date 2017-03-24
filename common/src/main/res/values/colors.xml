@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF6381DB</color>
+    <color name="colorPrimaryDark">#FF3AB4BB</color>
+    <color name="colorAccent">#F1F1F1</color>
+    <color name="colorShadow">#40000000</color>
+
+    <color name="colorBlackKeyText">#DD000000</color>
+    <color name="colorBlackContentText">#89000000</color>
+    <color name="colorBlackHintText">#42000000</color>
+
+    <color name="colorWhiteKeyText">#FFFFFFFF</color>
+    <color name="colorWhiteContentText">#B2FFFFFF</color>
+    <color name="colorWhiteHintText">#4CFFFFFF</color>
+
+    <!--分割线颜色-->
+    <color name="divide_line">#1E000000</color>
+    <color name="divide_block">#1EFFFFFF</color>
+
+</resources>

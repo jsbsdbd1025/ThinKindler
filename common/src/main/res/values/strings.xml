@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">Common</string>
+    <string name="sample_title">标题</string>
+    <string name="sample_button">按钮</string>
+    <string name="sample_company">阿里巴巴</string>
+    <string name="sample_order_number">415646556546</string>
+    <string name="sample_status">未处理</string>
+    <string name="sample_user_name">王小明</string>
+    <string name="sample_time">3月1日 1:20</string>
+    <string name="sample_file">换岗总结.doc</string>
+    <string name="sample_file_size">13M</string>
+    <string name="sample_tag">标签</string>
+    <string name="sample_order_count">12个订单</string>
+    <string name="sample_student_count">17890人学过</string>
+    <string name="sample_score">4.9分</string>
+    <string name="sample_money">¥1900</string>
+    <string name="sample_content">  这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容</string>
+    <string name="sample_user_sex">男</string>
+    <string name="sample_user_age">45</string>
+    <string name="sample_user_exp">10年</string>
+    <string name="sample_department">技术部</string>
+    <string name="sample_tel">13535353535</string>
+    <string name="sample_email">example@vaneqi.com</string>
+    <string name="sample_city">杭州</string>
+    <string name="sample_date">2017年5月</string>
+
+    <!--升级-->
+    <string name="key_appmarket">升级市场</string>
+    <string name="key_update">升级</string>
+    <string name="key_updatenow">马上升级</string>
+    <string name="key_ignore">忽略</string>
+
+
+    <string name="minnum">最少选择一张图片</string>
+    <string name="maxnum">最多选择%1$d张图片</string>
+    <string name="all_images">所有图片</string>
+    <string name="sd_disable">SD卡不可用</string>
+
+    <string name="image">图片</string>
+    <string name="takephoto">拍照</string>
+
+    <string name="confirm_format">%1$s(%2$d/%3$d)</string>
+    <string name="confirm">确定</string>
+
+    <string name="open_camera_failure">打开相机失败</string>
+
+    <string name="permission_storage_denied">请打开存储空间权限</string>
+
+    <string name="permission_camera_denied">请打开相机权限</string>
+</resources>
