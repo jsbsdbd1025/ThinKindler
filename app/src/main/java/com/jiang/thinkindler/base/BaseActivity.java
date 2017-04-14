@@ -27,6 +27,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends CommonActivi
         mContext = this;
         //init()中只进行初始化动作
         init();
+        initInjector();
         TAG = getClass().getSimpleName();
     }
 
@@ -40,9 +41,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends CommonActivi
     //初始化view
     protected abstract void init();
 
-
-    public T getPresenter() {
-        return mPresenter;
-    }
+    // dagger 注入
+    protected abstract void initInjector();
 
 }

@@ -4,10 +4,12 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 
+import javax.inject.Inject;
+
 public abstract class BasePresenter {
 
     protected Gson gson = new Gson();
-    public Context mContext;
+
 
     // TODO: 2017/3/11  数据解析统一处理方法
 

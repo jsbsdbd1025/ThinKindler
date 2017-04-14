@@ -18,24 +18,24 @@ public class BookBean {
      * binding : 精装
      * translator : ["苏福忠"]
      * catalog : 概述
-     1、全部是希腊人
-     2、奥古斯都与令人作哎的作品
-     3、严寒的北部
-     4、亚洲的作品
-     5、淑女与绅士
-     6、峰巅但丁
-     7、鲁特琴与下等人
-     8、高贵的诗歌，低贱的散文
-     9、全世界是一座舞台
-     10、为上帝，为床第
-     11、弥尔顿的问题
-     12、让我们去理智
-     13、角色塑造
-     14、批评的群众
-     15、天才人物
-     盈亏结算一览表
-     索引
-     照片来源
+     * 1、全部是希腊人
+     * 2、奥古斯都与令人作哎的作品
+     * 3、严寒的北部
+     * 4、亚洲的作品
+     * 5、淑女与绅士
+     * 6、峰巅但丁
+     * 7、鲁特琴与下等人
+     * 8、高贵的诗歌，低贱的散文
+     * 9、全世界是一座舞台
+     * 10、为上帝，为床第
+     * 11、弥尔顿的问题
+     * 12、让我们去理智
+     * 13、角色塑造
+     * 14、批评的群众
+     * 15、天才人物
+     * 盈亏结算一览表
+     * 索引
+     * 照片来源
      * pages : 143
      * images : {"small":"https://img1.doubanio.com/spic/s1082988.jpg","large":"https://img1.doubanio.com/lpic/s1082988.jpg","medium":"https://img1.doubanio.com/mpic/s1082988.jpg"}
      * alt : https://book.douban.com/subject/1052976/
@@ -60,7 +60,7 @@ public class BookBean {
     private String binding;
     private String catalog;
     private String pages;
-    private ImagesBean images;
+    private ImageBean images;
     private String alt;
     private String id;
     private String publisher;
@@ -74,7 +74,7 @@ public class BookBean {
     private SeriesBean series;
     private String price;
     private List<String> author;
-    private List<TagsBean> tags;
+    private List<TagBean> tags;
     private List<String> translator;
 
     public RatingBean getRating() {
@@ -141,11 +141,11 @@ public class BookBean {
         this.pages = pages;
     }
 
-    public ImagesBean getImages() {
+    public ImageBean getImages() {
         return images;
     }
 
-    public void setImages(ImagesBean images) {
+    public void setImages(ImageBean images) {
         this.images = images;
     }
 
@@ -253,11 +253,11 @@ public class BookBean {
         this.author = author;
     }
 
-    public List<TagsBean> getTags() {
+    public List<TagBean> getTags() {
         return tags;
     }
 
-    public void setTags(List<TagsBean> tags) {
+    public void setTags(List<TagBean> tags) {
         this.tags = tags;
     }
 
@@ -269,147 +269,5 @@ public class BookBean {
         this.translator = translator;
     }
 
-    public static class RatingBean {
-        /**
-         * max : 10
-         * numRaters : 78
-         * average : 7.3
-         * min : 0
-         */
 
-        private int max;
-        private int numRaters;
-        private String average;
-        private int min;
-
-        public int getMax() {
-            return max;
-        }
-
-        public void setMax(int max) {
-            this.max = max;
-        }
-
-        public int getNumRaters() {
-            return numRaters;
-        }
-
-        public void setNumRaters(int numRaters) {
-            this.numRaters = numRaters;
-        }
-
-        public String getAverage() {
-            return average;
-        }
-
-        public void setAverage(String average) {
-            this.average = average;
-        }
-
-        public int getMin() {
-            return min;
-        }
-
-        public void setMin(int min) {
-            this.min = min;
-        }
-    }
-
-    public static class ImagesBean {
-        /**
-         * small : https://img1.doubanio.com/spic/s1082988.jpg
-         * large : https://img1.doubanio.com/lpic/s1082988.jpg
-         * medium : https://img1.doubanio.com/mpic/s1082988.jpg
-         */
-
-        private String small;
-        private String large;
-        private String medium;
-
-        public String getSmall() {
-            return small;
-        }
-
-        public void setSmall(String small) {
-            this.small = small;
-        }
-
-        public String getLarge() {
-            return large;
-        }
-
-        public void setLarge(String large) {
-            this.large = large;
-        }
-
-        public String getMedium() {
-            return medium;
-        }
-
-        public void setMedium(String medium) {
-            this.medium = medium;
-        }
-    }
-
-    public static class SeriesBean {
-        /**
-         * id : 3387
-         * title : 速成读本系列
-         */
-
-        private String id;
-        private String title;
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-    }
-
-    public static class TagsBean {
-        /**
-         * count : 21
-         * name : 文学
-         * title : 文学
-         */
-
-        private int count;
-        private String name;
-        private String title;
-
-        public int getCount() {
-            return count;
-        }
-
-        public void setCount(int count) {
-            this.count = count;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-    }
 }

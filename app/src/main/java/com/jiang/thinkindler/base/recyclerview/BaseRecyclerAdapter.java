@@ -23,7 +23,7 @@ public class BaseRecyclerAdapter<O extends Object> extends RecyclerView.Adapter<
     protected int EMPTY_TYPE = -1;
     protected List<O> list = new ArrayList<>();
     protected LayoutInflater mLayoutInflater;
-    protected Context context;
+    protected Context mContext;
     public List<IViewHolder> holderList = new ArrayList<>();
 
     protected OnRecyclerViewItemClickListener mOnItemClickListener = null;
@@ -63,14 +63,14 @@ public class BaseRecyclerAdapter<O extends Object> extends RecyclerView.Adapter<
         notifyDataSetChanged();
     }
 
-    public BaseRecyclerAdapter(Context context, List<O> list) {
-        this.context = context;
+    public BaseRecyclerAdapter(List<O> list) {
         this.list = list;
-        mLayoutInflater = LayoutInflater.from(context);
     }
 
     @Override
     public IViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        mContext = parent.getContext();
+        mLayoutInflater = LayoutInflater.from(mContext);
         if (EMPTY_TYPE == viewType) {
             View v = mLayoutInflater.inflate(R.layout.layout_placeholder, parent, false);
             return new EmptyHolder(v);

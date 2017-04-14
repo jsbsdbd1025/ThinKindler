@@ -1,11 +1,7 @@
-package com.jiang.thinkindler.adapter;
+package com.jiang.thinkindler.ui.douban.adapter;
 
-import android.content.Context;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-
 
 import com.jiang.thinkindler.R;
 import com.jiang.thinkindler.base.recyclerview.BaseRecyclerAdapter;
@@ -14,14 +10,17 @@ import com.jiang.thinkindler.entity.bean.BookBean;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * Created by jiang on 2017/3/9.
  */
 
 public class BookAdapter extends BaseRecyclerAdapter<BookBean> {
 
-    public BookAdapter(Context context, List<BookBean> list) {
-        super(context, list);
+    @Inject
+    public BookAdapter(List<BookBean> list) {
+        super(list);
     }
 
     @Override

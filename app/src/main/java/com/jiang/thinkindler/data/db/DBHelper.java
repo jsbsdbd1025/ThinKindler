@@ -1,4 +1,4 @@
-package com.jiang.thinkindler.helper;
+package com.jiang.thinkindler.data.db;
 
 import android.database.sqlite.SQLiteDatabase;
 

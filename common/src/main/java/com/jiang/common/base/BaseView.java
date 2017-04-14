@@ -6,9 +6,5 @@ package com.jiang.common.base;
  */
 
 public interface BaseView {
-    void startLoading();
 
-    void stopLoading();
-
-    void showMeaasge(String msg);
 }

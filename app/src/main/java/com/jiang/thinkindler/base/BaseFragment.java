@@ -37,7 +37,9 @@ public abstract class BaseFragment<T extends BasePresenter> extends CommonFragme
         if (rootView == null)
             rootView = inflater.inflate(getLayoutId(), container, false);
         ButterKnife.bind(this, rootView);
+        initInjector();
         init(rootView);
+
         return rootView;
     }
 
@@ -50,5 +52,9 @@ public abstract class BaseFragment<T extends BasePresenter> extends CommonFragme
 
     //初始化view
     protected abstract void init(View view);
+
+    // dagger 注入
+    protected abstract void initInjector();
+
 
 }

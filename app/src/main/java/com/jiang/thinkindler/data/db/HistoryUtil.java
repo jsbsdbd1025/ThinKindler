@@ -1,10 +1,9 @@
-package com.jiang.thinkindler.helper;
+package com.jiang.thinkindler.data.db;
 
 import com.jiang.common.utils.LogUtils;
 import com.jiang.thinkindler.entity.db.SearchHistory;
 import com.jiang.thinkindler.gen.SearchHistoryDao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

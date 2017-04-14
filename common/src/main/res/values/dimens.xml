@@ -30,4 +30,7 @@
     <dimen name="margin_huge">64dp</dimen>
 
     <dimen name="avatar_huge">64dp</dimen>
+
+    <!--elevation-->
+    <dimen name="elevation_book">8dp</dimen>
 </resources>

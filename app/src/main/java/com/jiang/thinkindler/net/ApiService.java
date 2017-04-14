@@ -12,7 +12,6 @@ import retrofit2.http.Query;
 
 public interface ApiService {
 
-
     @GET("v2/book/search")
     Call<BookList> search(@Query("q") String q, @Query("start") int start);
 }
