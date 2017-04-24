@@ -1,9 +1,10 @@
 package com.jiang.thinkindler.entity.bean;
 
 
+import java.io.Serializable;
 import java.util.List;
 
-public class BookList {
+public class BookList implements Serializable {
 
 
     /**

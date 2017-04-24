@@ -1,12 +1,13 @@
 package com.jiang.thinkindler.entity.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by jiang on 2017/3/24.
  */
 
-public class BookBean {
+public class BookBean implements Serializable {
     /**
      * rating : {"max":10,"numRaters":78,"average":"7.3","min":0}
      * subtitle : 文学

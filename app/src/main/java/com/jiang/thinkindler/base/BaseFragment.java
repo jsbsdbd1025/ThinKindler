@@ -12,6 +12,7 @@ import com.jiang.common.base.CommonFragment;
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by jiang on 2017/2/28.
@@ -22,6 +23,8 @@ public abstract class BaseFragment<T extends BasePresenter> extends CommonFragme
     public T mPresenter;
 
     protected Context mContext;
+
+    private Unbinder unbinder;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,10 +37,15 @@ public abstract class BaseFragment<T extends BasePresenter> extends CommonFragme
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle
             savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        if (rootView == null)
+        if (rootView == null) {
             rootView = inflater.inflate(getLayoutId(), container, false);
-        ButterKnife.bind(this, rootView);
+        }
+        if (unbinder == null) {
+            unbinder = ButterKnife.bind(this, rootView);
+        }
+
         initInjector();
+
         init(rootView);
 
         return rootView;
@@ -56,5 +64,9 @@ public abstract class BaseFragment<T extends BasePresenter> extends CommonFragme
     // dagger 注入
     protected abstract void initInjector();
 
-
+    @Override
+    public void onDestroy() {
+        unbinder.unbind();
+        super.onDestroy();
+    }
 }

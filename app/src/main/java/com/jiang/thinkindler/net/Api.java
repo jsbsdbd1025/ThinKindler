@@ -23,6 +23,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -111,12 +112,7 @@ public class Api {
                 .build();
 
 //        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").serializeNulls().create();
-        retrofit = new Retrofit.Builder()
-                .baseUrl(apiType.getUrl())
-                .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
-//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build();
+        retrofit = createRetrofit(apiType.getUrl(), okHttpClient);
         apiService = retrofit.create(ApiService.class);
     }
 
@@ -161,13 +157,18 @@ public class Api {
                 .build();
 
 //        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").serializeNulls().create();
-        retrofit = new Retrofit.Builder()
-                .baseUrl(url)
-                .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
-//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build();
+        retrofit = createRetrofit(url, okHttpClient);
         apiService = retrofit.create(ApiService.class);
+    }
+
+    private Retrofit createRetrofit(String baseUrl, OkHttpClient okHttpClient) {
+        return new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .client(okHttpClient)
+                .build();
+
     }
 
 
