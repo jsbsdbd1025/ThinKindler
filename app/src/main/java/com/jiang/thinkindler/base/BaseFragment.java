@@ -18,9 +18,9 @@ import butterknife.Unbinder;
  * Created by jiang on 2017/2/28.
  */
 
-public abstract class BaseFragment<T extends BasePresenter> extends CommonFragment {
+public abstract class BaseFragment<P extends BasePresenter> extends CommonFragment {
     @Inject
-    public T mPresenter;
+    protected P mPresenter;
 
     protected Context mContext;
 

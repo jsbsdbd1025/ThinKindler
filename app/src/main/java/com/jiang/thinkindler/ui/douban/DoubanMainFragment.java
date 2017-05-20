@@ -17,6 +17,7 @@ import com.jiang.thinkindler.data.db.HistoryUtil;
 import com.jiang.thinkindler.entity.bean.BookBean;
 import com.jiang.thinkindler.injector.component.fragment.DaggerDoubanComponent;
 import com.jiang.thinkindler.injector.module.fragment.DoubanMainModule;
+import com.jiang.thinkindler.injector.module.http.DoubanHttpModule;
 import com.jiang.thinkindler.ui.douban.adapter.BookAdapter;
 import com.jiang.thinkindler.ui.douban.contract.DoubanMainContract;
 import com.jiang.thinkindler.ui.douban.presenter.DoubanMainPresenter;
@@ -82,7 +83,8 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
     @Override
     protected void initInjector() {
         DaggerDoubanComponent.builder()
-                .doubanMainModule(new DoubanMainModule(this, datas))
+                .doubanHttpModule(new DoubanHttpModule())
+                .doubanMainModule(new DoubanMainModule())
                 .build()
                 .inject(this);
     }

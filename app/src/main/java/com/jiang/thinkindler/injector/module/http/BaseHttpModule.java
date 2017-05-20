@@ -1,8 +1,6 @@
-package com.jiang.thinkindler.net;
-
+package com.jiang.thinkindler.injector.module.http;
 
 import android.support.annotation.NonNull;
-import android.util.SparseArray;
 
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
@@ -16,6 +14,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Singleton;
+
+import dagger.Module;
+import dagger.Provides;
 import okhttp3.Cache;
 import okhttp3.CacheControl;
 import okhttp3.Interceptor;
@@ -27,37 +29,15 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * des:retorfit api
- * Created by xsf
- * on 2016.06.15:47
+ * Created by quantan.liu on 2017/4/8.
  */
-public class Api {
+@Module
+public class BaseHttpModule {
 
     //读超时长，单位：毫秒
     public static final int READ_TIME_OUT = 20000;
     //连接时长，单位：毫秒
     public static final int CONNECT_TIME_OUT = 20000;
-    public Retrofit retrofit;
-    public ApiService apiService;
-
-    private static SparseArray<Api> sRetrofitManager = new SparseArray<>(ApiType.Array().length);
-    /*************************缓存设置*********************/
-/*
-   1. noCache 不使用缓存，全部走网络
-
-    2. noStore 不使用缓存，也不存储缓存
-
-    3. onlyIfCached 只使用缓存
-
-    4. maxAge 设置最大失效时间，失效则不使用 需要服务器配合
-
-    5. maxStale 设置最大失效时间，失效则不使用 需要服务器配合 感觉这两个类似 还没怎么弄清楚，清楚的同学欢迎留言
-
-    6. minFresh 设置有效时间，依旧如上
-
-    7. FORCE_NETWORK 只走网络
-
-    8. FORCE_CACHE 只走缓存*/
 
     /**
      * 设缓存有效期为两天
@@ -74,54 +54,29 @@ public class Api {
      */
     private static final String CACHE_CONTROL_AGE = "max-age=0";
 
-
-    //构造方法私有
-    private Api(ApiType apiType) {
-        //开启Log
-        HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
-        logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        //缓存
-        File cacheFile = new File(BaseApplication.getAppContext().getCacheDir(), "cache");
-        Cache cache = new Cache(cacheFile, 1024 * 1024 * 100); //100Mb
-        //增加头部信息
-        Interceptor headerInterceptor = new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Request build = chain.request().newBuilder()
-                        .addHeader("Content-Type", "application/json;charset=UTF-8")
-                        .addHeader("Accept-Charset", "UTF-8")
-                        .build();
-                return chain.proceed(build);
-            }
-        };
-
-        //增加cookie持久化
-        ClearableCookieJar cookieJar =
-                new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(BaseApplication.getAppContext()));
-
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .cache(cache)
-                .cookieJar(cookieJar)
-                .addInterceptor(mRewriteCacheControlInterceptor)
-                .addNetworkInterceptor(mRewriteCacheControlInterceptor)
-                .addInterceptor(logInterceptor)
-                .retryOnConnectionFailure(true)
-                .readTimeout(READ_TIME_OUT, TimeUnit.MILLISECONDS)
-                .connectTimeout(CONNECT_TIME_OUT, TimeUnit.MILLISECONDS)
-                .addInterceptor(headerInterceptor)
-                .build();
-
-//        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").serializeNulls().create();
-        retrofit = createRetrofit(apiType.getUrl(), okHttpClient);
-        apiService = retrofit.create(ApiService.class);
-    }
-
-
     /**
-     * @param url
+     * 提供http的帮助类 以下部分现在都放在子类。
+     * 更换链接的请求，需要添加如AppModule的provideRetrofitZhiHuUtils()方法 命名规则provideRetrofitXXXUtils()
+     * HttpModule的provideZhiHuRetrofit()和provideZhihuService() 命名规则provideXXXService
+     * 还有以下方法 命名规则retrofitXXXUtils  命名规则怎么开心怎么来。
+     *
+     * @return
      */
-    //构造方法私有
-    private Api(String url) {
+    @Singleton
+    @Provides
+    Retrofit.Builder provideRetrofitBuilder() {
+        return new Retrofit.Builder();
+    }
+
+    @Singleton
+    @Provides
+    OkHttpClient.Builder provideOkHttpBuilder() {
+        return new OkHttpClient.Builder();
+    }
+
+    @Singleton
+    @Provides
+    OkHttpClient provideClient(OkHttpClient.Builder builder) {
         //开启Log
         HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
         logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -143,9 +98,8 @@ public class Api {
         //增加cookie持久化
         ClearableCookieJar cookieJar =
                 new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(BaseApplication.getAppContext()));
-
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .cache(cache)
+        //设置超时
+        builder.cache(cache)
                 .cookieJar(cookieJar)
                 .addInterceptor(mRewriteCacheControlInterceptor)
                 .addNetworkInterceptor(mRewriteCacheControlInterceptor)
@@ -153,50 +107,19 @@ public class Api {
                 .retryOnConnectionFailure(true)
                 .readTimeout(READ_TIME_OUT, TimeUnit.MILLISECONDS)
                 .connectTimeout(CONNECT_TIME_OUT, TimeUnit.MILLISECONDS)
-                .addInterceptor(headerInterceptor)
-                .build();
-
-//        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").serializeNulls().create();
-        retrofit = createRetrofit(url, okHttpClient);
-        apiService = retrofit.create(ApiService.class);
+                .addInterceptor(headerInterceptor);
+        return builder.build();
     }
 
-    private Retrofit createRetrofit(String baseUrl, OkHttpClient okHttpClient) {
-        return new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
+
+    protected Retrofit createRetrofit(Retrofit.Builder builder, OkHttpClient client, String url) {
+        return builder
+                .baseUrl(url)
+                .client(client)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
-
-
-    /**
-     * @param apiType
-     * @return
-     */
-    public static ApiService getDefault(ApiType apiType) {
-        Api retrofitManager = sRetrofitManager.get(apiType.getId());
-        if (retrofitManager == null) {
-            retrofitManager = new Api(apiType);
-            sRetrofitManager.put(apiType.getId(), retrofitManager);
-        }
-        return retrofitManager.apiService;
-    }
-
-    /**
-     * @param url
-     * @return
-     */
-    public static ApiService getDefault(String url) {
-        Api retrofitManager = sRetrofitManager.get(2);
-        if (retrofitManager == null) {
-            retrofitManager = new Api(url);
-            sRetrofitManager.put(2, retrofitManager);
-        }
-        return retrofitManager.apiService;
-    }
-
 
     /**
      * 根据网络状况获取缓存的策略

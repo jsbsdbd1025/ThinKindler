@@ -1,6 +1,7 @@
 package com.jiang.thinkindler.injector.component.fragment;
 
 import com.jiang.thinkindler.injector.module.fragment.DoubanMainModule;
+import com.jiang.thinkindler.injector.module.http.DoubanHttpModule;
 import com.jiang.thinkindler.ui.douban.DoubanMainFragment;
 
 import javax.inject.Singleton;
@@ -12,7 +13,8 @@ import dagger.Component;
  */
 
 @Singleton
-@Component(modules = {DoubanMainModule.class})
+@Component(modules = {DoubanHttpModule.class, DoubanMainModule.class})
 public interface DoubanComponent {
+
     void inject(DoubanMainFragment fragment);
 }
