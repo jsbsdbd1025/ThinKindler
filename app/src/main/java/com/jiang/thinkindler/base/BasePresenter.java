@@ -1,15 +1,10 @@
 package com.jiang.thinkindler.base;
 
-import android.content.Context;
+public interface BasePresenter {
 
-import com.google.gson.Gson;
+    void subscribe();
 
-import javax.inject.Inject;
-
-public abstract class BasePresenter {
-
-    protected Gson gson = new Gson();
-
+    void unsubscribe();
 
     // TODO: 2017/3/11  数据解析统一处理方法
 

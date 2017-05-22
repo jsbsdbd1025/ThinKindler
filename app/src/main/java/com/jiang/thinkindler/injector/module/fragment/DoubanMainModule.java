@@ -1,6 +1,9 @@
 package com.jiang.thinkindler.injector.module.fragment;
 
+import com.jiang.thinkindler.injector.scope.FragmentScope;
+import com.jiang.thinkindler.ui.douban.DoubanMainFragment;
 import com.jiang.thinkindler.ui.douban.adapter.BookAdapter;
+import com.jiang.thinkindler.ui.douban.contract.DoubanMainContract;
 
 import java.util.ArrayList;
 
@@ -12,8 +15,21 @@ import dagger.Provides;
 /**
  * Created by jiang on 2017/4/14.
  */
+@FragmentScope
 @Module
 public class DoubanMainModule {
+
+    private DoubanMainContract.View view;
+
+    public DoubanMainModule(DoubanMainFragment view) {
+        this.view = view;
+    }
+
+    @Provides
+    public DoubanMainContract.View provideView() {
+        return view;
+    }
+
     @Provides
     @Singleton
     public BookAdapter provideAdapter() {

@@ -28,13 +28,14 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by jiang on 2017/4/14.
  */
 
 public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
-        implements DoubanMainContract.view {
+        implements DoubanMainContract.View {
 
     @BindView(R.id.rv_book)
     RecyclerView recyclerView;
@@ -48,6 +49,8 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
     @Inject
     protected BookAdapter mAdapter;
 
+    Disposable mDisposable;
+
     @Override
     public int getLayoutId() {
         return R.layout.frag_main_douban;
@@ -57,6 +60,7 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
     protected void init(View view) {
 
         recyclerView.setLayoutManager(new GridLayoutManager(mContext, 3));
+
         recyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(itemClickListener);
 
@@ -84,9 +88,11 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
     protected void initInjector() {
         DaggerDoubanComponent.builder()
                 .doubanHttpModule(new DoubanHttpModule())
-                .doubanMainModule(new DoubanMainModule())
+                .doubanMainModule(new DoubanMainModule(this))
                 .build()
                 .inject(this);
+
+        mPresenter.subscribe();
     }
 
     @Override
@@ -111,5 +117,30 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
     @Override
     public void returnDatas(List<BookBean> books) {
         mAdapter.addList(books);
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mPresenter != null)
+            mPresenter.subscribe();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mPresenter != null)
+            mPresenter.unsubscribe();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mDisposable != null && !mDisposable.isDisposed()) {
+            //取消订阅，释放内存
+            mDisposable.dispose();
+            mDisposable = null;
+        }
     }
 }
