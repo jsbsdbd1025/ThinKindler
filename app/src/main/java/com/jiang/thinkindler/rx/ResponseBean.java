@@ -8,8 +8,11 @@ import java.io.Serializable;
  * Created by jiang on 2017/4/24.
  */
 
-public class ResponseBean<T> {
+public class ResponseBean<T> implements Serializable {
 
+    private static final int RESPONSE_STATUS_FAIL = 0;
+    private static final int RESPONSE_STATUS_SUCCESS = 1;
+    private static final int RESPONSE_STATUS_TOKEN_INVALID = 2;
     /**
      * 请求返回请求码
      */
@@ -49,7 +52,7 @@ public class ResponseBean<T> {
     }
 
     public boolean isSuccess() {
-        return success == 1;
+        return success == RESPONSE_STATUS_SUCCESS;
     }
 
     @Override

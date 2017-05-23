@@ -46,6 +46,13 @@
                     android:layout_height="match_parent"
                     tools:layout="@layout/frag_main_douban"/>
 
+            <!--<fragment-->
+                    <!--android:id="@+id/frag_main_live"-->
+                    <!--android:name="com.jiang.thinkindler.ui.live.LiveListFragment"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--tools:layout="@layout/frag_main_live"/>-->
+
         </android.support.v4.widget.NestedScrollView>
 
     </android.support.design.widget.CoordinatorLayout>

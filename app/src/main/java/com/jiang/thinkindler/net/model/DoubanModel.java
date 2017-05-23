@@ -2,8 +2,10 @@ package com.jiang.thinkindler.net.model;
 
 import com.jiang.thinkindler.entity.bean.BookList;
 import com.jiang.thinkindler.net.service.DoubanService;
+import com.jiang.thinkindler.rx.ResponseBean;
 
 import io.reactivex.Flowable;
+import io.reactivex.Observable;
 
 
 /**
@@ -17,7 +19,7 @@ public class DoubanModel extends BaseModel {
         this.mDoubanService = mDoubanService;
     }
 
-    public Flowable<BookList> searchBooks(String q, int start) {
+    public Observable<BookList> searchBooks(String q, int start) {
         return mDoubanService.search(q, start);
     }
 }

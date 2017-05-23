@@ -1,10 +1,12 @@
 package com.jiang.thinkindler.entity.bean;
 
+import java.util.List;
+
 /**
  * Created by jiang on 2017/3/24.
  */
 
-public class PageBean {
+public class PageBean<T> {
 
 
     /**
@@ -16,6 +18,8 @@ public class PageBean {
     private int start;
     private int count;
     private int total;
+    private List<T> books;
+
 
     public int getStart() {
         return start;
@@ -39,5 +43,13 @@ public class PageBean {
 
     public void setTotal(int total) {
         this.total = total;
+    }
+
+    public List<T> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<T> books) {
+        this.books = books;
     }
 }

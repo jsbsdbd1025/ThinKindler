@@ -64,17 +64,13 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
         recyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(itemClickListener);
 
-        edtSearch.setOnKeyListener(new View.OnKeyListener() {
-
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                // 修改回车键功能
-                if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
-                    KeyBoardUtil.closeKeybord(edtSearch, mContext);
-                    mPresenter.doSearch(getSearchContent());
-                }
-                return false;
+        edtSearch.setOnKeyListener((v, keyCode, event) -> {
+            // 修改回车键功能
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+                KeyBoardUtil.closeKeybord(edtSearch, mContext);
+                mPresenter.doSearch(getSearchContent());
             }
+            return false;
         });
 
         historys = HistoryUtil.loadAll();
@@ -103,11 +99,8 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
     }
 
 
-    BaseRecyclerAdapter.OnRecyclerViewItemClickListener itemClickListener = new BaseRecyclerAdapter.OnRecyclerViewItemClickListener() {
-        @Override
-        public void onItemClick(View view, int position) {
+    BaseRecyclerAdapter.OnRecyclerViewItemClickListener itemClickListener = (view, position) -> {
 
-        }
     };
 
     private String getSearchContent() {

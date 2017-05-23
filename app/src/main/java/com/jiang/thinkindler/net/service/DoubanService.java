@@ -1,8 +1,10 @@
 package com.jiang.thinkindler.net.service;
 
 import com.jiang.thinkindler.entity.bean.BookList;
+import com.jiang.thinkindler.rx.ResponseBean;
 
 import io.reactivex.Flowable;
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -12,5 +14,5 @@ import retrofit2.http.Query;
 
 public interface DoubanService {
     @GET("v2/book/search")
-    Flowable<BookList> search(@Query("q") String q, @Query("start") int start);
+    Observable<BookList> search(@Query("q") String q, @Query("start") int start);
 }
