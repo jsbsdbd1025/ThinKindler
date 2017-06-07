@@ -1,6 +1,9 @@
 package com.jiang.thinkindler.injector.component;
 
 
+import android.content.Context;
+
+import com.jiang.common.utils.ToastUtil;
 import com.jiang.thinkindler.app.BaseApplication;
 import com.jiang.thinkindler.injector.module.AppModule;
 
@@ -14,5 +17,7 @@ import dagger.Component;
 @Singleton
 @Component(modules = {AppModule.class})
 public interface AppComponent {
-    BaseApplication getContext();  // 提供App的Context
+    Context getContext();  // 提供App的Context
+
+    ToastUtil getToastUtil();
 }

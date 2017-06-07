@@ -1,14 +1,18 @@
 package com.jiang.thinkindler.ui.douban.presenter;
 
 import com.jiang.thinkindler.data.db.HistoryUtil;
-import com.jiang.thinkindler.entity.bean.BookList;
+import com.jiang.thinkindler.entity.bean.BookBean;
+import com.jiang.thinkindler.entity.bean.PageList;
 import com.jiang.thinkindler.net.model.DoubanModel;
-import com.jiang.thinkindler.rx.BaseCommonObserver;
 import com.jiang.thinkindler.rx.BaseObserver;
+import com.jiang.thinkindler.rx.MyDefaultObserver;
 import com.jiang.thinkindler.rx.RxSchedulers;
 import com.jiang.thinkindler.ui.douban.contract.DoubanMainContract;
+import com.trello.rxlifecycle2.android.RxLifecycleAndroid;
 
 import javax.inject.Inject;
+
+import io.reactivex.observers.DefaultObserver;
 
 /**
  * Created by jiang on 2017/4/14.
@@ -23,7 +27,6 @@ public class DoubanMainPresenter implements DoubanMainContract.Presenter {
     public DoubanMainPresenter(DoubanMainContract.View view, DoubanModel doubanModel) {
         this.mView = view;
         this.doubanModel = doubanModel;
-        doSearch("Android");
     }
 
     @Override
@@ -34,10 +37,10 @@ public class DoubanMainPresenter implements DoubanMainContract.Presenter {
         HistoryUtil.saveHistory(content);
         doubanModel.searchBooks(content, 0)
                 .compose(RxSchedulers.compose())
-                .subscribe(new BaseObserver<BookList>() {
+                .subscribe(new BaseObserver<PageList<BookBean>>(mView) {
                     @Override
-                    protected void _onNext(BookList bookList) {
-                        mView.returnDatas(bookList.getBooks());
+                    protected void _onNext(PageList<BookBean> pageList) {
+                        mView.returnDatas(pageList.getDatas());
                     }
 
                     @Override
@@ -48,12 +51,7 @@ public class DoubanMainPresenter implements DoubanMainContract.Presenter {
     }
 
     @Override
-    public void subscribe() {
-
-    }
-
-    @Override
-    public void unsubscribe() {
-
+    public void start() {
+        doSearch("Android");
     }
 }

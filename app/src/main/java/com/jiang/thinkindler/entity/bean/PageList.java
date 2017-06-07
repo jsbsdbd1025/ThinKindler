@@ -1,10 +1,12 @@
 package com.jiang.thinkindler.entity.bean;
 
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.List;
 
-public class BookList implements Serializable {
+public class PageList<T> implements Serializable {
 
 
     /**
@@ -17,7 +19,8 @@ public class BookList implements Serializable {
     private int count;
     private int start;
     private int total;
-    private List<BookBean> books;
+    @SerializedName(value = "datas", alternate = {"books"})
+    private List<T> datas;
 
     public int getCount() {
         return count;
@@ -43,13 +46,11 @@ public class BookList implements Serializable {
         this.total = total;
     }
 
-    public List<BookBean> getBooks() {
-        return books;
+    public List<T> getDatas() {
+        return datas;
     }
 
-    public void setBooks(List<BookBean> books) {
-        this.books = books;
+    public void setDatas(List<T> datas) {
+        this.datas = datas;
     }
-
-
 }

@@ -14,8 +14,7 @@ import dagger.Component;
  */
 @FragmentScope
 @Singleton
-@Component(modules = {DoubanHttpModule.class, DoubanMainModule.class})
+@Component(modules = {DoubanMainModule.class, DoubanHttpModule.class})
 public interface DoubanComponent {
-
     void inject(DoubanMainFragment fragment);
 }

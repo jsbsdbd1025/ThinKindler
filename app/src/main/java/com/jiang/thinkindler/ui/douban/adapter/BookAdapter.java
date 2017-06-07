@@ -43,7 +43,7 @@ public class BookAdapter extends BaseRecyclerAdapter<BookBean> {
         @Override
         public void setData(BookBean data) {
             super.setData(data);
-            this.setImageLoder(R.id.img_item_pic, data.getImages().getMedium(), mContext)
+            this.setImageLoder(R.id.img_item_pic, data.getImage(), mContext)
                     .setText(R.id.tv_item_name, data.getTitle());
         }
     }

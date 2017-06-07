@@ -2,6 +2,7 @@ package com.jiang.thinkindler.injector.module;
 
 import android.app.Activity;
 
+import com.jiang.thinkindler.base.BasePresenter;
 import com.jiang.thinkindler.injector.scope.ActivityScope;
 
 import dagger.Module;
@@ -13,7 +14,7 @@ import dagger.Provides;
 
 @Module
 public class ActivityModule {
-    private Activity mActivity;
+    private final Activity mActivity;
 
     public ActivityModule(Activity activity) {
         this.mActivity = activity;

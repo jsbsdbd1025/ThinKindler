@@ -90,7 +90,7 @@ dependencies {
     compile 'com.google.dagger:dagger:2.10-rc2'
     apt 'com.google.dagger:dagger-compiler:2.10-rc2'
     /*网络请求retrofit*/
-    compile 'com.google.code.gson:gson:2.4'
+    compile 'com.google.code.gson:gson:2.7'
     compile "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
     compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
@@ -128,4 +128,10 @@ dependencies {
     compile("com.alibaba.android:vlayout:$rootProject.vlayoutVersion@aar") {
         transitive = true
     }
+
+    //bugly
+    //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
+    //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
+    compile 'com.tencent.bugly:crashreport:2.5.0'
+    compile 'com.tencent.bugly:nativecrashreport:3.1.2'
 }

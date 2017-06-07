@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface LiveListContract {
 
-    interface View extends BaseView<Presenter> {
+    interface View extends BaseView {
         void returnDatas(List<BookBean> books);
     }
 

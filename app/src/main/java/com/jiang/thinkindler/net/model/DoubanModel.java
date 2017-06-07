@@ -1,10 +1,9 @@
 package com.jiang.thinkindler.net.model;
 
-import com.jiang.thinkindler.entity.bean.BookList;
+import com.jiang.thinkindler.entity.bean.BookBean;
+import com.jiang.thinkindler.entity.bean.PageList;
 import com.jiang.thinkindler.net.service.DoubanService;
-import com.jiang.thinkindler.rx.ResponseBean;
 
-import io.reactivex.Flowable;
 import io.reactivex.Observable;
 
 
@@ -13,13 +12,16 @@ import io.reactivex.Observable;
  */
 
 public class DoubanModel extends BaseModel {
+
+    private static final String BOOK_LIST = "id,title,image";
+
     private DoubanService mDoubanService;
 
     public DoubanModel(DoubanService mDoubanService) {
         this.mDoubanService = mDoubanService;
     }
 
-    public Observable<BookList> searchBooks(String q, int start) {
-        return mDoubanService.search(q, start);
+    public Observable<PageList<BookBean>> searchBooks(String q, int start) {
+        return mDoubanService.search(q, start, BOOK_LIST);
     }
 }

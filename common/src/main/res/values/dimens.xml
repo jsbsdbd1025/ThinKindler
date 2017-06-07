@@ -33,4 +33,9 @@
 
     <!--elevation-->
     <dimen name="elevation_book">8dp</dimen>
+
+    <!-- refresh_height -->
+    <dimen name="refresh_header_height">100dp</dimen>
+    <!-- loadmore_height -->
+    <dimen name="load_more_footer_height">60dp</dimen>
 </resources>

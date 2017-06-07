@@ -10,8 +10,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jiang.common.R;
-import com.jiang.common.base.CommonApplication;
-
 
 /**
  * Toast 工具类
@@ -26,6 +24,12 @@ public class ToastUtil {
     private static Toast mToast;
     private static Toast mImgToast;
 
+    private static Context context;
+
+    public ToastUtil(Context context) {
+        this.context = context;
+    }
+
     /**
      * @param message
      * @param duration
@@ -33,7 +37,7 @@ public class ToastUtil {
      */
     private static Toast initToast(CharSequence message, int duration) {
         if (mToast == null) {
-            mToast = Toast.makeText(CommonApplication.getAppContext(), message, duration);
+            mToast = Toast.makeText(context, message, duration);
         } else {
             mToast.setText(message);
             mToast.setDuration(duration);
@@ -58,7 +62,7 @@ public class ToastUtil {
      */
     public static void showShort(int strResId) {
 //		Toast.makeText(context, strResId, Toast.LENGTH_SHORT).show();
-        initToast(CommonApplication.getAppContext().getResources().getText(strResId), Toast.LENGTH_SHORT).show();
+        initToast(context.getText(strResId), Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -76,7 +80,7 @@ public class ToastUtil {
      * @param strResId
      */
     public static void showLong(int strResId) {
-        initToast(CommonApplication.getAppContext().getResources().getText(strResId), Toast.LENGTH_LONG).show();
+        initToast(context.getText(strResId), Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -110,9 +114,9 @@ public class ToastUtil {
      */
     public static Toast showToastWithImg(final String tvStr, final int imageResource) {
         if (mImgToast == null) {
-            mImgToast = new Toast(CommonApplication.getAppContext());
+            mImgToast = new Toast(context);
         }
-        View view = LayoutInflater.from(CommonApplication.getAppContext()).inflate(R.layout.toast_custom, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.toast_custom, null);
         TextView tv = (TextView) view.findViewById(R.id.toast_custom_tv);
         tv.setText(TextUtils.isEmpty(tvStr) ? "" : tvStr);
         ImageView iv = (ImageView) view.findViewById(R.id.toast_custom_iv);
@@ -131,9 +135,9 @@ public class ToastUtil {
 
     public static Toast showToastWithImgAndSuc(final String tvStr) {
         if (mImgToast == null) {
-            mImgToast = new Toast(CommonApplication.getAppContext());
+            mImgToast = new Toast(context);
         }
-        View view = LayoutInflater.from(CommonApplication.getAppContext()).inflate(R.layout.toast_custom_suc, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.toast_custom_suc, null);
         TextView tv = (TextView) view.findViewById(R.id.toast_custom_tv);
         tv.setText(TextUtils.isEmpty(tvStr) ? "" : tvStr);
         mImgToast.setView(view);

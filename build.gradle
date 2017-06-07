@@ -56,5 +56,5 @@ ext {
     butterknifeVersion = "8.5.1"
     greendaoVersion = "3.2.0"
 
-    vlayoutVersion = "1.0.6"
+    vlayoutVersion = "1.0.7"
 }

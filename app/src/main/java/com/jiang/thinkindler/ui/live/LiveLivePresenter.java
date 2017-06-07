@@ -20,17 +20,12 @@ public class LiveLivePresenter implements LiveListContract.Presenter {
     }
 
     @Override
-    public void subscribe() {
-
-    }
-
-    @Override
-    public void unsubscribe() {
-
-    }
-
-    @Override
     public void loadData() {
+
+    }
+
+    @Override
+    public void start() {
 
     }
 }

@@ -38,7 +38,6 @@ public class Api {
     //连接时长，单位：毫秒
     public static final int CONNECT_TIME_OUT = 20000;
     public Retrofit retrofit;
-    public ApiService apiService;
 
     private static SparseArray<Api> sRetrofitManager = new SparseArray<>(ApiType.Array().length);
     /*************************缓存设置*********************/
@@ -111,54 +110,7 @@ public class Api {
                 .addInterceptor(headerInterceptor)
                 .build();
 
-//        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").serializeNulls().create();
         retrofit = createRetrofit(apiType.getUrl(), okHttpClient);
-        apiService = retrofit.create(ApiService.class);
-    }
-
-
-    /**
-     * @param url
-     */
-    //构造方法私有
-    private Api(String url) {
-        //开启Log
-        HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
-        logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        //缓存
-        File cacheFile = new File(BaseApplication.getAppContext().getCacheDir(), "cache");
-        Cache cache = new Cache(cacheFile, 1024 * 1024 * 100); //100Mb
-        //增加头部信息
-        Interceptor headerInterceptor = new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Request build = chain.request().newBuilder()
-                        .addHeader("Content-Type", "application/json;charset=UTF-8")
-                        .addHeader("Accept-Charset", "UTF-8")
-                        .build();
-                return chain.proceed(build);
-            }
-        };
-
-        //增加cookie持久化
-        ClearableCookieJar cookieJar =
-                new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(BaseApplication.getAppContext()));
-
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .cache(cache)
-                .cookieJar(cookieJar)
-                .addInterceptor(mRewriteCacheControlInterceptor)
-                .addNetworkInterceptor(mRewriteCacheControlInterceptor)
-                .addInterceptor(logInterceptor)
-                .retryOnConnectionFailure(true)
-                .readTimeout(READ_TIME_OUT, TimeUnit.MILLISECONDS)
-                .connectTimeout(CONNECT_TIME_OUT, TimeUnit.MILLISECONDS)
-                .addInterceptor(headerInterceptor)
-                .build();
-
-//        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").serializeNulls().create();
-        retrofit = createRetrofit(url, okHttpClient);
-        apiService = retrofit.create(ApiService.class);
     }
 
     private Retrofit createRetrofit(String baseUrl, OkHttpClient okHttpClient) {
@@ -170,31 +122,14 @@ public class Api {
                 .build();
     }
 
-
-    /**
-     * @param apiType
-     * @return
-     */
-    public static ApiService getDefault(ApiType apiType) {
+    public static <T extends Object> T getApi(ApiType apiType, Class<T> obj) {
         Api retrofitManager = sRetrofitManager.get(apiType.getId());
         if (retrofitManager == null) {
             retrofitManager = new Api(apiType);
             sRetrofitManager.put(apiType.getId(), retrofitManager);
         }
-        return retrofitManager.apiService;
-    }
-
-    /**
-     * @param url
-     * @return
-     */
-    public static ApiService getDefault(String url) {
-        Api retrofitManager = sRetrofitManager.get(2);
-        if (retrofitManager == null) {
-            retrofitManager = new Api(url);
-            sRetrofitManager.put(2, retrofitManager);
-        }
-        return retrofitManager.apiService;
+        T t = retrofitManager.retrofit.create(obj);
+        return t;
     }
 
 
@@ -202,7 +137,7 @@ public class Api {
      * 根据网络状况获取缓存的策略
      */
     @NonNull
-    public static String getCacheControl() {
+    private static String getCacheControl() {
         return NetWorkUtils.isNetConnected(BaseApplication.getAppContext()) ? CACHE_CONTROL_AGE : CACHE_CONTROL_CACHE;
     }
 

@@ -25,10 +25,7 @@ import com.jiang.thinkindler.ui.douban.presenter.DoubanMainPresenter;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import butterknife.BindView;
-import io.reactivex.disposables.Disposable;
 
 /**
  * Created by jiang on 2017/4/14.
@@ -40,16 +37,11 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
     @BindView(R.id.rv_book)
     RecyclerView recyclerView;
 
-    private List<BookBean> datas = new ArrayList<>();
-
     @BindView(R.id.edt_search)
     protected AutoCompleteTextView edtSearch;
     private String[] historys;
 
-    @Inject
     protected BookAdapter mAdapter;
-
-    Disposable mDisposable;
 
     @Override
     public int getLayoutId() {
@@ -59,10 +51,34 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
     @Override
     protected void init(View view) {
 
-        recyclerView.setLayoutManager(new GridLayoutManager(mContext, 3));
+//        VirtualLayoutManager layoutManager = new VirtualLayoutManager(mContext);
+//
+//        recyclerView.setLayoutManager(layoutManager);
+//
+//        final List<LayoutHelper> helpers = new LinkedList<>();
+//
+//        GridLayoutHelper gridLayoutHelper = new GridLayoutHelper(4);
+//        helpers.add(gridLayoutHelper);
+//        layoutManager.setLayoutHelpers(helpers);
+//
+//        mAdapter = new VBookAdapter(layoutManager, new ArrayList<>());
+//
+//        recyclerView.setAdapter(mAdapter);
+
+
+        mAdapter = new BookAdapter(new ArrayList<>());
+
+        GridLayoutManager layoutManager = new GridLayoutManager(mContext, 3);
+        layoutManager.setSmoothScrollbarEnabled(true);
+        layoutManager.setAutoMeasureEnabled(true);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setNestedScrollingEnabled(false);
 
         recyclerView.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener(itemClickListener);
+
+        recyclerView.setNestedScrollingEnabled(true);
+//        mAdapter.setOnItemClickListener(itemClickListener);
 
         edtSearch.setOnKeyListener((v, keyCode, event) -> {
             // 修改回车键功能
@@ -78,6 +94,7 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
                 R.layout.item_search_history, historys);
 
         edtSearch.setAdapter(adapter);
+
     }
 
     @Override
@@ -87,8 +104,6 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
                 .doubanMainModule(new DoubanMainModule(this))
                 .build()
                 .inject(this);
-
-        mPresenter.subscribe();
     }
 
     @Override
@@ -98,6 +113,11 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
 //        StatusBarCompat.setStatusBarColor(getActivity(), getResources().getColor(R.color.colorPrimary));
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.start();
+    }
 
     BaseRecyclerAdapter.OnRecyclerViewItemClickListener itemClickListener = (view, position) -> {
 
@@ -109,31 +129,15 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
 
     @Override
     public void returnDatas(List<BookBean> books) {
+        mAdapter.clear();
         mAdapter.addList(books);
     }
 
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (mPresenter != null)
-            mPresenter.subscribe();
-    }
+    static class MainViewHolder extends RecyclerView.ViewHolder {
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (mPresenter != null)
-            mPresenter.unsubscribe();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mDisposable != null && !mDisposable.isDisposed()) {
-            //取消订阅，释放内存
-            mDisposable.dispose();
-            mDisposable = null;
+        public MainViewHolder(View itemView) {
+            super(itemView);
         }
     }
 }

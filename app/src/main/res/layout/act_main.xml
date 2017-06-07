@@ -8,9 +8,6 @@
                                         tools:context=".ui.MainActivity">
 
     <android.support.design.widget.CoordinatorLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:showIn="@layout/act_main">
@@ -47,11 +44,11 @@
                     tools:layout="@layout/frag_main_douban"/>
 
             <!--<fragment-->
-                    <!--android:id="@+id/frag_main_live"-->
-                    <!--android:name="com.jiang.thinkindler.ui.live.LiveListFragment"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--tools:layout="@layout/frag_main_live"/>-->
+            <!--android:id="@+id/frag_main_live"-->
+            <!--android:name="com.jiang.thinkindler.ui.live.LiveListFragment"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--tools:layout="@layout/frag_main_live"/>-->
 
         </android.support.v4.widget.NestedScrollView>
 

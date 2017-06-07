@@ -40,7 +40,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initInjector() {
-
     }
 
     private void displayFragmentByIndex(int index) {
@@ -70,7 +69,6 @@ public class MainActivity extends BaseActivity {
         }
         return true;
     }
-
 
 
 }
