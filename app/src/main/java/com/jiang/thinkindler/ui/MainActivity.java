@@ -6,6 +6,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.jiang.thinkindler.R;
 import com.jiang.thinkindler.base.BaseActivity;
@@ -15,7 +16,7 @@ import butterknife.BindView;
 
 public class MainActivity extends BaseActivity {
 
-    private DoubanMainFragment doubanFragment;
+    private DoubanMainFragment doubanFragment;//text
 
     @BindView(R.id.nav_main)
     NavigationView navigationView;
@@ -41,7 +42,8 @@ public class MainActivity extends BaseActivity {
 
         toolbar.inflateMenu(R.menu.menu_clear);
 
-        doubanFragment = (DoubanMainFragment) getSupportFragmentManager().findFragmentById(R.id.frag_main_douban);
+        doubanFragment = (DoubanMainFragment) getSupportFragmentManager().findFragmentById(R.id
+                .frag_main_douban);
         displayFragmentByIndex(0);
 
         navigationView.setNavigationItemSelectedListener(onNavigationItemSelectedListener);
