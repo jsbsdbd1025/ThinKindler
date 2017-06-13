@@ -20,7 +20,8 @@ public abstract class CommonFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         TAG = CommonFragment.class.getSimpleName();
         this.mContext = inflater.getContext();
         return rootView;

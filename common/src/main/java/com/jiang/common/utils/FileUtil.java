@@ -41,11 +41,11 @@ public class FileUtil {
         return saveBitmapReturnUri(bm, context, true);
     }
 
-    public static Uri saveBitmapReturnUri(Bitmap bm, Context context, boolean IsAvatar) {
+    public static Uri saveBitmapReturnUri(Bitmap bm, Context context, boolean isAvatar) {
         String file = context.getCacheDir().getPath();
         Log.e(TAG, "saveBitmapReturnUri: " + file);
         File img = null;
-        if (IsAvatar) {
+        if (isAvatar) {
             img = new File(file, "/avatar.png");
         } else {
             Date date = new Date();
@@ -78,7 +78,9 @@ public class FileUtil {
         String path = Environment.getExternalStorageDirectory().getAbsolutePath();
         File file = new File(path + "/myImage/");
         /** 检测文件夹是否存在，不存在则创建文件夹 **/
-        if (!file.exists() && !file.isDirectory()) file.mkdirs();
+        if (!file.exists() && !file.isDirectory()) {
+            file.mkdirs();
+        }
         String fileName = file.getPath() + "/" + name;
         try {
             b = new FileOutputStream(fileName);
@@ -89,7 +91,9 @@ public class FileUtil {
             e.printStackTrace();
         } finally {
             try {
-                if (b == null) return "";
+                if (b == null) {
+                    return "";
+                }
                 b.flush();
                 b.close();
             } catch (IOException e) {

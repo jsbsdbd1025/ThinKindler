@@ -133,12 +133,13 @@ public class AppManager {
      * @param cls
      */
     public void returnToActivity(Class<?> cls) {
-        while (activityStack.size() != 0)
+        while (activityStack.size() != 0) {
             if (activityStack.peek().getClass() == cls) {
                 break;
             } else {
                 finishActivity(activityStack.peek());
             }
+        }
     }
 
 

@@ -49,7 +49,7 @@ public class DisplayUtil {
      * dp转px
      *
      * @param context
-     * @param val
+     * @param dpVal
      * @return
      */
     public static int dip2px(Context context, float dpVal) {
@@ -193,7 +193,7 @@ public class DisplayUtil {
     public static int getWidgetWidth(View view) {
         int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
         int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-        view.measure(w, h);//先度量
+        view.measure(w, h); //先度量
         int width = view.getMeasuredWidth();
         return width;
     }
@@ -207,7 +207,7 @@ public class DisplayUtil {
     public static int getWidgetHeight(View view) {
         int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
         int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-        view.measure(w, h);//先度量
+        view.measure(w, h); //先度量
         int height = view.getMeasuredHeight();
         return height;
     }

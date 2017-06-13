@@ -56,19 +56,20 @@ public class PlaceHolder {
         Bitmap result = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(result);
         canvas.drawColor(Color.TRANSPARENT);
-        Rect rect = new Rect(0, 0, size, size);//画一个矩形
+        Rect rect = new Rect(0, 0, size, size); //画一个矩形
         Paint textPaint = new Paint();
         textPaint.setColor(Color.WHITE);
         textPaint.setAlpha(200);
         textPaint.setTextSize((int) (size * 0.65));
         Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
-        float top = fontMetrics.top;//为基线到字体上边框的距离,即上图中的top
-        float bottom = fontMetrics.bottom;//为基线到字体下边框的距离,即上图中的bottom
-        int baseLineY = (int) (rect.centerY() - top / 2 - bottom / 2);//基线中间点的y轴计算公式
+        float top = fontMetrics.top; //为基线到字体上边框的距离,即上图中的top
+        float bottom = fontMetrics.bottom; //为基线到字体下边框的距离,即上图中的bottom
+        int baseLineY = (int) (rect.centerY() - top / 2 - bottom / 2); //基线中间点的y轴计算公式
 
         canvas.drawBitmap(bitmap, 0, 0, textPaint);
-        if (str != null && str.length() > 1)
+        if (str != null && str.length() > 1) {
             canvas.drawText(str.substring(0, 1), (int) (size * 0.35) / 2, baseLineY, textPaint);
+        }
         canvas.save(Canvas.ALL_SAVE_FLAG);
 
         return new BitmapDrawable(result);
@@ -110,7 +111,7 @@ public class PlaceHolder {
         Bitmap result = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(result);
         canvas.drawColor(Color.TRANSPARENT);
-        Rect rect = new Rect(0, 0, size, size);//画一个矩形
+        Rect rect = new Rect(0, 0, size, size); //画一个矩形
         Paint textPaint = new Paint();
         canvas.drawCircle(bitmap.getWidth() / 2, bitmap.getWidth() / 2, bitmap.getWidth() / 2, textPaint);
         textPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
@@ -119,11 +120,12 @@ public class PlaceHolder {
         textPaint.setColor(Color.WHITE);
         textPaint.setTextSize((int) (size * 0.65));
         Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
-        float top = fontMetrics.top;//为基线到字体上边框的距离,即上图中的top
-        float bottom = fontMetrics.bottom;//为基线到字体下边框的距离,即上图中的bottom
-        int baseLineY = (int) (rect.centerY() - top / 2 - bottom / 2);//基线中间点的y轴计算公式
-        if (str != null && str.length() > 1)
+        float top = fontMetrics.top; //为基线到字体上边框的距离,即上图中的top
+        float bottom = fontMetrics.bottom; //为基线到字体下边框的距离,即上图中的bottom
+        int baseLineY = (int) (rect.centerY() - top / 2 - bottom / 2); //基线中间点的y轴计算公式
+        if (str != null && str.length() > 1) {
             canvas.drawText(str.substring(0, 1), (int) (size * 0.35) / 2, baseLineY, textPaint);
+        }
         canvas.save(Canvas.ALL_SAVE_FLAG);
 
         return new BitmapDrawable(result);

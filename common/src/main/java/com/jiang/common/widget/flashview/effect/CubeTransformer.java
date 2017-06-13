@@ -7,11 +7,7 @@ import com.nineoldandroids.view.ViewHelper;
 
 public class CubeTransformer implements PageTransformer {
 	
-	/**
-	 * position����ָ������ҳ���������Ļ���ĵ�λ�á�����һ����̬���ԣ�������ҳ��Ĺ������ı䡣��һ��ҳ�����������Ļ�ǣ�����ֵ��0��
-	 * ��һ��ҳ��ո��뿪��Ļ���ұ�ʱ������ֵ��1��������Ҳҳ��ֱ������һ��ʱ������һ��ҳ���λ����-0.5����һ��ҳ���λ����0.5��������Ļ��ҳ���λ��
-	 * ��ͨ��ʹ������setAlpha()��setTranslationX()����setScaleY()����������ҳ������ԣ��������Զ���Ļ���������
-	 */
+
 	@Override
 	public void transformPage(View view, float position) {
 		if (position <= 0) {
