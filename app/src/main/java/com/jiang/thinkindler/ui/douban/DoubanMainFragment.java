@@ -85,13 +85,15 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
         recyclerView.setIAdapter(mAdapter);
         mAdapter.setOnItemClickListener(itemClickListener);
 
-        edtSearch.setOnKeyListener((v, keyCode, event) -> {
-            // 修改回车键功能
-            if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
-                KeyBoardUtil.closeKeybord(edtSearch, mContext);
-                mPresenter.doSearch(getSearchContent(), 0);
+        edtSearch.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+                    KeyBoardUtil.closeKeybord(edtSearch, mContext);
+                    mPresenter.doSearch(getSearchContent(), 0);
+                }
+                return false;
             }
-            return false;
         });
 
         HistoryUtil.loadAll()
@@ -139,7 +141,8 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setHasOptionsMenu(true);
-//        StatusBarCompat.setStatusBarColor(getActivity(), getResources().getColor(R.color.colorPrimary));
+//        StatusBarCompat.setStatusBarColor(getActivity(), getResources().getColor(R.color
+// .colorPrimary));
     }
 
     BaseDelegateAdapter.OnRecyclerViewItemClickListener itemClickListener = (view, position) -> {

@@ -17,8 +17,6 @@ buildscript {
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
-        classpath 'com.puppycrawl.tools:checkstyle:7.1.2'
-
     }
 
 }
@@ -31,12 +29,6 @@ allprojects {
     }
 
     apply plugin: 'checkstyle'
-
-    checkstyle {
-        toolVersion '7.1.2'
-        showViolations true
-    }
-
     task checkstyle(type: Checkstyle) {
         source 'src'
         include '**/*.java'
@@ -44,12 +36,9 @@ allprojects {
         exclude '**/R.java'
         exclude '**/BuildConfig.java'
         configFile new File(rootDir, "checkstyle.xml")
-        configProperties.checkstyleSuppressionsPath = file("${project.projectDir}/suppressions.xml").absolutePath
-        // Where is my suppressions file for checkstyle is...
         // empty classpath
         classpath = files()
     }
-
 }
 
 task clean(type: Delete) {
