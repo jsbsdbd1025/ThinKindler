@@ -2,7 +2,7 @@ package com.jiang.thinkindler.net;
 
 public enum ApiType {
 
-    DOUBAN(0, "https://api.douban.com/"),;
+    DOUBAN(0, "https://api.douban.com/");
 
     private final int id;
     private final String url;

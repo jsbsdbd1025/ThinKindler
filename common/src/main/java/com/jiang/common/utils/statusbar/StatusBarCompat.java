@@ -28,6 +28,7 @@ public class StatusBarCompat {
 
     /**
      * set statusBarColor
+     *
      * @param statusColor color
      * @param alpha       0 - 255
      */
@@ -49,6 +50,7 @@ public class StatusBarCompat {
 
     /**
      * change to full screen mode
+     *
      * @param hideStatusBarBackground hide status bar alpha Background when SDK > 21, true if hide it
      */
     public static void translucentStatusBar(@NonNull Activity activity, boolean hideStatusBarBackground) {
@@ -59,12 +61,15 @@ public class StatusBarCompat {
         }
     }
 
-    public static void setStatusBarColorForCollapsingToolbar(@NonNull Activity activity, AppBarLayout appBarLayout, CollapsingToolbarLayout collapsingToolbarLayout,
-                                                             Toolbar toolbar, @ColorInt int statusColor) {
+    public static void setStatusBarColorForCollapsingToolbar(
+            @NonNull Activity activity, AppBarLayout appBarLayout, CollapsingToolbarLayout collapsingToolbarLayout,
+            Toolbar toolbar, @ColorInt int statusColor) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            StatusBarCompatLollipop.setStatusBarColorForCollapsingToolbar(activity, appBarLayout, collapsingToolbarLayout, toolbar, statusColor);
+            StatusBarCompatLollipop.setStatusBarColorForCollapsingToolbar(
+                    activity, appBarLayout, collapsingToolbarLayout, toolbar, statusColor);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            StatusBarCompatKitKat.setStatusBarColorForCollapsingToolbar(activity, appBarLayout, collapsingToolbarLayout, toolbar, statusColor);
+            StatusBarCompatKitKat.setStatusBarColorForCollapsingToolbar(
+                    activity, appBarLayout, collapsingToolbarLayout, toolbar, statusColor);
         }
     }
 }

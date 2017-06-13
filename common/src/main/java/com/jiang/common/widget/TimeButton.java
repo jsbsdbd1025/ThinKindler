@@ -22,7 +22,7 @@ import java.util.TimerTask;
 
 public class TimeButton extends Button implements OnClickListener {
 
-    private long lenght = 60 * 1000;// 倒计时长度,这里给了默认60秒
+    private long lenght = 60 * 1000; // 倒计时长度,这里给了默认60秒
     private String textafter = "重新发送";
     private String textbefore = "获取验证码";
     private final String TIME = "time";
@@ -46,9 +46,9 @@ public class TimeButton extends Button implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (mOnclickListener != null)
+        if (mOnclickListener != null) {
             mOnclickListener.onClick(v);
-        else {
+        } else {
             toClick();
         }
     }
@@ -93,8 +93,9 @@ public class TimeButton extends Button implements OnClickListener {
             tt.cancel();
             tt = null;
         }
-        if (t != null)
+        if (t != null) {
             t.cancel();
+        }
         t = null;
     }
 
@@ -102,16 +103,18 @@ public class TimeButton extends Button implements OnClickListener {
     public void setOnClickListener(OnClickListener l) {
         if (l instanceof TimeButton) {
             super.setOnClickListener(l);
-        } else
+        } else {
             this.mOnclickListener = l;
+        }
     }
 
     /**
      * 和activity的onDestroy()方法同步
      */
     public void onDestroy() {
-        if (CommonApplication.map == null)
+        if (CommonApplication.map == null) {
             CommonApplication.map = new HashMap<String, Long>();
+        }
         CommonApplication.map.put(TIME, time);
         CommonApplication.map.put(CTIME, System.currentTimeMillis());
         clearTimer();
@@ -122,16 +125,18 @@ public class TimeButton extends Button implements OnClickListener {
      */
     public void onCreate(Bundle bundle) {
         Log.e("yung", CommonApplication.map + "");
-        if (CommonApplication.map == null)
+        if (CommonApplication.map == null) {
             return;
-        if (CommonApplication.map.size() <= 0)// ÕâÀï±íÊ¾Ã»ÓÐÉÏ´ÎÎ´Íê³ÉµÄ¼ÆÊ±
+        }
+        if (CommonApplication.map.size() <= 0) {
             return;
+        }
         long time = System.currentTimeMillis() - CommonApplication.map.get(CTIME)
                 - CommonApplication.map.get(TIME);
         CommonApplication.map.clear();
-        if (time > 0)
+        if (time > 0) {
             return;
-        else {
+        } else {
             initTimer();
             this.time = Math.abs(time);
             t.schedule(tt, 0, 1000);

@@ -2,10 +2,7 @@ package com.jiang.thinkindler.base;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.CallSuper;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.view.Window;
 
 import com.jiang.common.base.CommonActivity;
 import com.jiang.common.utils.AppManager;
@@ -13,8 +10,6 @@ import com.jiang.thinkindler.app.BaseApplication;
 import com.jiang.thinkindler.injector.component.ActivityComponent;
 import com.jiang.thinkindler.injector.component.DaggerActivityComponent;
 import com.jiang.thinkindler.injector.module.ActivityModule;
-import com.trello.rxlifecycle2.android.ActivityEvent;
-import com.trello.rxlifecycle2.components.RxActivity;
 
 import javax.inject.Inject;
 
@@ -22,7 +17,6 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.subjects.BehaviorSubject;
 
 public abstract class BaseActivity<T extends BasePresenter> extends CommonActivity {
     @Inject
@@ -30,9 +24,8 @@ public abstract class BaseActivity<T extends BasePresenter> extends CommonActivi
     public Context mContext;
     private Unbinder unbinder;
     protected String TAG = null;
-
     private CompositeDisposable disposables2Stop; //管理stop取消订阅者
-    private CompositeDisposable disposables2Destroy;//管理Destroy取消订阅者
+    private CompositeDisposable disposables2Destroy; //管理Destroy取消订阅者
 
     private ActivityComponent activityComponent;
 
@@ -48,18 +41,15 @@ public abstract class BaseActivity<T extends BasePresenter> extends CommonActivi
             throw new IllegalStateException("onCreate called multiple times");
         }
         disposables2Destroy = new CompositeDisposable();
-        doBeforeSetcontentView();
         setContentView(getLayoutId());
-        if (unbinder == null)
+        if (unbinder == null) {
             unbinder = ButterKnife.bind(this);
-
+        }
         mContext = this;
 
         activityComponent = DaggerActivityComponent.builder()
                 .appComponent(((BaseApplication) getApplication()).getAppComponent())
                 .activityModule(new ActivityModule(this)).build();
-
-
 
         //init()中只进行初始化动作
         init();
@@ -128,19 +118,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends CommonActivi
         disposables2Destroy.dispose();
         disposables2Destroy = null;
     }
-
-    private void doBeforeSetcontentView() {
-        // 把actvity放到application栈中管理
-        AppManager.getAppManager().addActivity(this);
-        // 无标题
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        // 设置竖屏
-        // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-//        // 默认着色状态栏
-//        SetStatusBarColor();
-//        SetTranslanteBar();
-    }
-
 
     /*********************
      * 子类实现

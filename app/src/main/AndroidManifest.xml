@@ -27,7 +27,7 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
-    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS"/>
 
     <application
             android:name=".app.BaseApplication"
@@ -44,12 +44,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.douban.DoubanDetailActivity"/>
+        <activity android:name=".ui.douban.BookDetailActivity"/>
 
         <!-- 配置APP ID -->
         <meta-data
                 android:name="BUGLY_APPID"
-                android:value="30bc1fbaea"/>
+                android:value="dd04cb012f"/>
     </application>
 
 </manifest>

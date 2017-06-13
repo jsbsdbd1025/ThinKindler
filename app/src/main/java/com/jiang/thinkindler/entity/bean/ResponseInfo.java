@@ -49,11 +49,11 @@ public class ResponseInfo<T> {
 
     @Override
     public String toString() {
-        String response = "{\n" +
-                "  \"success\": " + success + ",\n" +
-                "  \"msg\": \"" + msg + "\",\n" +
-                (body != null ? ("  \"body\": \n" + body.toString() + "  \n") : "") +
-                "}";
+        String response = "{\n"
+                + "  \"success\": " + success + ",\n"
+                + "  \"msg\": \"" + msg + "\",\n"
+                + (body != null ? ("  \"body\": \n" + body.toString() + "  \n") : "")
+                + "}";
         return response;
     }
 }

@@ -9,7 +9,6 @@ import com.jiang.common.utils.LogUtils;
 import com.jiang.common.utils.ToastUtil;
 import com.jiang.thinkindler.base.BaseView;
 import com.jiang.thinkindler.entity.bean.PageList;
-import com.jiang.thinkindler.entity.bean.ResponseInfo;
 
 import org.json.JSONException;
 

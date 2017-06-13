@@ -21,7 +21,7 @@ import javax.crypto.Cipher;
  * @author cj
  */
 public final class RSAUtils {
-    private static String RSA = "RSA";
+    private final static String RSA = "RSA";
     public static final String ECB_PKCS1_PADDING = "RSA/ECB/PKCS1Padding";
 
 
@@ -34,7 +34,8 @@ public final class RSAUtils {
      */
     public static String encryptPsw(String password, String random, String publicKeyStr) throws Exception {
         PublicKey publicKey = loadPublicKey(publicKeyStr);
-        String encryptedPwd = Base64.encodeToString(encryptData((password + random).getBytes(), publicKey), Base64.NO_WRAP);
+        String encryptedPwd = Base64.encodeToString(
+                encryptData((password + random).getBytes(), publicKey), Base64.NO_WRAP);
         return encryptedPwd;
     }
 

@@ -95,15 +95,16 @@ public class Api {
         };
 
         //增加cookie持久化
-        ClearableCookieJar cookieJar =
-                new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(BaseApplication.getAppContext()));
+        ClearableCookieJar cookieJar = new PersistentCookieJar(
+                new SetCookieCache(),
+                new SharedPrefsCookiePersistor(BaseApplication.getAppContext()));
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .cache(cache)
                 .cookieJar(cookieJar)
                 .addInterceptor(mRewriteCacheControlInterceptor)
                 .addNetworkInterceptor(mRewriteCacheControlInterceptor)
-                .addInterceptor(logInterceptor)
+                .addNetworkInterceptor(logInterceptor)
                 .retryOnConnectionFailure(true)
                 .readTimeout(READ_TIME_OUT, TimeUnit.MILLISECONDS)
                 .connectTimeout(CONNECT_TIME_OUT, TimeUnit.MILLISECONDS)

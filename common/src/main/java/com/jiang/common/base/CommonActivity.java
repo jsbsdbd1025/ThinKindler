@@ -9,13 +9,12 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.FrameLayout;
 
 import com.jiang.common.R;
 import com.jiang.common.utils.AppManager;
-import com.jiang.common.utils.statusbar.StatusBarCompat;
 import com.jiang.common.utils.ToastUtil;
+import com.jiang.common.utils.statusbar.StatusBarCompat;
 import com.jiang.common.widget.LoadingDialog;
 
 /**
@@ -32,6 +31,16 @@ public abstract class CommonActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+//        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+//                .detectAll()
+//                .penaltyDialog()
+//                .penaltyLog()
+//                .build());
+//        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+//                .detectAll()
+//                .penaltyLog()
+//                .penaltyDeath()
+//                .build());
         super.onCreate(savedInstanceState);
         doBeforeSetcontentView();
         mContext = this;
@@ -39,6 +48,8 @@ public abstract class CommonActivity extends AppCompatActivity {
     }
 
     private void doBeforeSetcontentView() {
+        // 无标题   不设置会导致自己画的toolbar点击无效
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
         // 把actvity放到application栈中管理
         AppManager.getAppManager().addActivity(this);
         // 设置竖屏

@@ -3,11 +3,8 @@ package com.jiang.thinkindler.ui.douban.contract;
 import com.jiang.thinkindler.base.BasePresenter;
 import com.jiang.thinkindler.base.BaseView;
 import com.jiang.thinkindler.entity.bean.BookBean;
-import com.trello.rxlifecycle2.android.FragmentEvent;
 
 import java.util.List;
-
-import io.reactivex.subjects.BehaviorSubject;
 
 /**
  * Created by jiang on 2017/4/14.
@@ -18,10 +15,12 @@ public interface DoubanMainContract {
     interface View extends BaseView {
 
         void returnDatas(List<BookBean> books);
+
+        String getSearchContent();
     }
 
     interface Presenter extends BasePresenter {
-        void doSearch(String content);
+        void doSearch(String content, int start);
     }
 
 }

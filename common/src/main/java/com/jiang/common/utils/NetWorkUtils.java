@@ -13,7 +13,8 @@ import java.util.regex.Pattern;
 public class NetWorkUtils {
 
 
-    private static int flag=1;
+    private static int flag = 1;
+
     /**
      * 检查网络是否可用
      */
@@ -21,8 +22,9 @@ public class NetWorkUtils {
         boolean i = false;
         NetworkInfo localNetworkInfo = ((ConnectivityManager) paramContext
                 .getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
-        if ((localNetworkInfo != null) && (localNetworkInfo.isAvailable()))
+        if ((localNetworkInfo != null) && (localNetworkInfo.isAvailable())) {
             return true;
+        }
         return false;
     }
 
@@ -58,8 +60,8 @@ public class NetWorkUtils {
      * 判断网址是否有效
      */
     public static boolean isLinkAvailable(String link) {
-        Pattern pattern = Pattern.compile("^(http://|https://)?((?:[A-Za-z0-9]+-[A-Za-z0-9]+|[A-Za-z0-9]+)" +
-                "\\.)+([A-Za-z]+)[/\\?\\:]?.*$", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("^(http://|https://)?((?:[A-Za-z0-9]+-[A-Za-z0-9]+|[A-Za-z0-9]+)"
+                + "\\.)+([A-Za-z]+)[/\\?\\:]?.*$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(link);
         if (matcher.matches()) {
             return true;
@@ -73,9 +75,9 @@ public class NetWorkUtils {
             return 1;
         } else if (is3gConnected(context)) {
             return 2;
-        } else
+        } else {
             return 0;
+        }
     }
-
 
 }

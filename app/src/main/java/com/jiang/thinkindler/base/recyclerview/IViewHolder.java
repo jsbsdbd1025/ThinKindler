@@ -1,7 +1,6 @@
 package com.jiang.thinkindler.base.recyclerview;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spanned;
 import android.util.SparseArray;

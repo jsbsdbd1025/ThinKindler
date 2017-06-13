@@ -1,5 +1,6 @@
 package com.jiang.thinkindler.ui;
 
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -10,9 +11,14 @@ import com.jiang.thinkindler.R;
 import com.jiang.thinkindler.base.BaseActivity;
 import com.jiang.thinkindler.ui.douban.DoubanMainFragment;
 
+import butterknife.BindView;
+
 public class MainActivity extends BaseActivity {
 
     private DoubanMainFragment doubanFragment;
+
+    @BindView(R.id.nav_main)
+    NavigationView navigationView;
 
     @Override
     public int getLayoutId() {
@@ -21,6 +27,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void init() {
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -36,7 +43,21 @@ public class MainActivity extends BaseActivity {
 
         doubanFragment = (DoubanMainFragment) getSupportFragmentManager().findFragmentById(R.id.frag_main_douban);
         displayFragmentByIndex(0);
+
+        navigationView.setNavigationItemSelectedListener(onNavigationItemSelectedListener);
+
     }
+
+    NavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener
+            = item -> {
+        switch (item.getItemId()) {
+            case R.id.nav_zhihu:
+                break;
+            default:
+                break;
+        }
+        return false;
+    };
 
     @Override
     protected void initInjector() {

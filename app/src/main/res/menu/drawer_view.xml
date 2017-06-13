@@ -14,29 +14,31 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      android:tint="#ff7908">
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
-            android:title="Home" />
+                android:id="@+id/nav_home"
+                android:icon="@mipmap/ic_launcher"
+                android:title="豆瓣"/>
         <item
-            android:id="@+id/nav_messages"
-            android:title="Messages" />
+                android:id="@+id/nav_zhihu"
+                android:icon="@mipmap/ic_launcher"
+                android:title="知乎"/>
         <item
-            android:id="@+id/nav_friends"
-            android:title="Friends" />
-        <item
-            android:id="@+id/nav_discussion"
-            android:title="Discussion" />
+                android:id="@+id/nav_live"
+                android:icon="@mipmap/ic_launcher"
+                android:title="直播"/>
     </group>
 
     <item android:title="Sub items">
         <menu>
             <item
-                android:title="Sub item 1" />
+                    android:title="Sub item 1"/>
             <item
-                android:title="Sub item 2" />
+                    android:title="Sub item 2"/>
+
         </menu>
     </item>
 

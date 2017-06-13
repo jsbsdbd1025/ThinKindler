@@ -12,11 +12,11 @@ import com.bumptech.glide.util.Util;
 import com.jiang.common.R;
 import com.jiang.common.utils.DisplayUtil;
 
+import java.io.File;
+
 import jp.wasabeef.glide.transformations.BlurTransformation;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
-
-import java.io.File;
 
 /**
  * Description : 图片加载工具类 使用glide框架封装

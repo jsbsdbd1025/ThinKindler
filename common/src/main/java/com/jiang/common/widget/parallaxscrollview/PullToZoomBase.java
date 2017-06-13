@@ -30,8 +30,8 @@ import com.jiang.common.R;
 public abstract class PullToZoomBase<T extends View> extends LinearLayout implements IPullToZoom<T> {
     private static final float FRICTION = 2.0f;
     protected T mRootView;
-    protected View mHeaderView;//头部View
-    protected View mZoomView;//缩放拉伸View
+    protected View mHeaderView; //头部View
+    protected View mZoomView; //缩放拉伸View
 
     protected int mScreenHeight;
     protected int mScreenWidth;
@@ -146,7 +146,7 @@ public abstract class PullToZoomBase<T extends View> extends LinearLayout implem
         this.isParallax = isParallax;
     }
 
-    public void setHideHeader(boolean isHideHeader) {//header显示才能Zoom
+    public void setHideHeader(boolean isHideHeader) { //header显示才能Zoom
         this.isHideHeader = isHideHeader;
     }
 

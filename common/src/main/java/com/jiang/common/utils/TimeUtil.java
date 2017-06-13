@@ -32,72 +32,72 @@ public class TimeUtil {
     /**
      * 时间日期格式化到年月日时分秒.
      */
-    public static String dateFormatYMDHMS = "yyyy-MM-dd HH:mm:ss";
-    public static String dateFormatYMDHMS_f = "yyyyMMddHHmmss";
-    public static String dateFormatMDHM = "MM-dd HH:mm";
-    public static String dateFormat = "yyyy-MM-dd HH:mm";
+    public static final String dateFormatYMDHMS = "yyyy-MM-dd HH:mm:ss";
+    public static final String dateFormatYMDHMS_F = "yyyyMMddHHmmss";
+    public static final String dateFormatMDHM = "MM-dd HH:mm";
+    public static final String dateFormat = "yyyy-MM-dd HH:mm";
     /**
      * 时间日期格式化到年月日.
      */
-    public static String dateFormatYMD = "yyyy-MM-dd";
+    public static final String dateFormatYMD = "yyyy-MM-dd";
 
     /**
      * 时间日期格式化到年月日时分.中文显示
      */
-    public static String dateFormatYMDHMofChinese = "yyyy年MM月dd日 HH:mm";
+    public static final String dateFormatYMDHMofChinese = "yyyy年MM月dd日 HH:mm";
 
     /**
      * 时间日期格式化到年月日.中文显示
      */
-    public static String dateFormatYMDofChinese = "yyyy年MM月dd日";
+    public static final String dateFormatYMDofChinese = "yyyy年MM月dd日";
     /**
      * 时间日期格式化到月日.中文显示
      */
-    public static String dateFormatMDofChinese = "MM月dd日";
+    public static final String dateFormatMDofChinese = "MM月dd日";
     /**
      * 时间日期格式化到月.中文显示
      */
-    public static String dateFormatMofChinese = "MM月";
+    public static final String dateFormatMofChinese = "MM月";
     /**
      * 时间日期格式化到年月.
      */
-    public static String dateFormatYM = "yyyy-MM";
+    public static final String dateFormatYM = "yyyy-MM";
 
     /**
      * 时间日期格式化到年月日时分.
      */
-    public static String dateFormatYMDHM = "yyyy-MM-dd HH:mm";
+    public static final String dateFormatYMDHM = "yyyy-MM-dd HH:mm";
 
     /**
      * 时间日期格式化到月日.
      */
-    public static String dateFormatMD = "MM/dd";
-    public static String dateFormatM_D = "MM-dd";
+    public static final String dateFormatMD = "MM/dd";
+    public static final String dateFormatM_D = "MM-dd";
 
-    public static String dateFormatM = "MM月";
-    public static String dateFormatD = "dd";
-    public static String dateFormatM2 = "MM";
+    public static final String dateFormatM = "MM月";
+    public static final String dateFormatD = "dd";
+    public static final String dateFormatM2 = "MM";
 
-    public static String dateFormatMDHMofChinese = "MM月dd日HH时mm分";
-    public static String dateFormatHMofChinese = "HH时mm分";
+    public static final String dateFormatMDHMofChinese = "MM月dd日HH时mm分";
+    public static final String dateFormatHMofChinese = "HH时mm分";
 
     /**
      * 时分秒.
      */
-    public static String dateFormatHMS = "HH:mm:ss";
+    public static final String dateFormatHMS = "HH:mm:ss";
 
     /**
      * 时分.
      */
-    public static String dateFormatHM = "HH:mm";
+    public static final String dateFormatHM = "HH:mm";
 
     /**
      * 上午/下午时分
      */
-    public static String dateFormatAHM = "aHH:mm";
+    public static final String dateFormatAHM = "aHH:mm";
 
-    public static String dateFormatYMDE = "yyyy/MM/dd E";
-    public static String dateFormatYMD2 = "yyyy/MM/dd";
+    public static final String dateFormatYMDE = "yyyy/MM/dd E";
+    public static final String dateFormatYMD2 = "yyyy/MM/dd";
 
     private final static ThreadLocal<SimpleDateFormat> dateFormater = new ThreadLocal<SimpleDateFormat>() {
         @SuppressLint("SimpleDateFormat")
@@ -175,7 +175,8 @@ public class TimeUtil {
      * 描述：获取偏移之后的Date.
      *
      * @param date          日期时间
-     * @param calendarField Calendar属性，对应offset的值， 如(Calendar.DATE,表示+offset天,Calendar.HOUR_OF_DAY,表示＋offset小时)
+     * @param calendarField Calendar属性，对应offset的值，
+     *                      如(Calendar.DATE,表示+offset天,Calendar.HOUR_OF_DAY,表示＋offset小时)
      * @param offset        偏移(值大于0,表示+,值小于0,表示－)
      * @return Date 偏移之后的日期时间
      */
@@ -195,7 +196,8 @@ public class TimeUtil {
      *
      * @param strDate       String形式的日期时间
      * @param format        格式化字符串，如："yyyy-MM-dd HH:mm:ss"
-     * @param calendarField Calendar属性，对应offset的值， 如(Calendar.DATE,表示+offset天,Calendar.HOUR_OF_DAY,表示＋offset小时)
+     * @param calendarField Calendar属性，对应offset的值，
+     *                      如(Calendar.DATE,表示+offset天,Calendar.HOUR_OF_DAY,表示＋offset小时)
      * @param offset        偏移(值大于0,表示+,值小于0,表示－)
      * @return String String类型的日期时间
      */
@@ -274,10 +276,10 @@ public class TimeUtil {
      *
      * @param strDate String形式的日期时间，必须为yyyy-MM-dd HH:mm:ss格式
      * @param format  输出格式化字符串，如："yyyy-MM-dd HH:mm:ss"
-                * @return String 转换后的String类型的日期时间
-                */
-        public static String getStringByFormat(String strDate, String format) {
-            String mDateTime = null;
+     * @return String 转换后的String类型的日期时间
+     */
+    public static String getStringByFormat(String strDate, String format) {
+        String mDateTime = null;
         try {
             Calendar c = new GregorianCalendar();
             SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat(format);
@@ -387,7 +389,8 @@ public class TimeUtil {
      * 描述：获取表示当前日期时间的字符串(可偏移).
      *
      * @param format        格式化字符串，如："yyyy-MM-dd HH:mm:ss"
-     * @param calendarField Calendar属性，对应offset的值， 如(Calendar.DATE,表示+offset天,Calendar.HOUR_OF_DAY,表示＋offset小时)
+     * @param calendarField Calendar属性，对应offset的值，
+     *                      如(Calendar.DATE,表示+offset天,Calendar.HOUR_OF_DAY,表示＋offset小时)
      * @param offset        偏移(值大于0,表示+,值小于0,表示－)
      * @return String String类型的日期时间
      */
@@ -735,7 +738,9 @@ public class TimeUtil {
      * @return
      */
     public static String getfriendlyTime(Long ms) {
-        if (ms == null) return "";
+        if (ms == null) {
+            return "";
+        }
 //		Date time = toDate(sdate);
         Date time = new Date();
         time.setTime(ms);
@@ -768,12 +773,13 @@ public class TimeUtil {
         int days = (int) (ct - lt);
         if (days == 0) {
             int hour = (int) ((cal.getTimeInMillis() - time.getTime()) / 3600000);
-            if (hour == 0)
+            if (hour == 0) {
                 ftime = Math.max(
                         (cal.getTimeInMillis() - time.getTime()) / 60000, 1)
                         + "分钟前";
-            else
+            } else {
                 ftime = hour + "小时前";
+            }
         } else if (days == 1) {
             ftime = "昨天";
         } else if (days == 2) {
@@ -931,17 +937,21 @@ public class TimeUtil {
      */
     public static String getFriendTimeOffer(long diff) {
         int day = (int) (diff / (24 * 60 * 60 * 1000));
-        if (day > 0)
+        if (day > 0) {
             return day + "天";
+        }
         int time = (int) (diff / (60 * 60 * 1000));
-        if (time > 0)
+        if (time > 0) {
             return time + "小时";
+        }
         int min = (int) (diff / (60 * 1000));
-        if (min > 0)
+        if (min > 0) {
             return min + "分钟";
+        }
         int sec = (int) diff / 1000;
-        if (sec > 0)
+        if (sec > 0) {
             return sec + "秒";
+        }
         return "1秒";
     }
 
@@ -979,7 +989,7 @@ public class TimeUtil {
 
     public static String getFriendlyMusicDuration(long duration) {
         String str = "-";
-        int tmpDuration = (int) (duration / 1000);//秒
+        int tmpDuration = (int) (duration / 1000); //秒
         str += (tmpDuration / 3600 > 10 ? tmpDuration / 3600 : "0" + tmpDuration / 3600) + ":";
         tmpDuration %= 3600;
         str += (tmpDuration / 60 > 10 ? tmpDuration / 60 : "0" + tmpDuration / 60) + ":";
@@ -1057,16 +1067,16 @@ public class TimeUtil {
     /**
      * 两个日期比较
      *
-     * @param DATE1
-     * @param DATE2
+     * @param date1
+     * @param date2
      * @return
      */
-    public static int compare_date(String DATE1, String DATE2) {
+    public static int compare_date(String date1, String date2) {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA);
         try {
-            Date dt1 = df.parse(DATE1);
-            Date dt2 = df.parse(DATE2);
-            if (dt1.getTime() - dt2.getTime() > 0) {//date1>date2
+            Date dt1 = df.parse(date1);
+            Date dt2 = df.parse(date2);
+            if (dt1.getTime() - dt2.getTime() > 0) { //date1>date2
                 return 1;
             } else {
                 return -1;

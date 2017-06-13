@@ -16,7 +16,8 @@ public class RegexUtil {
      * @param bit 小数位数
      */
     public static boolean isNumber(String src, int bit) {
-        Pattern pattern = Pattern.compile("^(([1-9]{1}\\d*)|([0]{1}))(\\.(\\d){0," + bit + "})?$"); // 判断小数点后2位的数字的正则表达式
+        // 判断小数点后2位的数字的正则表达式
+        Pattern pattern = Pattern.compile("^(([1-9]{1}\\d*)|([0]{1}))(\\.(\\d){0," + bit + "})?$");
         Matcher match = pattern.matcher(src);
 
         if (match.matches() == false) {
@@ -80,8 +81,9 @@ public class RegexUtil {
                     break;
                 }
             }
-            if (flag == false)
+            if (flag == false) {
                 ret.append(c);
+            }
         }
 
         return ret.toString();

@@ -1,10 +1,7 @@
 package com.jiang.thinkindler.rx;
 
-import android.content.Context;
 import android.net.ParseException;
-import android.util.Log;
 
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
 import com.jiang.common.utils.LogUtils;
@@ -38,8 +35,9 @@ public abstract class BaseObserver<T> implements Observer<T> {
     @Override
     public void onSubscribe(Disposable d) {
 
-        if (mBaseImpl == null)
+        if (mBaseImpl == null) {
             return;
+        }
         if (isAddInStop) {    //  在onStop中取消订阅
             mBaseImpl.addRxStop(d);
         } else { //  在onDestroy中取消订阅
@@ -66,11 +64,7 @@ public abstract class BaseObserver<T> implements Observer<T> {
                 || e instanceof JSONException
                 || e instanceof ParseException) {   //  解析错误
             onException(ExceptionReason.PARSE_ERROR);
-        }
-//        else if (e instanceof CustomException) {
-//            _onError(e.getMessage());
-//        }
-        else {
+        } else {
             onException(ExceptionReason.UNKNOWN_ERROR);
         }
     }

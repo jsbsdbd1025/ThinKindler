@@ -1,7 +1,5 @@
 package com.jiang.thinkindler.rx;
 
-import com.google.gson.JsonObject;
-
 import java.io.Serializable;
 
 /**
@@ -57,11 +55,11 @@ public class ResponseBean<T> implements Serializable {
 
     @Override
     public String toString() {
-        String response = "{\n" +
-                "  \"success\": " + success + ",\n" +
-                "  \"msg\": \"" + msg + "\",\n" +
-                (body != null ? ("  \"body\": \n" + body.toString() + "  \n") : "") +
-                "}";
+        String response = "{\n"
+                + "  \"success\": " + success + ",\n"
+                + "  \"msg\": \"" + msg + "\",\n"
+                + (body != null ? ("  \"body\": \n" + body.toString() + "  \n") : "")
+                + "}";
         return response;
     }
 }

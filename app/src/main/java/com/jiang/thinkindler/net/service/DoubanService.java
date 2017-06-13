@@ -5,6 +5,7 @@ import com.jiang.thinkindler.entity.bean.PageList;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -13,5 +14,10 @@ import retrofit2.http.Query;
 
 public interface DoubanService {
     @GET("v2/book/search")
-    Observable<PageList<BookBean>> search(@Query("q") String q, @Query("start") int start, @Query("fields") String fileds);
+    Observable<PageList<BookBean>> search(@Query("q") String q
+            , @Query("start") int start
+            , @Query("fields") String fileds);
+
+    @GET("v2/book/{id}")
+    Observable<BookBean> detail(@Path("id") String id);
 }

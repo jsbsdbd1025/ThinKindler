@@ -24,4 +24,8 @@ public class DoubanModel extends BaseModel {
     public Observable<PageList<BookBean>> searchBooks(String q, int start) {
         return mDoubanService.search(q, start, BOOK_LIST);
     }
+
+    public Observable<BookBean> getDetail(String id) {
+        return mDoubanService.detail(id);
+    }
 }

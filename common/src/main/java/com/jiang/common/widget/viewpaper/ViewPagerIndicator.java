@@ -17,7 +17,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
 import com.jiang.common.R;
 import com.jiang.common.utils.DisplayUtil;
 
@@ -49,9 +48,9 @@ public class ViewPagerIndicator extends LinearLayout {
     private List<String> mTitles;
 
 
-    private static int DEFAUT_COLOR_TEXT_NORMAL = 0xff999999;
-    private static int DEFAUT_COLOR_TEXT_HIGHLIGHT = 0xff6381DB;
-    private static int DEFAUT_COLOR_BASELINE = 0xff6381DB;
+    private static final int DEFAUT_COLOR_TEXT_NORMAL = 0xff999999;
+    private static final int DEFAUT_COLOR_TEXT_HIGHLIGHT = 0xff6381DB;
+    private static final int DEFAUT_COLOR_BASELINE = 0xff6381DB;
     private int DEFAUT_TEXT_SIZE = 0;
     private int mTextHightLight;
     private int mTextNormal;
@@ -110,7 +109,9 @@ public class ViewPagerIndicator extends LinearLayout {
 
         super.onFinishInflate();
         int cCount = getChildCount();
-        if (cCount == 0) return;
+        if (cCount == 0) {
+            return;
+        }
 
         for (int i = 0; i < cCount; i++) {
             View view = getChildAt(i);

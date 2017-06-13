@@ -16,11 +16,7 @@
 
 package com.jiang.thinkindler.base;
 
-import com.trello.rxlifecycle2.android.ActivityEvent;
-import com.trello.rxlifecycle2.android.FragmentEvent;
-
 import io.reactivex.disposables.Disposable;
-import io.reactivex.subjects.BehaviorSubject;
 
 public interface BaseView {
 

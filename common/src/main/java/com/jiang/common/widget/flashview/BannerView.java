@@ -44,8 +44,9 @@ public class BannerView extends FrameLayout {
 
     public void bindData(BannerBean bean) {
 
-        if (bean == null)
+        if (bean == null) {
             return;
+        }
         this.data = bean;
 
         setUpView();

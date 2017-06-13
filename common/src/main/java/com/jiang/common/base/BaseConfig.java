@@ -5,5 +5,5 @@ package com.jiang.common.base;
  */
 
 public class BaseConfig {
-    public static final String DEBUG_TAG = "logger";// LogCat的标记
+    public static final String DEBUG_TAG = "logger"; // LogCat的标记
 }

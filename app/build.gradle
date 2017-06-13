@@ -3,6 +3,7 @@ apply plugin: 'com.jakewharton.butterknife'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'org.greenrobot.greendao'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -128,6 +129,8 @@ dependencies {
     compile("com.alibaba.android:vlayout:$rootProject.vlayoutVersion@aar") {
         transitive = true
     }
+    //kotlin
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     //bugly
     //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9

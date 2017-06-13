@@ -3,14 +3,11 @@ package com.jiang.thinkindler.app;
 
 import com.jiang.common.base.CommonApplication;
 import com.jiang.common.utils.LogUtils;
-import com.jiang.common.utils.ToastUtil;
 import com.jiang.thinkindler.injector.component.AppComponent;
 import com.jiang.thinkindler.injector.component.DaggerAppComponent;
 import com.jiang.thinkindler.injector.module.AppModule;
 import com.squareup.leakcanary.LeakCanary;
 import com.tencent.bugly.crashreport.CrashReport;
-
-import javax.inject.Inject;
 
 public class BaseApplication extends CommonApplication {
 
@@ -20,7 +17,7 @@ public class BaseApplication extends CommonApplication {
     public void onCreate() {
         super.onCreate();
         LogUtils.logInit(true);
-//        LeakCanary.install(this);
+        LeakCanary.install(this);
 
         CrashReport.initCrashReport(getApplicationContext());
 

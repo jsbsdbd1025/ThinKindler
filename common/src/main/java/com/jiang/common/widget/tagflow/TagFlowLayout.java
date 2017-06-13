@@ -24,7 +24,7 @@ import java.util.Set;
 public class TagFlowLayout extends FlowLayout implements TagAdapter.OnDataChangedListener {
     private TagAdapter mTagAdapter;
     private boolean mAutoSelectEffect = true;
-    private int mSelectedMax = -1;//-1为不限制数量
+    private int mSelectedMax = -1; //-1为不限制数量
     private static final String TAG = "TagFlowLayout";
     private MotionEvent mMotionEvent;
 
@@ -58,7 +58,9 @@ public class TagFlowLayout extends FlowLayout implements TagAdapter.OnDataChange
 
         for (int i = 0; i < cCount; i++) {
             TagView tagView = (TagView) getChildAt(i);
-            if (tagView.getVisibility() == View.GONE) continue;
+            if (tagView.getVisibility() == View.GONE) {
+                continue;
+            }
             if (tagView.getTagView().getVisibility() == View.GONE) {
                 tagView.setVisibility(View.GONE);
             }
@@ -74,7 +76,9 @@ public class TagFlowLayout extends FlowLayout implements TagAdapter.OnDataChange
 
     public void setOnSelectListener(OnSelectListener onSelectListener) {
         mOnSelectListener = onSelectListener;
-        if (mOnSelectListener != null) setClickable(true);
+        if (mOnSelectListener != null) {
+            setClickable(true);
+        }
     }
 
     public interface OnTagClickListener {
@@ -85,7 +89,9 @@ public class TagFlowLayout extends FlowLayout implements TagAdapter.OnDataChange
 
     public void setOnTagClickListener(OnTagClickListener onTagClickListener) {
         mOnTagClickListener = onTagClickListener;
-        if (onTagClickListener != null) setClickable(true);
+        if (onTagClickListener != null) {
+            setClickable(true);
+        }
     }
 
 
@@ -153,7 +159,9 @@ public class TagFlowLayout extends FlowLayout implements TagAdapter.OnDataChange
 
     @Override
     public boolean performClick() {
-        if (mMotionEvent == null) return super.performClick();
+        if (mMotionEvent == null) {
+            return super.performClick();
+        }
 
         int x = (int) mMotionEvent.getX();
         int y = (int) mMotionEvent.getY();
@@ -196,8 +204,9 @@ public class TagFlowLayout extends FlowLayout implements TagAdapter.OnDataChange
                     mSelectedView.remove(preIndex);
                     mSelectedView.add(position);
                 } else {
-                    if (mSelectedMax > 0 && mSelectedView.size() >= mSelectedMax)
+                    if (mSelectedMax > 0 && mSelectedView.size() >= mSelectedMax) {
                         return;
+                    }
                     child.setChecked(true);
                     mSelectedView.add(position);
                 }
@@ -248,8 +257,9 @@ public class TagFlowLayout extends FlowLayout implements TagAdapter.OnDataChange
                     mSelectedView.add(index);
 
                     TagView tagView = (TagView) getChildAt(index);
-                    if (tagView != null)
+                    if (tagView != null) {
                         tagView.setChecked(true);
+                    }
                 }
 
             }
@@ -263,7 +273,9 @@ public class TagFlowLayout extends FlowLayout implements TagAdapter.OnDataChange
         final int cCount = getChildCount();
         for (int i = 0; i < cCount; i++) {
             View v = getChildAt(i);
-            if (v == child) return i;
+            if (v == child) {
+                return i;
+            }
         }
         return -1;
     }
@@ -272,7 +284,9 @@ public class TagFlowLayout extends FlowLayout implements TagAdapter.OnDataChange
         final int cCount = getChildCount();
         for (int i = 0; i < cCount; i++) {
             TagView v = (TagView) getChildAt(i);
-            if (v.getVisibility() == View.GONE) continue;
+            if (v.getVisibility() == View.GONE) {
+                continue;
+            }
             Rect outRect = new Rect();
             v.getHitRect(outRect);
             if (outRect.contains(x, y)) {

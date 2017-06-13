@@ -51,10 +51,10 @@ public class FlashView extends FrameLayout {
     private List<ImageView> dotViewsList;
     private LinearLayout mLinearLayout;
     private ViewPager mViewPager;
-    private FlashViewListener mFlashViewListener;//向外提供接口
+    private FlashViewListener mFlashViewListener; //向外提供接口
     private boolean isTwo = false;
     private int pos;
-    private int effect;//图片切换的动画效果
+    private int effect; //图片切换的动画效果
 
     public FlashView(Context context) {
         this(context, null);
@@ -67,7 +67,6 @@ public class FlashView extends FrameLayout {
 
     public FlashView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        // TODO Auto-generated constructor stub
         //读取该自定义控件自定义的属性
         this.context = context;
         TypedArray mTypedArray = context.obtainStyledAttributes(attrs, R.styleable.FlashView);
@@ -134,8 +133,7 @@ public class FlashView extends FrameLayout {
                 viewDot.setSelected(false);
             }
             viewDot.setLayoutParams(lp);
-            if (isTwo)//为两张图片时加入的判断
-            {
+            if (isTwo) { //为两张图片时加入的判断
                 if (i > 1) {
 
                 } else {
@@ -152,12 +150,9 @@ public class FlashView extends FrameLayout {
         mViewPager.setAdapter(new MyPagerAdapter());
         mViewPager.setOnPageChangeListener(new MyPageChangeListener());
         setEffect(effect);
-        if (datas.size() <= 1)//图片小于等于1张时，不轮播
-        {
+        if (datas.size() <= 1) { //图片小于等于1张时，不轮播
 
-        } else {
-
-            // 利用反射修改自动轮播的动画持续时间
+        } else { // 利用反射修改自动轮播的动画持续时间
             try {
 
                 Field field = ViewPager.class.getDeclaredField("mScroller");
@@ -238,7 +233,6 @@ public class FlashView extends FrameLayout {
                     } else {
 
                     }
-
                 }
             });
             ViewParent vp = view.getParent();
@@ -270,7 +264,6 @@ public class FlashView extends FrameLayout {
 
         @Override
         public void onPageScrollStateChanged(int arg0) {
-            // TODO Auto-generated method stub
 
             switch (arg0) {
                 case ViewPager.SCROLL_STATE_DRAGGING:
@@ -344,7 +337,6 @@ public class FlashView extends FrameLayout {
                 break;
             case 7:
                 setPageTransformer(true, new ZoomOutPageTransformer());
-
                 break;
             default:
                 break;
@@ -426,8 +418,7 @@ public class FlashView extends FrameLayout {
                 return;
             }
             if (activity.mhandler.hasMessages(MSG_UPDATE_IMAGE)) {
-                if (currentItem > 0)// 这里必须加入currentItem>0的判断，否则不能完美的自动轮播
-                {
+                if (currentItem > 0) { // 这里必须加入currentItem>0的判断，否则不能完美的自动轮播
                     activity.mhandler.removeMessages(MSG_UPDATE_IMAGE);
                 }
             }

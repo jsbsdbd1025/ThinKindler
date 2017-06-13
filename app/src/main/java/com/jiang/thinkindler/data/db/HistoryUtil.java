@@ -6,20 +6,29 @@ import com.jiang.thinkindler.gen.SearchHistoryDao;
 
 import java.util.List;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+
 /**
  * Created by jiang on 2017/3/24.
  */
 
 public class HistoryUtil {
 
-    public static String[] loadAll() {
-        SearchHistoryDao dao = DBHelper.getInstance().getDaoSession().getSearchHistoryDao();
-        List<SearchHistory> datas = dao.loadAll();
-        String[] result = new String[datas.size()];
-        for (int i = 0; i < datas.size(); i++) {
-            result[i] = datas.get(i).getText();
-        }
-        return result;
+    public static Observable<String[]> loadAll() {
+        return Observable.create(new ObservableOnSubscribe<String[]>() {
+            @Override
+            public void subscribe(ObservableEmitter<String[]> e) throws Exception {
+                SearchHistoryDao dao = DBHelper.getInstance().getDaoSession().getSearchHistoryDao();
+                List<SearchHistory> datas = dao.loadAll();
+                String[] result = new String[datas.size()];
+                for (int i = 0; i < datas.size(); i++) {
+                    result[i] = datas.get(i).getText();
+                }
+                e.onNext(result);
+            }
+        });
     }
 
     public static void saveHistory(String text) {

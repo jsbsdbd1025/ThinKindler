@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+        "-//Puppy Crawl//DTD Check Configuration 1.2//EN"
+        "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
+<!-- 对于所有的模块来书,如果有这个模块则说明检测这一项,没有则不检测这一项 --><!-- 所有的模块中,其ROOT必须为Checker -->
+
+<module name="Checker">
+
+
+    <module name="TreeWalker">
+
+        <!-- Checks for imports                              -->
+        <!-- See http://checkstyle.sf.net/config_import.html -->
+
+        <module name="IllegalImport"/>
+        <module name="RedundantImport"/>
+        <module name="UnusedImports">
+            <property name="processJavadoc" value="true"/>
+        </module>
+
+        <module name="FallThrough"/>
+
+        <!-- Checks for whitespace                               -->
+        <!-- See http://checkstyle.sf.net/config_whitespace.html -->
+
+        <module name="GenericWhitespace"/>
+        <module name="EmptyForIteratorPad"/>
+        <module name="MethodParamPad"/>
+        <module name="NoWhitespaceAfter"/>
+        <module name="NoWhitespaceBefore"/>
+        <module name="OperatorWrap"/>
+        <module name="ParenPad"/>
+        <module name="TypecastParenPad"/>
+        <module name="WhitespaceAfter"/>
+        <module name="WhitespaceAround"/>
+
+        <!-- Checks for blocks. You know, those {}'s         -->
+        <!-- See http://checkstyle.sf.net/config_blocks.html -->
+        <!--<module name="AvoidNestedBlocks"/>-->
+        <module name="LeftCurly"/>
+        <module name="RightCurly"/>
+        <module name="NeedBraces">
+            <property name="tokens" value="LITERAL_DO, LITERAL_IF, LITERAL_ELSE, LITERAL_FOR, LITERAL_WHILE"/>
+        </module>
+
+        <!-- Checks for Naming Conventions. -->
+        <!-- See http://checkstyle.sf.net/config_naming.html -->
+        <!-- 确省必须以Abstract开始或者以Factory结束 -->
+        <!--  <module name="AbstractClassName"/> -->
+        <!--<module name="ConstantName" />-->
+        <module name="LocalFinalVariableName" />
+        <module name="LocalVariableName" />
+        <!--<module name="MemberName" />-->
+        <!--<module name="MethodName" />-->
+        <module name="PackageName" />
+        <module name="ParameterName" />
+        <module name="StaticVariableName" />
+        <module name="TypeName" />
+
+        <!-- Checks for Size Violations. -->
+        <!-- See http://checkstyle.sf.net/config_sizes.html -->
+        <!-- 检查方法内可执行语句的个数,确省为30行 -->
+        <!--
+        <module name="ExecutableStatementCount">
+        <property name="max" value="30"/>
+        </module>
+        -->
+        <!-- 文件的最大行数,缺省为1500 -->
+        <!--<module name="FileLength">-->
+        <!--<property name="max" value="2000" />-->
+        <!--</module>-->
+        <!-- 每行的最大字符数,缺省为80 -->
+        <module name="LineLength">
+            <!-- 忽略指定格式的行,如*号开始的,等 -->
+            <!--
+            <property name="ignorePattern" value="^ *\* *[^ ]+$"/>
+            -->
+            <property name="max" value="150" />
+        </module>
+        <!-- 方法的最大行数,缺省为150 -->
+        <module name="MethodLength">
+            <property name="max" value="200" />
+            <!-- 统计时是否包括空行和以//开始的注释,缺省为统计(true)-->
+            <property name="countEmpty" value="false" />
+        </module>
+        <!-- 匿名类的最大行数,缺省为20 -->
+        <module name="AnonInnerLength">
+            <property name="max" value="60" />
+        </module>
+        <!-- 检查方法和构造子参数的最大个数,缺省为7 -->
+        <module name="ParameterNumber" />
+    </module>
+</module>
