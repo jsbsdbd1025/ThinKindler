@@ -248,10 +248,10 @@
         <module name="NestedIfDepth">
             <property name="max" value="3"/>
         </module>
-        <!--<module name="MethodLength">-->
-        <!--<property name="max" value="20"/>-->
-        <!--<property name="countEmpty"  value="false"/>-->
-        <!--</module>-->
+        <module name="MethodLength">
+        <property name="max" value="20"/>
+        <property name="countEmpty"  value="false"/>
+        </module>
         <module name="SimplifyBooleanExpression"/>
         <module name="StaticVariableName" >
             <property name="format" value="^s[A-Z][a-zA-Z0-9]*$"/>
