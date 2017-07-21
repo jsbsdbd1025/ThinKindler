@@ -38,4 +38,17 @@
     <dimen name="refresh_header_height">100dp</dimen>
     <!-- loadmore_height -->
     <dimen name="load_more_footer_height">60dp</dimen>
+
+
+    <dimen name="status_bar_height">0dp</dimen>
+    <!-- dimensions -->
+    <dimen name="image_width">180dp</dimen>
+    <dimen name="image_final_width">32dp</dimen>
+    <dimen name="spacing_normal">16dp</dimen>
+
+    <!-- AvatarImageBehavior -->
+    <dimen name="avatar_final_size">40dp</dimen>
+    <dimen name="avatar_final_x">8dp</dimen>
+    <dimen name="toolbar_height">56dp</dimen>
+
 </resources>

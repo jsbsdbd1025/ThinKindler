@@ -1,28 +1,34 @@
 package com.jiang.thinkindler.ui.douban;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
+import android.support.test.espresso.IdlingResource;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
-import com.jiang.common.base.irecyclerview.IRecyclerView;
 import com.jiang.common.utils.KeyBoardUtil;
 import com.jiang.common.utils.ToastUtil;
+import com.jiang.common.widget.multistatuslayout.MultiStatusLayout;
 import com.jiang.thinkindler.R;
 import com.jiang.thinkindler.base.BaseActivity;
 import com.jiang.thinkindler.base.BaseFragment;
 import com.jiang.thinkindler.base.recyclerview.BaseDelegateAdapter;
 import com.jiang.thinkindler.data.db.HistoryUtil;
 import com.jiang.thinkindler.entity.bean.BookBean;
+import com.jiang.thinkindler.injector.component.AppComponent;
 import com.jiang.thinkindler.injector.component.fragment.DaggerDoubanComponent;
 import com.jiang.thinkindler.injector.module.fragment.DoubanMainModule;
 import com.jiang.thinkindler.injector.module.http.DoubanHttpModule;
 import com.jiang.thinkindler.ui.douban.adapter.VBookAdapter;
 import com.jiang.thinkindler.ui.douban.contract.DoubanMainContract;
 import com.jiang.thinkindler.ui.douban.presenter.DoubanMainPresenter;
+import com.jiang.thinkindler.utils.SimpleIdlingResource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +39,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
+
 /**
  * Created by jiang on 2017/4/14.
  */
@@ -41,7 +48,10 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
         implements DoubanMainContract.View {
 
     @BindView(R.id.rv_book)
-    IRecyclerView recyclerView;
+    RecyclerView recyclerView;
+
+    @BindView(R.id.msl_book)
+    MultiStatusLayout mMultiStatusLayout;
 
     @BindView(R.id.edt_search)
     protected AutoCompleteTextView edtSearch;
@@ -51,6 +61,12 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
 
     protected VBookAdapter mAdapter;
 
+    protected int mStatus;
+
+    // The Idling Resource which will be null in production.
+    @Nullable
+    private SimpleIdlingResource mIdlingResource;
+
     @Override
     public int getLayoutId() {
         return R.layout.frag_main_douban;
@@ -59,37 +75,23 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
     @Override
     protected void init(View view) {
 
-//        VirtualLayoutManager manager = new VirtualLayoutManager(mContext);
-//        recyclerView.setLayoutManager(manager);
-//        DelegateAdapter delegateAdapter = new DelegateAdapter(manager, true);
-//
-//        GridLayoutHelper gridLayoutHelper = new GridLayoutHelper(3);
-//        gridLayoutHelper.setAutoExpand(false);
-//        gridLayoutHelper.setSpanSizeLookup(new GridLayoutHelper.SpanSizeLookup() {
-//            @Override
-//            public int getSpanSize(int position) {
-//                if (position == 0)
-//                    return 3;
-//                if (position == 1)
-//                    return 0;
-//                return 1;
-//            }
-//        });
-
-//        mAdapter = new VBookAdapter(new ArrayList<>(), gridLayoutHelper);
-//        delegateAdapter.addAdapter(mAdapter);
-
         GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 3);
         recyclerView.setLayoutManager(gridLayoutManager);
         mAdapter = new VBookAdapter(datas);
-        recyclerView.setIAdapter(mAdapter);
+        recyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(itemClickListener);
+
 
         edtSearch.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
                     KeyBoardUtil.closeKeybord(edtSearch, mContext);
+
+                    if (mIdlingResource != null) {
+                        mIdlingResource.setIdleState(false);
+                    }
+
                     mPresenter.doSearch(getSearchContent(), 0);
                 }
                 return false;
@@ -126,13 +128,16 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
                     }
                 });
 
+        mMultiStatusLayout.setRetryListenter(() -> mPresenter.doSearch(getSearchContent(), 0));
+
     }
 
     @Override
-    protected void initInjector() {
+    protected void initInjector(AppComponent appComponent) {
         DaggerDoubanComponent.builder()
+                .appComponent(appComponent)
                 .doubanHttpModule(new DoubanHttpModule())
-                .doubanMainModule(new DoubanMainModule(this, recyclerView))
+                .doubanMainModule(new DoubanMainModule(this))
                 .build()
                 .inject(this);
     }
@@ -145,20 +150,50 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
 // .colorPrimary));
     }
 
+
     BaseDelegateAdapter.OnRecyclerViewItemClickListener itemClickListener = (view, position) -> {
         ToastUtil.showShort("position: " + position);
         BookDetailActivity.startAction((BaseActivity) mContext, datas.get(position).getId());
     };
 
     @Override
+    public void returnDatas(boolean isRefresh, List<BookBean> books) {
+
+        if (mIdlingResource != null) {
+            mIdlingResource.setIdleState(true);
+        }
+
+        if (isRefresh) {
+            mAdapter.replaceAll(books);
+        } else {
+            mAdapter.addList(books);
+        }
+
+    }
+
+    @Override
     public String getSearchContent() {
         return edtSearch.getText().toString();
     }
 
-
-    @Override
-    public void returnDatas(List<BookBean> books) {
-        mAdapter.addList(books);
+    /**
+     * Only called from test, creates and returns a new {@link SimpleIdlingResource}.
+     */
+    @VisibleForTesting
+    @NonNull
+    public IdlingResource getIdlingResource() {
+        if (mIdlingResource == null) {
+            mIdlingResource = new SimpleIdlingResource();
+        }
+        return mIdlingResource;
     }
 
+
+    public void setStatus(int status) {
+        if (mStatus == status) {
+            return;
+        }
+        mStatus = status;
+        mMultiStatusLayout.setStatus(mStatus);
+    }
 }

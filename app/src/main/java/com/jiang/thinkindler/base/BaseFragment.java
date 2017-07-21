@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jiang.common.base.CommonFragment;
+import com.jiang.thinkindler.app.BaseApplication;
+import com.jiang.thinkindler.injector.component.AppComponent;
 
 import javax.inject.Inject;
 
@@ -30,6 +32,10 @@ public abstract class BaseFragment<P extends BasePresenter> extends CommonFragme
 
     private CompositeDisposable disposables2Stop; //管理stop取消订阅者
     private CompositeDisposable disposables2Destroy; //管理Destroy取消订阅者
+
+    protected int mStatus;
+
+    private BaseApplication mApplication;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -111,13 +117,18 @@ public abstract class BaseFragment<P extends BasePresenter> extends CommonFragme
             unbinder = ButterKnife.bind(this, rootView);
         }
 
-        init(rootView);
-
-        initInjector();
-
         return rootView;
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        mApplication = (BaseApplication) getActivity().getApplication();
+        init(rootView);
+
+        initInjector(mApplication.getAppComponent());
+    }
 
     /*********************
      * 子类实现
@@ -130,7 +141,13 @@ public abstract class BaseFragment<P extends BasePresenter> extends CommonFragme
 
 
     // dagger 注入
-    protected abstract void initInjector();
+    protected abstract void initInjector(AppComponent appComponent);
 
 
+    public void setStatus(int status) {
+        if (mStatus == status) {
+            return;
+        }
+        mStatus = status;
+    }
 }

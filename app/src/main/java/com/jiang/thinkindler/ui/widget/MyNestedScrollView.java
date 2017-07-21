@@ -15,6 +15,10 @@ public class MyNestedScrollView extends NestedScrollView {
     private int downY;
     private int mTouchSlop;
 
+    private OnScrollListener mListener;
+
+    private int lastScrollY;
+
     public MyNestedScrollView(Context context) {
         super(context);
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
@@ -32,6 +36,7 @@ public class MyNestedScrollView extends NestedScrollView {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent e) {
+
         int action = e.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
@@ -45,5 +50,21 @@ public class MyNestedScrollView extends NestedScrollView {
                 }
         }
         return super.onInterceptTouchEvent(e);
+    }
+
+    @Override
+    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+        super.onScrollChanged(l, t, oldl, oldt);
+        if (mListener != null) {
+            mListener.onScroll();
+        }
+    }
+
+    public void setOnScrollListener(OnScrollListener onScrollListener) {
+        this.mListener = onScrollListener;
+    }
+
+    public interface OnScrollListener {
+        void onScroll();
     }
 }

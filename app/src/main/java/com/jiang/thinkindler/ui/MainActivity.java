@@ -1,6 +1,9 @@
 package com.jiang.thinkindler.ui;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.VisibleForTesting;
 import android.support.design.widget.NavigationView;
+import android.support.test.espresso.IdlingResource;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -9,7 +12,9 @@ import android.view.MenuItem;
 
 import com.jiang.thinkindler.R;
 import com.jiang.thinkindler.base.BaseActivity;
+import com.jiang.thinkindler.injector.component.AppComponent;
 import com.jiang.thinkindler.ui.douban.DoubanMainFragment;
+import com.jiang.thinkindler.utils.SimpleIdlingResource;
 
 import butterknife.BindView;
 
@@ -19,6 +24,7 @@ public class MainActivity extends BaseActivity {
 
     @BindView(R.id.nav_main)
     NavigationView navigationView;
+
 
     @Override
     public int getLayoutId() {
@@ -48,6 +54,11 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void initInjector(AppComponent appComponent) {
+
+    }
+
     NavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener
             = item -> {
         switch (item.getItemId()) {
@@ -59,9 +70,6 @@ public class MainActivity extends BaseActivity {
         return false;
     };
 
-    @Override
-    protected void initInjector() {
-    }
 
     private void displayFragmentByIndex(int index) {
         // 通过这个底部容器Item的index能够获取到对应的Fragment，需要将所有的Fragment对号放好（使用集合）
@@ -91,6 +99,14 @@ public class MainActivity extends BaseActivity {
         return true;
     }
 
+    /**
+     * Only called from test, creates and returns a new {@link SimpleIdlingResource}.
+     */
+    @VisibleForTesting
+    @NonNull
+    public IdlingResource getDoubanIdlingResource() {
+        return doubanFragment.getIdlingResource();
+    }
 
 }
 

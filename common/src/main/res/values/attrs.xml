@@ -94,4 +94,31 @@
         <attr name="default_to_loading_more_scrolling_duration" format="integer" />
     </declare-styleable>
 
+
+    <!-- AvatarImageBehavior -->
+    <declare-styleable name="AvatarImageBehavior">
+        <attr name="finalYPosition" format="dimension" />
+        <attr name="startXPosition" format="dimension" />
+        <attr name="startToolbarPosition" format="dimension" />
+        <attr name="startHeight" format="dimension" />
+        <attr name="finalHeight" format="dimension" />
+        <attr name="finalSize" format="dimension" />
+        <attr name="finalX" format="dimension" />
+        <attr name="toolBarHeight" format="dimension" />
+    </declare-styleable>
+
+
+    <declare-styleable name="MultiStatusLayout">
+        <attr name="status" format="enum">
+            <enum name="normal" value="0"/>
+            <enum name="loading" value="1"/>
+            <enum name="error" value="2"/>
+            <enum name="retry" value="3"/>
+        </attr>
+
+        <attr name="loadingLayout" format="reference"/>
+        <attr name="errorLayout" format="reference"/>
+        <attr name="retryLayout" format="reference"/>
+    </declare-styleable>
+
 </resources>

@@ -3,7 +3,6 @@ package com.jiang.thinkindler.rx;
 import android.net.ParseException;
 
 import com.google.gson.JsonParseException;
-import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
 import com.jiang.common.utils.LogUtils;
 import com.jiang.thinkindler.base.BaseView;
 
@@ -15,6 +14,7 @@ import java.net.UnknownHostException;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import retrofit2.adapter.rxjava2.HttpException;
 
 
 /**

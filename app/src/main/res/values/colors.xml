@@ -4,5 +4,6 @@
     <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#88DBA8</color>
 
-
+    <color name="colorUrl">#4186e7</color>
+    <color name="colorUrlPress">#9DC4F2</color>
 </resources>

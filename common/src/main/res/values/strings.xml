@@ -23,7 +23,6 @@
     <string name="sample_email">example@vaneqi.com</string>
     <string name="sample_city">杭州</string>
     <string name="sample_date">2017年5月</string>
-
     <!--升级-->
     <string name="key_appmarket">升级市场</string>
     <string name="key_update">升级</string>
@@ -47,4 +46,9 @@
     <string name="permission_storage_denied">请打开存储空间权限</string>
 
     <string name="permission_camera_denied">请打开相机权限</string>
+
+
+    <string name="avatar_behavior" translatable="false">
+       com.jiang.common.widget.behavior.AvatarBehavior</string>
+
 </resources>

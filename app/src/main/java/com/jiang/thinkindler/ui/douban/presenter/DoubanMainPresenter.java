@@ -7,10 +7,13 @@ import com.jiang.thinkindler.net.model.DoubanModel;
 import com.jiang.thinkindler.rx.BaseObserver;
 import com.jiang.thinkindler.rx.RxSchedulers;
 import com.jiang.thinkindler.ui.douban.contract.DoubanMainContract;
-import com.jiang.thinkindler.utils.pagelist.PageListHelper;
 import com.jiang.thinkindler.utils.pagelist.PageListListener;
 
 import javax.inject.Inject;
+
+import static com.jiang.common.widget.multistatuslayout.MultiStatusLayout.STATUS_ERROR;
+import static com.jiang.common.widget.multistatuslayout.MultiStatusLayout.STATUS_LOADING;
+import static com.jiang.common.widget.multistatuslayout.MultiStatusLayout.STATUS_NORMAL;
 
 /**
  * Created by jiang on 2017/4/14.
@@ -21,25 +24,19 @@ public class DoubanMainPresenter implements DoubanMainContract.Presenter {
     protected DoubanMainContract.View mView;
     protected DoubanModel doubanModel;
 
-    protected PageListHelper pageListHelper;
-
     @Inject
-    public DoubanMainPresenter(DoubanMainContract.View view, DoubanModel doubanModel, PageListHelper pageListHelper) {
+    public DoubanMainPresenter(DoubanMainContract.View view, DoubanModel doubanModel) {
         this.mView = view;
         this.doubanModel = doubanModel;
-        this.pageListHelper = pageListHelper;
-        pageListHelper.setPageListListener(pageListListener);
     }
-
-    PageListListener pageListListener = start -> doSearch(mView.getSearchContent(), start);
 
     @Override
     public void doSearch(String content, int start) {
         if (content.equals("")) {
-            pageListHelper.stopLoading();
             return;
         }
 
+        mView.setStatus(STATUS_LOADING);
         HistoryUtil.saveHistory(content);
 
         doubanModel.searchBooks(content, start)
@@ -47,22 +44,24 @@ public class DoubanMainPresenter implements DoubanMainContract.Presenter {
                 .subscribe(new BaseObserver<PageList<BookBean>>(mView) {
                     @Override
                     protected void _onNext(PageList<BookBean> pageList) {
-                        pageListHelper.setPageBean(pageList);
-                        pageListHelper.stopLoading();
-                        if (pageListHelper.isRefresh()) {
-                            pageListHelper.clear();
+                        mView.setStatus(STATUS_NORMAL);
+                        if (pageList.getDatas().size() == 0) {
+                            mView.setStatus(STATUS_ERROR);
                         }
-                        mView.returnDatas(pageList.getDatas());
+                        mView.returnDatas(true, pageList.getDatas());
                     }
 
                     @Override
                     protected void _onError(String message) {
-                        pageListHelper.stopLoading();
                     }
                 });
     }
 
     @Override
     public void start() {
+    }
+
+    public boolean check(int a, int b) {
+        return doubanModel.check(a, b);
     }
 }

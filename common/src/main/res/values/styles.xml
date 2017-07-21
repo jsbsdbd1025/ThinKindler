@@ -45,7 +45,8 @@
 
     <!-- toolbar标题样式 -->
     <style name="ToolbarTitle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">14sp</item>
+        <!--<item name="android:textSize">14sp</item>-->
+        <item name="android:textColor">#FFFFFF</item>
     </style>
 
     <!-- toolbar菜单文字尺寸 -->

@@ -4,6 +4,8 @@ import com.jiang.common.base.irecyclerview.IRecyclerView;
 import com.jiang.thinkindler.ui.douban.contract.DoubanMainContract;
 import com.jiang.thinkindler.utils.pagelist.PageListHelper;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -14,21 +16,14 @@ import dagger.Provides;
 public class DoubanMainModule {
 
     private DoubanMainContract.View view;
-    private IRecyclerView recyclerView;
 
-    public DoubanMainModule(DoubanMainContract.View view, IRecyclerView recyclerView) {
+    public DoubanMainModule(DoubanMainContract.View view) {
         this.view = view;
-        this.recyclerView = recyclerView;
     }
 
     @Provides
     public DoubanMainContract.View provideView() {
         return view;
-    }
-
-    @Provides
-    public PageListHelper providePageListHelper() {
-        return new PageListHelper(recyclerView);
     }
 
 

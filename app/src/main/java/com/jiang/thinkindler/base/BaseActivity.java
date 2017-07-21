@@ -7,9 +7,7 @@ import android.support.annotation.Nullable;
 import com.jiang.common.base.CommonActivity;
 import com.jiang.common.utils.AppManager;
 import com.jiang.thinkindler.app.BaseApplication;
-import com.jiang.thinkindler.injector.component.ActivityComponent;
-import com.jiang.thinkindler.injector.component.DaggerActivityComponent;
-import com.jiang.thinkindler.injector.module.ActivityModule;
+import com.jiang.thinkindler.injector.component.AppComponent;
 
 import javax.inject.Inject;
 
@@ -27,11 +25,9 @@ public abstract class BaseActivity<T extends BasePresenter> extends CommonActivi
     private CompositeDisposable disposables2Stop; //管理stop取消订阅者
     private CompositeDisposable disposables2Destroy; //管理Destroy取消订阅者
 
-    private ActivityComponent activityComponent;
+    private BaseApplication mApplication;
 
-    public ActivityComponent getActivityComponent() {
-        return activityComponent;
-    }
+    protected int mStatus;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,15 +43,15 @@ public abstract class BaseActivity<T extends BasePresenter> extends CommonActivi
         }
         mContext = this;
 
-        activityComponent = DaggerActivityComponent.builder()
-                .appComponent(((BaseApplication) getApplication()).getAppComponent())
-                .activityModule(new ActivityModule(this)).build();
-
         //init()中只进行初始化动作
         init();
 
-        initInjector();
+        mApplication = (BaseApplication) getApplication();
+
+        initInjector(mApplication.getAppComponent());
+
         TAG = getClass().getSimpleName();
+
     }
 
     public boolean addRxStop(Disposable disposable) {
@@ -129,7 +125,15 @@ public abstract class BaseActivity<T extends BasePresenter> extends CommonActivi
     protected abstract void init();
 
     // dagger 注入
-    protected abstract void initInjector();
+    protected abstract void initInjector(AppComponent appComponent);
+
+
+    public void setStatus(int status) {
+        if (mStatus == status) {
+            return;
+        }
+        mStatus = status;
+    }
 
 
 }

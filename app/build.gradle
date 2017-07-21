@@ -36,28 +36,14 @@ android {
         }
     }
 
-    tasks.whenTaskAdded { task ->
-        if (task.name.contains("lint")
-//如果instant run不生效，把clean这行干掉
-                || task.name.equals("clean")
-                //如果项目中有用到aidl则不可以舍弃这个任务
-                || task.name.contains("Aidl")
-//用不到测试的时候就可以先关闭
-                || task.name.contains("mockableAndroidJar")
-                || task.name.contains("UnitTest")
-                || task.name.contains("AndroidTest")
-//用不到NDK和JNI的也关闭掉
-                || task.name.contains("Ndk")
-                || task.name.contains("Jni")
-        ) {
-            task.enabled = false
-        }
-    }
-
     greendao {
         schemaVersion 1
         daoPackage 'com.jiang.thinkindler.gen'
         targetGenDir 'src/main/java'
+    }
+
+    lintOptions {
+        abortOnError false
     }
 
     packagingOptions {
@@ -71,17 +57,28 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion", {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
+
+    compile project(path: ':common')
+
+    testCompile "junit:junit:$rootProject.junitVersion"
+    testCompile "org.mockito:mockito-core:$rootProject.mockitoVersion"
+    testCompile 'org.robolectric:robolectric:3.0'
+
+    testCompile "com.github.fabioCollini:DaggerMock:$rootProject.daggerMockVersion"
+
+    androidTestCompile "com.android.support:design:$rootProject.supportLibraryVersion"
+    androidTestCompile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+    androidTestCompile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    androidTestCompile "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
+    androidTestCompile "com.android.support.test:runner:$rootProject.runnerVersion"
+    androidTestCompile "com.android.support.test:rules:'$rootProject.rulesVersion"
+    androidTestCompile "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
+    androidTestCompile "com.android.support.test.espresso:espresso-intents:$rootProject.espressoVersion"
+    androidTestCompile "com.android.support.test.espresso:espresso-contrib:$rootProject.espressoVersion"
 
     compile "com.android.support.test.espresso:espresso-idling-resource:$rootProject.espressoVersion"
 
-    compile "com.google.guava:guava:$rootProject.guavaVersion"
-
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta1'
-    testCompile "junit:junit:$rootProject.junitVersion"
-    compile project(path: ':common')
 
     //内存泄漏监控
     debugCompile "com.squareup.leakcanary:leakcanary-android:$rootProject.leakcanaryVersion"
@@ -95,7 +92,8 @@ dependencies {
     compile 'com.google.code.gson:gson:2.7'
     compile "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
-    compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+    compile "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
+//    compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
     compile "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
     compile "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
     compile 'com.github.franmontiel:PersistentCookieJar:v1.0.0'
@@ -111,20 +109,6 @@ dependencies {
     //    rx
     compile "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
     compile "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
-
-    compile "com.trello.rxlifecycle2:rxlifecycle:$rootProject.rxlifecycleVersion"
-
-    // If you want to bind to Android-specific lifecycles
-    compile "com.trello.rxlifecycle2:rxlifecycle-android:$rootProject.rxlifecycleVersion"
-
-    // If you want pre-written Activities and Fragments you can subclass as providers
-    compile "com.trello.rxlifecycle2:rxlifecycle-components:$rootProject.rxlifecycleVersion"
-
-    // If you want to use Navi for providers
-    compile "com.trello.rxlifecycle2:rxlifecycle-navi:$rootProject.rxlifecycleVersion"
-
-    // If you want to use Kotlin syntax
-    compile "com.trello.rxlifecycle2:rxlifecycle-kotlin:$rootProject.rxlifecycleVersion"
 
     //vlayout
     compile("com.alibaba.android:vlayout:$rootProject.vlayoutVersion@aar") {

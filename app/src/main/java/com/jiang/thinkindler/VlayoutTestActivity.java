@@ -7,6 +7,7 @@ import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.GridLayoutHelper;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.jiang.thinkindler.base.BaseActivity;
+import com.jiang.thinkindler.injector.component.AppComponent;
 
 import butterknife.BindView;
 
@@ -35,7 +36,8 @@ public class VlayoutTestActivity extends BaseActivity {
     }
 
     @Override
-    protected void initInjector() {
+    protected void initInjector(AppComponent appComponent) {
 
     }
+
 }

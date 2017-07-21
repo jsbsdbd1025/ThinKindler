@@ -16,14 +16,12 @@ import dagger.Provides;
 @Module
 public class DoubanHttpModule {
 
-    @Singleton
     @Provides
     DoubanService provideDoubanService() {
         return Api.getApi(ApiType.DOUBAN, DoubanService.class);
     }
 
 
-    @Singleton
     @Provides
     DoubanModel provideDoubanModel(DoubanService doubanService) {
         return new DoubanModel(doubanService);

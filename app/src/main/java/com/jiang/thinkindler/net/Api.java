@@ -8,7 +8,6 @@ import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.jiang.common.utils.NetWorkUtils;
 import com.jiang.thinkindler.app.BaseApplication;
 
@@ -24,6 +23,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -76,6 +76,18 @@ public class Api {
 
     //构造方法私有
     private Api(ApiType apiType) {
+
+//        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").serializeNulls().create();
+        retrofit = new Retrofit.Builder()
+                .baseUrl(apiType.getUrl())
+                .client(getOkHttpClient(apiType.getUrl()))
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+    }
+
+    @NonNull
+    private OkHttpClient getOkHttpClient(String url) {
         //开启Log
         HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
         logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -95,32 +107,22 @@ public class Api {
         };
 
         //增加cookie持久化
-        ClearableCookieJar cookieJar = new PersistentCookieJar(
-                new SetCookieCache(),
-                new SharedPrefsCookiePersistor(BaseApplication.getAppContext()));
+        ClearableCookieJar cookieJar =
+                new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(BaseApplication.getAppContext()));
 
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+        OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder()
                 .cache(cache)
                 .cookieJar(cookieJar)
                 .addInterceptor(mRewriteCacheControlInterceptor)
                 .addNetworkInterceptor(mRewriteCacheControlInterceptor)
-                .addNetworkInterceptor(logInterceptor)
+                .addInterceptor(logInterceptor)
                 .retryOnConnectionFailure(true)
                 .readTimeout(READ_TIME_OUT, TimeUnit.MILLISECONDS)
-                .connectTimeout(CONNECT_TIME_OUT, TimeUnit.MILLISECONDS)
-                .addInterceptor(headerInterceptor)
-                .build();
+                .connectTimeout(CONNECT_TIME_OUT, TimeUnit.MILLISECONDS);
+//                .addInterceptor(headerInterceptor);
 
-        retrofit = createRetrofit(apiType.getUrl(), okHttpClient);
-    }
-
-    private Retrofit createRetrofit(String baseUrl, OkHttpClient okHttpClient) {
-        return new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(okHttpClient)
-                .build();
+        //如果baseurl为domain  则增加https验证
+        return okHttpClient.build();
     }
 
     public static <T extends Object> T getApi(ApiType apiType, Class<T> obj) {
@@ -132,7 +134,6 @@ public class Api {
         T t = retrofitManager.retrofit.create(obj);
         return t;
     }
-
 
     /**
      * 根据网络状况获取缓存的策略

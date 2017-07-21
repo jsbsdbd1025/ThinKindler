@@ -7,7 +7,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.2'
+        classpath 'com.android.tools.build:gradle:2.3.3'
         classpath 'me.tatarka:gradle-retrolambda:3.6.0'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -49,29 +49,34 @@ task clean(type: Delete) {
 ext {
     // Sdk and tools
     minSdkVersion = 18
-    targetSdkVersion = 25
+    targetSdkVersion = 22
     compileSdkVersion = 25
     buildToolsVersion = '25.0.2'
 
     // App dependencies
     supportLibraryVersion = '25.2.0'
     guavaVersion = '18.0'
+
+
+    rxjavaVersion = '2.0.6'
+    rxandroidVersion = '2.0.1'
+    rxlifecycleVersion = '2.0.1'
+    retrofitVersion = '2.3.0'
+    sqlbriteVersion = '0.7.0'
+    leakcanaryVersion = "1.3"
+    okhttpVersion = "3.8.1"
+    butterknifeVersion = "8.5.1"
+    greendaoVersion = "3.2.0"
+    vlayoutVersion = "1.0.7"
+
+//    UI test
+    runnerVersion = "0.5"
+    rulesVersion = "0.5"
+    espressoVersion = "2.2.2"
+//    logic test
     junitVersion = '4.12'
     mockitoVersion = '1.10.19'
     powerMockito = '1.6.2'
     hamcrestVersion = '1.3'
-    runnerVersion = '0.5'
-    rulesVersion = '0.5'
-    espressoVersion = '2.2.2'
-    rxjavaVersion = '2.0.6'
-    rxandroidVersion = '2.0.1'
-    rxlifecycleVersion = '2.0.1'
-    retrofitVersion = '2.1.0'
-    sqlbriteVersion = '0.7.0'
-    leakcanaryVersion = "1.3"
-    okhttpVersion = "3.5.0"
-    butterknifeVersion = "8.5.1"
-    greendaoVersion = "3.2.0"
-
-    vlayoutVersion = "1.0.7"
+    daggerMockVersion = "0.6.6"
 }

@@ -99,9 +99,4 @@ public class PageListHelper {
     public boolean isRefresh() {
         return isRefresh | pageBean.getStart() == 0;
     }
-
-    public void clear() {
-        iRecyclerView.getIAdapter().notifyItemRangeRemoved(0, iRecyclerView.getIAdapter().getItemCount());
-    }
-
 }

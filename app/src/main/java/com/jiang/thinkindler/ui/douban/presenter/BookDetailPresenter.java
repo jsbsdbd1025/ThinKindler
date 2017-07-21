@@ -9,6 +9,10 @@ import com.jiang.thinkindler.ui.douban.contract.BookDetailContract;
 
 import javax.inject.Inject;
 
+import static com.jiang.common.widget.multistatuslayout.MultiStatusLayout.STATUS_LOADING;
+import static com.jiang.common.widget.multistatuslayout.MultiStatusLayout.STATUS_NORMAL;
+import static com.jiang.common.widget.multistatuslayout.MultiStatusLayout.STATUS_RETRY;
+
 /**
  * Created by jiang on 2017/4/14.
  */
@@ -33,17 +37,21 @@ public class BookDetailPresenter implements BookDetailContract.Presenter {
 
     @Override
     public void getDetail(String id) {
+
+        mView.setStatus(STATUS_LOADING);
         doubanModel.getDetail(id)
                 .compose(RxSchedulers.compose())
                 .subscribe(new BaseObserver<BookBean>(mView) {
                     @Override
                     protected void _onNext(BookBean body) {
+                        mView.setStatus(STATUS_NORMAL);
                         mView.setupView(body);
                     }
 
                     @Override
                     protected void _onError(String message) {
                         ToastUtil.showShort(message);
+                        mView.setStatus(STATUS_RETRY);
                     }
                 });
     }

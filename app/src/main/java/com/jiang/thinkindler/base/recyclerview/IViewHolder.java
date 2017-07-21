@@ -9,9 +9,9 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jiang.common.utils.imageloader.ImageLoaderUtil;
 import com.jiang.common.utils.imageloader.ImageLoaderUtils;
 import com.jiang.common.utils.imageloader.PlaceHolder;
-
 
 
 /**
@@ -115,8 +115,9 @@ public abstract class IViewHolder<M extends Object> extends RecyclerView.ViewHol
     }
 
     public IViewHolder<M> setImageLoder(int viewId, String path, Context context) {
-        ImageView circleImageView = getView(viewId);
-        ImageLoaderUtils.display(context, circleImageView, path);
+        ImageView imageView = getView(viewId);
+        ImageLoaderUtil.getInstance().display(imageView, path, context, null);
+//        ImageLoaderUtils.display(context, imageView, path);
         return this;
     }
 

@@ -4,6 +4,7 @@ import android.view.View;
 
 import com.jiang.thinkindler.base.BaseFragment;
 import com.jiang.thinkindler.entity.bean.BookBean;
+import com.jiang.thinkindler.injector.component.AppComponent;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import java.util.List;
 
 public class LiveListFragment extends BaseFragment<LiveLivePresenter>
         implements LiveListContract.View {
+
     @Override
     public void returnDatas(List<BookBean> books) {
 
@@ -29,7 +31,12 @@ public class LiveListFragment extends BaseFragment<LiveLivePresenter>
     }
 
     @Override
-    protected void initInjector() {
+    protected void initInjector(AppComponent appComponent) {
+
+    }
+    
+    @Override
+    public void setStatus(int status) {
 
     }
 }

@@ -25,4 +25,6 @@ public interface BaseView {
     boolean addRxDestroy(Disposable disposable);
 
     void remove(Disposable disposable);
+
+    void setStatus(int status);
 }

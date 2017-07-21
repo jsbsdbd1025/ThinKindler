@@ -1,6 +1,8 @@
 package com.jiang.thinkindler.injector.module;
 
 
+import com.google.gson.Gson;
+
 import android.content.Context;
 
 import javax.inject.Singleton;
@@ -24,6 +26,12 @@ public class AppModule {
     @Singleton
     Context provideApplicationContext() {
         return context;
+    }
+
+    @Provides
+    @Singleton
+    Gson provideGson() {
+        return new Gson();
     }
 
 }

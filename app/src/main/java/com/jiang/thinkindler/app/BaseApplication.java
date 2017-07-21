@@ -1,6 +1,8 @@
 package com.jiang.thinkindler.app;
 
 
+import android.content.Context;
+
 import com.jiang.common.base.CommonApplication;
 import com.jiang.common.utils.LogUtils;
 import com.jiang.thinkindler.injector.component.AppComponent;
@@ -12,6 +14,14 @@ import com.tencent.bugly.crashreport.CrashReport;
 public class BaseApplication extends CommonApplication {
 
     private AppComponent appComponent;
+
+    public static BaseApplication get(Context context) {
+        return (BaseApplication) context.getApplicationContext();
+    }
+
+    public AppComponent getAppComponent() {
+        return appComponent;
+    }
 
     @Override
     public void onCreate() {
@@ -26,9 +36,6 @@ public class BaseApplication extends CommonApplication {
                 .build();
     }
 
-    public AppComponent getAppComponent() {
-        return this.appComponent;
-    }
 }
 
 

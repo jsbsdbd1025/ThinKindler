@@ -28,4 +28,8 @@ public class DoubanModel extends BaseModel {
     public Observable<BookBean> getDetail(String id) {
         return mDoubanService.detail(id);
     }
+
+    public boolean check(int a, int b) {
+        return a == b;
+    }
 }

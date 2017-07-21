@@ -51,6 +51,6 @@ public class PageList<T> implements Serializable {
     }
 
     public boolean hasmore() {
-        return start < count;
+        return start < total;
     }
 }

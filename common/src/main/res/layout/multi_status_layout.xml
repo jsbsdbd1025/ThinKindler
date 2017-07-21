@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       android:orientation="vertical"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+    <FrameLayout
+            android:id="@+id/layout_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    <ViewStub
+            android:id="@+id/viewstub_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    <ViewStub
+            android:id="@+id/viewstub_error"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    <ViewStub
+            android:id="@+id/viewstub_retry"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+</merge>

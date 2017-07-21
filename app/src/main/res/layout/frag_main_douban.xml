@@ -9,13 +9,14 @@
             android:id="@+id/edt_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/margin_small"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/margin_small"
             android:drawableLeft="@mipmap/ic_search_black_18dp"
+            android:drawablePadding="@dimen/margin_tiny"
             android:gravity="center_vertical"
-            android:hint="搜索"
+            android:hint="输入你感兴趣书名"
             android:imeOptions="actionSearch"
             android:inputType="text"
             android:maxLines="1"
@@ -23,12 +24,22 @@
             android:textColorHint="@color/colorBlackHintText"
             android:textSize="@dimen/titleTextSize"/>
 
-    <com.jiang.common.base.irecyclerview.IRecyclerView
-            android:id="@+id/rv_book"
+
+    <com.jiang.common.widget.multistatuslayout.MultiStatusLayout
+            android:id="@+id/msl_book"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:loadMoreEnabled="true"
-            app:loadMoreFooterLayout="@layout/item_loading_footer"/>
+            app:loadingLayout="@layout/multi_status_custom_loading"
+            android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_book"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:loadMoreEnabled="true"
+                app:loadMoreFooterLayout="@layout/item_loading_footer"/>
+
+    </com.jiang.common.widget.multistatuslayout.MultiStatusLayout>
+
 
 </LinearLayout>
 

@@ -14,7 +14,7 @@ public interface DoubanMainContract {
 
     interface View extends BaseView {
 
-        void returnDatas(List<BookBean> books);
+        void returnDatas(boolean isRefresh, List<BookBean> books);
 
         String getSearchContent();
     }
