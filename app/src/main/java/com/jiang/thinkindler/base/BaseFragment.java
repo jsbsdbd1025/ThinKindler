@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.jiang.common.base.CommonFragment;
 import com.jiang.thinkindler.app.BaseApplication;
-import com.jiang.thinkindler.injector.component.AppComponent;
+import com.jiang.thinkindler.injector.app.AppComponent;
 
 import javax.inject.Inject;
 

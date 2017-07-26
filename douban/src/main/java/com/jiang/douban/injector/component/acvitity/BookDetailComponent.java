@@ -1,5 +1,5 @@
 
-package com.jiang.thinkindler.injector.component.acvitity;
+package com.jiang.douban.injector.component.acvitity;
 
 import com.jiang.common.injector.scope.FragmentScope;
 import com.jiang.thinkindler.injector.app.AppComponent;

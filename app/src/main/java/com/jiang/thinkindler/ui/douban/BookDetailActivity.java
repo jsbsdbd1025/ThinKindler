@@ -12,7 +12,7 @@ import com.jiang.common.widget.multistatuslayout.MultiStatusLayout;
 import com.jiang.thinkindler.R;
 import com.jiang.thinkindler.base.BaseActivity;
 import com.jiang.thinkindler.entity.bean.BookBean;
-import com.jiang.thinkindler.injector.component.AppComponent;
+import com.jiang.thinkindler.injector.app.AppComponent;
 import com.jiang.thinkindler.injector.component.acvitity.DaggerBookDetailComponent;
 import com.jiang.thinkindler.injector.module.activity.BookDetailModule;
 import com.jiang.thinkindler.injector.module.http.DoubanHttpModule;

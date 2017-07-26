@@ -11,7 +11,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public int getLayoutId() {
-        return R.layout.act_main;
+        return R.layout.douban_act_main;
     }
 
     @Override

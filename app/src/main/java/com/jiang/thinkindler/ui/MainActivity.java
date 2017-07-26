@@ -7,18 +7,22 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.jiang.douban.DoubanMainFragment;
+import com.jiang.common.base.CommonFragment;
+import com.jiang.meizi.MeiziMainFragment;
 import com.jiang.thinkindler.R;
 import com.jiang.thinkindler.base.BaseActivity;
-import com.jiang.thinkindler.injector.component.AppComponent;
+import com.jiang.thinkindler.injector.app.AppComponent;
+import com.jiang.thinkindler.ui.douban.DoubanMainFragment;
 import com.jiang.thinkindler.utils.SimpleIdlingResource;
 
 import butterknife.BindView;
 
 public class MainActivity extends BaseActivity {
 
-    private DoubanMainFragment doubanFragment;//text
+    private DoubanMainFragment doubanFragment;
+    private MeiziMainFragment meiziFragment;
 
+    private CommonFragment[] mFragments;
     @BindView(R.id.nav_main)
     NavigationView navigationView;
 
@@ -42,8 +46,14 @@ public class MainActivity extends BaseActivity {
 
         toolbar.inflateMenu(R.menu.menu_clear);
 
-        doubanFragment = (DoubanMainFragment) getSupportFragmentManager().findFragmentById(R.id
-                .frag_main_douban);
+        mFragments = new CommonFragment[2];
+        doubanFragment = (DoubanMainFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.frag_main_douban);
+        mFragments[0] = doubanFragment;
+        meiziFragment = (MeiziMainFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.frag_main_meizi);
+        mFragments[1] = meiziFragment;
+
         displayFragmentByIndex(0);
 
         navigationView.setNavigationItemSelectedListener(onNavigationItemSelectedListener);
@@ -58,29 +68,30 @@ public class MainActivity extends BaseActivity {
     NavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener
             = item -> {
         switch (item.getItemId()) {
-            case R.id.nav_zhihu:
+            case R.id.nav_douban:
+                displayFragmentByIndex(0);
+                break;
+            case R.id.nav_meizi:
+                displayFragmentByIndex(1);
                 break;
             default:
                 break;
         }
-        return false;
+        return true;
     };
-
 
     private void displayFragmentByIndex(int index) {
         // 通过这个底部容器Item的index能够获取到对应的Fragment，需要将所有的Fragment对号放好（使用集合）
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//        for (int i = 0; i < mFragments.length; i++) {
-//            if (i == index) {
-//                ft.show(mFragments[i]);
-//            } else {
-//                ft.hide(mFragments[i]);
-//            }
-//        }
-        ft.show(doubanFragment);
+        for (int i = 0; i < mFragments.length; i++) {
+            if (i == index) {
+                ft.show(mFragments[i]);
+            } else {
+                ft.hide(mFragments[i]);
+            }
+        }
         ft.commit();
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

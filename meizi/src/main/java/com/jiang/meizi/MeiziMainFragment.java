@@ -2,7 +2,6 @@ package com.jiang.meizi;
 
 import android.view.View;
 
-import com.jiang.douban.R;
 import com.jiang.meizi.base.BaseFragment;
 
 /**

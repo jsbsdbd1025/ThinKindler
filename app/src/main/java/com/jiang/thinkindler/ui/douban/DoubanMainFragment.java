@@ -21,7 +21,7 @@ import com.jiang.thinkindler.base.BaseFragment;
 import com.jiang.thinkindler.base.recyclerview.BaseDelegateAdapter;
 import com.jiang.thinkindler.data.db.HistoryUtil;
 import com.jiang.thinkindler.entity.bean.BookBean;
-import com.jiang.thinkindler.injector.component.AppComponent;
+import com.jiang.thinkindler.injector.app.AppComponent;
 import com.jiang.thinkindler.injector.component.fragment.DaggerDoubanComponent;
 import com.jiang.thinkindler.injector.module.fragment.DoubanMainModule;
 import com.jiang.thinkindler.injector.module.http.DoubanHttpModule;

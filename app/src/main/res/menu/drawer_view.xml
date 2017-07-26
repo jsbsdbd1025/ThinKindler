@@ -19,17 +19,14 @@
 
     <group android:checkableBehavior="single">
         <item
-                android:id="@+id/nav_home"
+                android:id="@+id/nav_douban"
                 android:icon="@mipmap/ic_launcher"
                 android:title="豆瓣"/>
         <item
-                android:id="@+id/nav_zhihu"
+                android:id="@+id/nav_meizi"
                 android:icon="@mipmap/ic_launcher"
-                android:title="知乎"/>
-        <item
-                android:id="@+id/nav_live"
-                android:icon="@mipmap/ic_launcher"
-                android:title="直播"/>
+                android:title="妹子"/>
+
     </group>
 
     <item android:title="Sub items">

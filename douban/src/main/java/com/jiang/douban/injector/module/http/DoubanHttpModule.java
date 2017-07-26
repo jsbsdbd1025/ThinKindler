@@ -1,5 +1,7 @@
-package com.jiang.thinkindler.injector.module.http;
+package com.jiang.douban.injector.module.http;
 
+import com.jiang.thinkindler.net.Api;
+import com.jiang.thinkindler.net.ApiType;
 import com.jiang.thinkindler.net.model.DoubanModel;
 import com.jiang.thinkindler.net.service.DoubanService;
 

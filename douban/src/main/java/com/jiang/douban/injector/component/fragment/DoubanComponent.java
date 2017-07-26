@@ -1,4 +1,4 @@
-package com.jiang.thinkindler.injector.component.fragment;
+package com.jiang.douban.injector.component.fragment;
 
 import com.jiang.common.injector.scope.FragmentScope;
 import com.jiang.thinkindler.injector.app.AppComponent;

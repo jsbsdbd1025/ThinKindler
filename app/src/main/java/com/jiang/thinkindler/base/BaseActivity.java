@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 import com.jiang.common.base.CommonActivity;
 import com.jiang.common.utils.AppManager;
 import com.jiang.thinkindler.app.BaseApplication;
-import com.jiang.thinkindler.injector.component.AppComponent;
+import com.jiang.thinkindler.injector.app.AppComponent;
 
 import javax.inject.Inject;
 

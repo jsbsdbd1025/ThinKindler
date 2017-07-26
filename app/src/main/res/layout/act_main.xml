@@ -3,7 +3,6 @@
                                         xmlns:app="http://schemas.android.com/apk/res-auto"
                                         xmlns:tools="http://schemas.android.com/tools"
                                         android:id="@+id/drawer_layout"
-
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         tools:context=".ui.MainActivity">
@@ -36,26 +35,19 @@
 
         <fragment
                 android:id="@+id/frag_main_douban"
-                android:name="com.jiang.douban.DoubanMainFragment"
+                android:name="com.jiang.thinkindler.ui.douban.DoubanMainFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 tools:layout="@layout/douban_frag_main"/>
 
-        <!--<fragment-->
-        <!--android:id="@+id/frag_main_douban"-->
-        <!--android:name="com.jiang.thinkindler.ui.douban.DoubanMainFragment"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
-        <!--tools:layout="@layout/frag_main_douban"/>-->
-
-        <!--<fragment-->
-        <!--android:id="@+id/frag_main_live"-->
-        <!--android:name="com.jiang.thinkindler.ui.live.LiveListFragment"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--tools:layout="@layout/frag_main_live"/>-->
+        <fragment
+                android:id="@+id/frag_main_meizi"
+                android:name="com.jiang.meizi.MeiziMainFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:layout="@layout/meizi_frag_main"/>
 
 
     </android.support.design.widget.CoordinatorLayout>
