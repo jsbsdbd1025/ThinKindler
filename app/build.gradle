@@ -58,7 +58,12 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile project(path: ':common')
+    annotationProcessor "com.github.mzule.activityrouter:compiler:$rootProject.annotationProcessor"
+    if (isModule.toBoolean()) {
+        compile project(':common')
+    } else {
+        compile project(':douban')
+    }
 
     testCompile "junit:junit:$rootProject.junitVersion"
     testCompile "org.mockito:mockito-core:$rootProject.mockitoVersion"
@@ -78,7 +83,6 @@ dependencies {
 
     compile "com.android.support.test.espresso:espresso-idling-resource:$rootProject.espressoVersion"
 
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta1'
 
     //内存泄漏监控
     debugCompile "com.squareup.leakcanary:leakcanary-android:$rootProject.leakcanaryVersion"
@@ -116,12 +120,6 @@ dependencies {
     }
     //kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-
-    //bugly
-    //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
-    //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
-    compile 'com.tencent.bugly:crashreport:2.5.0'
-    compile 'com.tencent.bugly:nativecrashreport:3.1.2'
 
 
 }

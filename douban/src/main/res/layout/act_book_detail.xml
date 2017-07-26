@@ -1,0 +1,141 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:tools="http://schemas.android.com/tools"
+                                                 android:orientation="vertical"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+                                                 android:fitsSystemWindows="true">
+
+
+    <include layout="@layout/layout_title_appbar"/>
+
+
+    <android.support.v4.widget.NestedScrollView
+            android:id="@+id/sv_book_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+            <ImageView
+                    android:id="@+id/img_detail_cover"
+                    android:layout_width="120dp"
+                    android:layout_height="180dp"
+                    android:scaleType="fitXY"/>
+
+            <TextView
+                    android:id="@+id/tv_detail_title"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:paddingLeft="@dimen/margin_medium"
+                    android:paddingRight="@dimen/margin_medium"
+                    android:textSize="30sp"
+                    android:textColor="@color/colorBlackKeyText"
+                    tools:text="神秘组织"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/tv_detail_subtitle"
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/titleTextSize"
+                    android:paddingLeft="@dimen/margin_medium"
+                    android:paddingRight="@dimen/margin_medium"
+                    android:textColor="@color/colorBlackKeyText"
+                    tools:text="超能力侦探事务所2"
+                    android:layout_height="wrap_content"/>` `
+
+            <TextView
+                    android:id="@+id/tv_detail_publisher"
+                    android:layout_width="match_parent"
+                    android:paddingLeft="@dimen/margin_medium"
+                    android:paddingRight="@dimen/margin_medium"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:textSize="@dimen/hintTextSize"
+                    android:textColor="@color/colorBlackContentText"
+                    tools:text="中国海关出版社"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/tv_detail_pubdate"
+                    android:layout_width="match_parent"
+                    android:paddingLeft="@dimen/margin_medium"
+                    android:paddingRight="@dimen/margin_medium"
+                    android:layout_marginTop="@dimen/margin_tiny"
+                    android:textSize="@dimen/hintTextSize"
+                    android:textColor="@color/colorBlackContentText"
+                    tools:text="2009-4"
+                    android:layout_height="wrap_content"/>
+
+            <Button
+                    android:id="@+id/tv_detail_author"
+                    android:layout_width="wrap_content"
+                    android:minHeight="0dp"
+                    android:textSize="@dimen/titleTextSize"
+                    android:background="@null"
+                    android:layout_marginTop="@dimen/margin_small"
+                    tools:text="当年明月"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/tv_detail_author_intro"
+                    android:layout_width="match_parent"
+                    android:paddingLeft="@dimen/margin_medium"
+                    android:layout_marginTop="@dimen/margin_tiny"
+                    android:paddingRight="@dimen/margin_medium"
+                    android:textSize="@dimen/titleTextSize"
+                    android:textColor="@color/colorBlackContentText"
+                    android:textColorHint="@color/colorBlackHintText"
+                    android:hint="暂无作者简介"
+                    tools:text="当年明月，青年历史学者，畅销书作家。专业职称为副研究员，明史学会会员。是心灵历史的开创者，担任国内多家电视台文史类节目主讲人。所著作品《明朝那些事儿》销量过五百万册，为三十年来最畅销之史学读本。"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/titleTextSize"
+                    android:background="@null"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:textColor="@color/colorBlackKeyText"
+                    android:text="作品摘要"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/tv_detail_desc"
+                    android:layout_width="match_parent"
+                    android:paddingLeft="@dimen/margin_medium"
+                    android:paddingRight="@dimen/margin_medium"
+                    android:layout_marginTop="@dimen/margin_tiny"
+                    android:textSize="@dimen/titleTextSize"
+                    android:textColor="@color/colorBlackContentText"
+                    tools:text="Android"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/titleTextSize"
+                    android:background="@null"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:textColor="@color/colorBlackKeyText"
+                    android:text="目录"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/tv_detail_catalog"
+                    android:layout_width="match_parent"
+                    android:paddingLeft="@dimen/margin_medium"
+                    android:paddingRight="@dimen/margin_medium"
+                    android:layout_marginTop="@dimen/margin_tiny"
+                    android:textSize="@dimen/titleTextSize"
+                    android:textColor="@color/colorBlackContentText"
+                    tools:text="第一章 童年\n第二章 灾难\n第三章 踏上征途\n第四章 就从这里起步\n第五章 储蓄资本\n第六章 霸业的开始\n第七章 可怕的对手\n第八章 可怕的陈友谅\n第九章 决战不可避免\n第十章 等待最好的时机\n第十一章 洪都的奇迹\n第十二章 鄱阳湖！决死战！\n第十三章 下一个目标，张士诚！\n第十四章 复仇\n第十五章 远征沙漠\n第十六章 建国\n第十七章 胡维庸案件\n第十八章 扫除一切腐败者！\n第十九章 空印案 郭桓案\n第二十章 最后的名将——蓝玉\n第二十一章 蓝玉的覆灭\n第二十二章 制度后的秘密\n第二十三章 终点，起点：最后的朋友们\n第二十四章 建文帝：建文的忧虑\n第二十五章 等待中的朱棣：朱棣的痛苦\n第二十六章 准备行动\n第二十七章 不得不反了！\n第二十八章 你死我活的战争\n第二十九章 朱棣的对手\n第三十章 离胜利只差一步！\n第三十一章 殉国、疑团、残暴、软弱"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+</android.support.design.widget.CoordinatorLayout>

@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <!-- Actionbar color -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <!--&lt;!&ndash;Status bar color&ndash;&gt;-->
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <!--&lt;!&ndash;Window color&ndash;&gt;-->
+        <item name="android:windowBackground">@android:color/white</item>
+
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:textColorPrimary">@color/colorBlackKeyText</item>
+
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+
+        <item name="android:actionBarSize">@dimen/appbar_height</item>
+
+        <item name="colorControlNormal">@android:color/white</item>
+    </style>
+
+
+
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/white</item>
+    </style>
+
     <style name="CustomDialog" parent="@android:style/Theme.Dialog">
         <!--<item name="android:windowContentOverlay">@null</item>-->
         <!--<item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>-->

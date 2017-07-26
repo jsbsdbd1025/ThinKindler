@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.support.multidex.MultiDex;
 
+import com.tencent.bugly.crashreport.CrashReport;
+
 import java.util.Map;
 
 /**
@@ -23,6 +25,8 @@ public class CommonApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        CrashReport.initCrashReport(getApplicationContext());
         instance = this;
     }
 
@@ -47,8 +51,6 @@ public class CommonApplication extends Application {
 
     /**
      * 分包
-     *
-     * @param base
      */
     @Override
     protected void attachBaseContext(Context base) {

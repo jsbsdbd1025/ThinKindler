@@ -29,7 +29,7 @@ public class BaseApplication extends CommonApplication {
         LogUtils.logInit(true);
         LeakCanary.install(this);
 
-        CrashReport.initCrashReport(getApplicationContext());
+
 
         appComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))

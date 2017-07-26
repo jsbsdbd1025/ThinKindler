@@ -34,14 +34,21 @@
 
         </android.support.design.widget.AppBarLayout>
 
-
         <fragment
                 android:id="@+id/frag_main_douban"
-                android:name="com.jiang.thinkindler.ui.douban.DoubanMainFragment"
+                android:name="com.jiang.douban.DoubanMainFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:layout="@layout/frag_main_douban"/>
+                tools:layout="@layout/douban_frag_main"/>
+
+        <!--<fragment-->
+        <!--android:id="@+id/frag_main_douban"-->
+        <!--android:name="com.jiang.thinkindler.ui.douban.DoubanMainFragment"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+        <!--tools:layout="@layout/frag_main_douban"/>-->
 
         <!--<fragment-->
         <!--android:id="@+id/frag_main_live"-->
