@@ -1,5 +1,6 @@
 package com.jiang.thinkindler.ui;
 
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -7,17 +8,15 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.jiang.common.base.CommonActivity;
 import com.jiang.common.base.CommonFragment;
+import com.jiang.douban.ui.main.DoubanMainFragment;
 import com.jiang.meizi.MeiziMainFragment;
 import com.jiang.thinkindler.R;
-import com.jiang.thinkindler.base.BaseActivity;
-import com.jiang.thinkindler.injector.app.AppComponent;
-import com.jiang.thinkindler.ui.douban.DoubanMainFragment;
-import com.jiang.thinkindler.utils.SimpleIdlingResource;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends CommonActivity {
 
     private DoubanMainFragment doubanFragment;
     private MeiziMainFragment meiziFragment;
@@ -27,11 +26,17 @@ public class MainActivity extends BaseActivity {
     NavigationView navigationView;
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(getLayoutId());
+
+        init();
+    }
+
     public int getLayoutId() {
         return R.layout.act_main;
     }
 
-    @Override
     protected void init() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -60,10 +65,6 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void initInjector(AppComponent appComponent) {
-
-    }
 
     NavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener
             = item -> {
@@ -105,15 +106,6 @@ public class MainActivity extends BaseActivity {
         }
         return true;
     }
-
-    /**
-     * Only called from test, creates and returns a new {@link SimpleIdlingResource}.
-     */
-//    @VisibleForTesting
-//    @NonNull
-//    public IdlingResource getDoubanIdlingResource() {
-//        return doubanFragment.getIdlingResource();
-//    }
 
 }
 

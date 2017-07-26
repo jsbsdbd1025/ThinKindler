@@ -1,4 +1,4 @@
-package com.jiang.thinkindler.rx;
+package com.jiang.douban.rx;
 
 import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;

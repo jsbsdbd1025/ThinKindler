@@ -36,11 +36,7 @@ android {
         }
     }
 
-    greendao {
-        schemaVersion 1
-        daoPackage 'com.jiang.thinkindler.gen'
-        targetGenDir 'src/main/java'
-    }
+
 
     lintOptions {
         abortOnError false

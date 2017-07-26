@@ -1,4 +1,4 @@
-package com.jiang.thinkindler.rx;
+package com.jiang.douban.rx;
 
 /**
  * Created by jiang on 2017/4/24.

@@ -46,9 +46,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-                android:name=".ui.douban.BookDetailActivity"
-                android:launchMode="standard"/>
 
         <!-- 配置APP ID -->
         <meta-data

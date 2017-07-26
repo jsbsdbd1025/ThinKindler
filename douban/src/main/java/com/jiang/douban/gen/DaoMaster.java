@@ -1,4 +1,4 @@
-package com.jiang.thinkindler.gen;
+package com.jiang.douban.gen;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

@@ -1,10 +1,10 @@
-package com.jiang.thinkindler.rx;
+package com.jiang.douban.rx;
 
 import android.net.ParseException;
 
 import com.google.gson.JsonParseException;
 import com.jiang.common.utils.LogUtils;
-import com.jiang.thinkindler.base.BaseView;
+import com.jiang.douban.base.BaseView;
 
 import org.json.JSONException;
 

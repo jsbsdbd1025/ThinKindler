@@ -1,4 +1,4 @@
-package com.jiang.thinkindler.base.recyclerview;
+package com.jiang.common.recyclerview;
 
 import android.view.View;
 

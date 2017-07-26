@@ -5,7 +5,7 @@ import com.jiang.common.base.irecyclerview.IRecyclerView;
 import com.jiang.common.base.irecyclerview.OnLoadMoreListener;
 import com.jiang.common.base.irecyclerview.OnRefreshListener;
 import com.jiang.common.base.irecyclerview.widget.footer.LoadMoreFooterView;
-import com.jiang.thinkindler.entity.bean.PageList;
+import com.jiang.common.entity.bean.PageList;
 
 /**
  * Created by jiang on 2017/3/11.
