@@ -11,11 +11,8 @@ import com.jiang.douban.ui.main.contract.DoubanMainContract;
 
 import javax.inject.Inject;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
-
 /**
- * Created by jiang on 2017/4/14.
+ * Created by jiang on 2017/4/14. b
  */
 
 public class DoubanMainPresenter implements DoubanMainContract.Presenter {

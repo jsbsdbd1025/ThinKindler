@@ -1,6 +1,5 @@
 package com.jiang.thinkindler.ui;
 
-import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -8,15 +7,15 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.jiang.common.base.CommonActivity;
 import com.jiang.common.base.CommonFragment;
 import com.jiang.douban.ui.main.DoubanMainFragment;
 import com.jiang.meizi.MeiziMainFragment;
 import com.jiang.thinkindler.R;
+import com.jiang.thinkindler.base.BaseActivity;
 
 import butterknife.BindView;
 
-public class MainActivity extends CommonActivity {
+public class MainActivity extends BaseActivity {
 
     private DoubanMainFragment doubanFragment;
     private MeiziMainFragment meiziFragment;
@@ -26,17 +25,11 @@ public class MainActivity extends CommonActivity {
     NavigationView navigationView;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(getLayoutId());
-
-        init();
-    }
-
     public int getLayoutId() {
         return R.layout.act_main;
     }
 
+    @Override
     protected void init() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -65,6 +58,10 @@ public class MainActivity extends CommonActivity {
 
     }
 
+    @Override
+    protected void initInjector() {
+
+    }
 
     NavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener
             = item -> {

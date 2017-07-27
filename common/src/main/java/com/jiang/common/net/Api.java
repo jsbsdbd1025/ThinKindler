@@ -8,8 +8,8 @@ import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
+import com.jiang.common.base.CommonApplication;
 import com.jiang.common.utils.NetWorkUtils;
-import com.jiang.thinkindler.app.BaseApplication;
 
 import java.io.File;
 import java.io.IOException;
@@ -92,7 +92,7 @@ public class Api {
         HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
         logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         //缓存
-        File cacheFile = new File(BaseApplication.getAppContext().getCacheDir(), "cache");
+        File cacheFile = new File(CommonApplication.getAppContext().getCacheDir(), "cache");
         Cache cache = new Cache(cacheFile, 1024 * 1024 * 100); //100Mb
         //增加头部信息
         Interceptor headerInterceptor = new Interceptor() {
@@ -108,7 +108,7 @@ public class Api {
 
         //增加cookie持久化
         ClearableCookieJar cookieJar =
-                new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(BaseApplication.getAppContext()));
+                new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(CommonApplication.getAppContext()));
 
         OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder()
                 .cache(cache)
@@ -140,7 +140,7 @@ public class Api {
      */
     @NonNull
     private static String getCacheControl() {
-        return NetWorkUtils.isNetConnected(BaseApplication.getAppContext()) ? CACHE_CONTROL_AGE : CACHE_CONTROL_CACHE;
+        return NetWorkUtils.isNetConnected(CommonApplication.getAppContext()) ? CACHE_CONTROL_AGE : CACHE_CONTROL_CACHE;
     }
 
     /**
@@ -151,13 +151,13 @@ public class Api {
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
-            if (!NetWorkUtils.isNetConnected(BaseApplication.getAppContext())) {
+            if (!NetWorkUtils.isNetConnected(CommonApplication.getAppContext())) {
                 request = request.newBuilder()
                         .cacheControl(CacheControl.FORCE_CACHE)
                         .build();
             }
             Response originalResponse = chain.proceed(request);
-            if (NetWorkUtils.isNetConnected(BaseApplication.getAppContext())) {
+            if (NetWorkUtils.isNetConnected(CommonApplication.getAppContext())) {
                 //有网的时候读接口上的@Headers里的配置，你可以在这里进行统一的设置
                 String cacheControl = request.cacheControl().toString();
                 return originalResponse.newBuilder()

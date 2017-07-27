@@ -1,64 +1,52 @@
-package com.jiang.douban.base;
+package com.jiang.thinkindler.base;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-import com.jiang.common.base.CommonActivity;
 import com.jiang.common.base.CommonApplication;
+import com.jiang.common.base.CommonFragment;
+
+import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
-public abstract class BaseActivity extends CommonActivity {
 
-    public Context mContext;
+/**
+ * Created by jiang on 2017/2/28.
+ */
 
-    protected String TAG = null;
+public abstract class BaseFragment<P extends BasePresenter> extends CommonFragment {
+
+    @Inject
+    protected P mPresenter;
+
+    protected Context mContext;
 
     private Unbinder unbinder;
 
     private CompositeDisposable disposables2Stop; //管理stop取消订阅者
     private CompositeDisposable disposables2Destroy; //管理Destroy取消订阅者
 
+    protected int mStatus;
+
     private CommonApplication mApplication;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(getLayoutId());
-
-        if (unbinder == null) {
-            unbinder = ButterKnife.bind(this);
+        if (disposables2Destroy != null) {
+            throw new IllegalStateException("onCreate called multiple times");
         }
-
-        mContext = this;
-
-        //init()中只进行初始化动作
-        init();
-
-        initInjector();
-
-        TAG = getClass().getSimpleName();
-
+        disposables2Destroy = new CompositeDisposable();
+        mContext = getActivity();
     }
-
-    /*********************
-     * 子类实现
-     *****************************/
-    //获取布局文件
-    public abstract int getLayoutId();
-
-    //初始化view
-    protected abstract void init();
-
-
-    // dagger 注入
-    protected abstract void initInjector();
-
 
     public boolean addRxStop(Disposable disposable) {
         if (disposables2Stop == null) {
@@ -117,5 +105,43 @@ public abstract class BaseActivity extends CommonActivity {
         disposables2Destroy = null;
     }
 
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle
+            savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        if (rootView == null) {
+            rootView = inflater.inflate(getLayoutId(), container, false);
+        }
+        if (unbinder == null) {
+            unbinder = ButterKnife.bind(this, rootView);
+        }
+
+        return rootView;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        mApplication = (CommonApplication) getActivity().getApplication();
+        init(rootView);
+
+        initInjector();
+    }
+
+    /*********************
+     * 子类实现
+     *****************************/
+    //获取布局文件
+    public abstract int getLayoutId();
+
+    //初始化view
+    protected abstract void init(View view);
+
+
+    // dagger 注入
+    protected abstract void initInjector();
 
 }

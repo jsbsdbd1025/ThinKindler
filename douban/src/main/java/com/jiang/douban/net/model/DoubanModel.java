@@ -5,7 +5,6 @@ import com.jiang.common.entity.bean.PageList;
 import com.jiang.common.net.BaseModel;
 import com.jiang.douban.net.service.DoubanService;
 
-
 import io.reactivex.Observable;
 
 

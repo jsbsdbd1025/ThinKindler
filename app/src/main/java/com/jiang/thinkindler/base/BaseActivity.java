@@ -1,4 +1,4 @@
-package com.jiang.douban.base;
+package com.jiang.thinkindler.base;
 
 import android.content.Context;
 import android.os.Bundle;

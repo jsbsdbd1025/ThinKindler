@@ -3,9 +3,14 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ThinKindler.iml" filepath="$PROJECT_DIR$/ThinKindler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ThinKindler.iml" filepath="$PROJECT_DIR$/ThinKindler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/douban/douban.iml" filepath="$PROJECT_DIR$/douban/douban.iml" />
+      <module fileurl="file://$PROJECT_DIR$/douban/douban.iml" filepath="$PROJECT_DIR$/douban/douban.iml" />
+      <module fileurl="file://$PROJECT_DIR$/meizi/meizi.iml" filepath="$PROJECT_DIR$/meizi/meizi.iml" />
       <module fileurl="file://$PROJECT_DIR$/meizi/meizi.iml" filepath="$PROJECT_DIR$/meizi/meizi.iml" />
     </modules>
   </component>

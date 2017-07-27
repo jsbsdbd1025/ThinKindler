@@ -125,4 +125,8 @@ dependencies {
     compile 'com.google.dagger:dagger:2.10-rc2'
     apt 'com.google.dagger:dagger-compiler:2.10-rc2'
 
+    //视图绑定 butterknife
+    compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
+    apt "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+
 }

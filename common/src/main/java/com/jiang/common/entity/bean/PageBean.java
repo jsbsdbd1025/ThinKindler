@@ -1,4 +1,4 @@
-package com.jiang.thinkindler.entity.bean;
+package com.jiang.common.entity.bean;
 
 import java.util.List;
 
