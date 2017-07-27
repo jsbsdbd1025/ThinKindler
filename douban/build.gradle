@@ -43,11 +43,25 @@ android {
             }
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+
+    greendao {
+        schemaVersion 1
+        daoPackage 'com.jiang.douban.gen'
+        targetGenDir 'src/main/java'
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':common')
+
+    testCompile "junit:junit:$rootProject.junitVersion"
 
     annotationProcessor "com.github.mzule.activityrouter:compiler:$rootProject.annotationProcessor"
 
@@ -59,4 +73,8 @@ dependencies {
     //视图绑定 butterknife
     compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
     apt "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+
+    //orm
+    compile "org.greenrobot:greendao:$rootProject.greendaoVersion"
+    compile "org.greenrobot:greendao-generator:$rootProject.greendaoVersion"
 }

@@ -1,9 +1,9 @@
-package com.jiang.douban.injector.app;
+package com.jiang.common.injector.app;
 
-
-import com.google.gson.Gson;
 
 import android.content.Context;
+
+import com.google.gson.Gson;
 
 import javax.inject.Singleton;
 

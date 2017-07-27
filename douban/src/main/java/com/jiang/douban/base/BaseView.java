@@ -17,6 +17,14 @@
 package com.jiang.douban.base;
 
 
+import io.reactivex.disposables.Disposable;
+
 public interface BaseView {
+
+    boolean addRxStop(Disposable disposable);
+
+    boolean addRxDestroy(Disposable disposable);
+
+    void remove(Disposable disposable);
 
 }

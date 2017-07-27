@@ -1,6 +1,8 @@
 package com.jiang.douban.injector.module.fragment;
 
-import com.jiang.thinkindler.ui.douban.contract.DoubanMainContract;
+//import com.jiang.thinkindler.ui.douban.contract.DoubanMainContract;
+
+import com.jiang.douban.ui.main.contract.DoubanMainContract;
 
 import dagger.Module;
 import dagger.Provides;

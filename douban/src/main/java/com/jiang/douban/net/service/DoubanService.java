@@ -1,7 +1,7 @@
 package com.jiang.douban.net.service;
 
-import com.jiang.thinkindler.entity.bean.BookBean;
-import com.jiang.thinkindler.entity.bean.PageList;
+import com.jiang.common.entity.bean.BookBean;
+import com.jiang.common.entity.bean.PageList;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;

@@ -1,5 +1,9 @@
-package com.jiang.thinkindler.entity.bean
+package com.jiang.common.entity.bean
 
+import com.jiang.douban.entity.bean.ImageBean
+import com.jiang.douban.entity.bean.RatingBean
+import com.jiang.douban.entity.bean.SeriesBean
+import com.jiang.douban.entity.bean.TagBean
 import java.io.Serializable
 
 /**

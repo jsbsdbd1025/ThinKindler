@@ -1,7 +1,5 @@
 package com.jiang.douban.injector.module.activity;
 
-import com.jiang.thinkindler.ui.douban.contract.BookDetailContract;
-
 import dagger.Module;
 import dagger.Provides;
 
@@ -11,15 +9,15 @@ import dagger.Provides;
 @Module
 public class BookDetailModule {
 
-    private BookDetailContract.View view;
-
-    public BookDetailModule(BookDetailContract.View view) {
-        this.view = view;
-    }
-
-    @Provides
-    public BookDetailContract.View provideView() {
-        return view;
-    }
+//    private BookDetailContract.View view;
+//
+//    public BookDetailModule(BookDetailContract.View view) {
+//        this.view = view;
+//    }
+//
+//    @Provides
+//    public BookDetailContract.View provideView() {
+//        return view;
+//    }
 
 }

@@ -1,10 +1,10 @@
-package com.jiang.thinkindler.data.db;
+package com.jiang.douban.data.db;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import com.jiang.thinkindler.app.BaseApplication;
-import com.jiang.thinkindler.gen.DaoMaster;
-import com.jiang.thinkindler.gen.DaoSession;
+import com.jiang.common.base.CommonApplication;
+import com.jiang.douban.gen.DaoMaster;
+import com.jiang.douban.gen.DaoSession;
 
 /**
  * Created by jiang on 2017/3/24.
@@ -39,7 +39,7 @@ public class DBHelper {
      */
     public DaoMaster getDaoMaster() {
         if (null == mDaoMaster) {
-            mHelper = new DaoMaster.DevOpenHelper(BaseApplication.getAppContext(), "user" + ".db", null);
+            mHelper = new DaoMaster.DevOpenHelper(CommonApplication.getAppContext(), "user" + ".db", null);
             mDaoMaster = new DaoMaster(mHelper.getWritableDatabase());
         }
         return mDaoMaster;

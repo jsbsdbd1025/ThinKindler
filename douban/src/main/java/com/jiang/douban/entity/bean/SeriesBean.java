@@ -1,4 +1,4 @@
-package com.jiang.thinkindler.entity.bean;
+package com.jiang.douban.entity.bean;
 
 /**
  * Created by jiang on 2017/3/25.

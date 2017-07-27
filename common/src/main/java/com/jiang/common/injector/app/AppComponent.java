@@ -1,4 +1,4 @@
-package com.jiang.douban.injector.app;
+package com.jiang.common.injector.app;
 
 
 import android.content.Context;

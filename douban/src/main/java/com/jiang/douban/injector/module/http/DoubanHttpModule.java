@@ -1,9 +1,11 @@
 package com.jiang.douban.injector.module.http;
 
-import com.jiang.thinkindler.net.Api;
-import com.jiang.thinkindler.net.ApiType;
-import com.jiang.thinkindler.net.model.DoubanModel;
-import com.jiang.thinkindler.net.service.DoubanService;
+;
+
+import com.jiang.common.net.Api;
+import com.jiang.common.net.ApiType;
+import com.jiang.douban.net.model.DoubanModel;
+import com.jiang.douban.net.service.DoubanService;
 
 import dagger.Module;
 import dagger.Provides;

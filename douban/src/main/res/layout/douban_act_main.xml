@@ -8,7 +8,7 @@
 
     <fragment
             android:id="@+id/frag_main_douban"
-            android:name="com.jiang.douban.DoubanMainFragment"
+            android:name="com.jiang.douban.ui.main.DoubanMainFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:layout="@layout/douban_frag_main"/>

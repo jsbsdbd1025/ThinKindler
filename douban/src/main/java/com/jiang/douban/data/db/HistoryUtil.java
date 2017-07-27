@@ -1,8 +1,8 @@
-package com.jiang.thinkindler.data.db;
+package com.jiang.douban.data.db;
 
 import com.jiang.common.utils.LogUtils;
-import com.jiang.thinkindler.entity.db.SearchHistory;
-import com.jiang.thinkindler.gen.SearchHistoryDao;
+import com.jiang.douban.entity.db.SearchHistory;
+import com.jiang.douban.gen.SearchHistoryDao;
 
 import java.util.List;
 

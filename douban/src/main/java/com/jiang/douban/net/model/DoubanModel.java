@@ -1,9 +1,10 @@
 package com.jiang.douban.net.model;
 
+import com.jiang.common.entity.bean.BookBean;
+import com.jiang.common.entity.bean.PageList;
 import com.jiang.common.net.BaseModel;
-import com.jiang.thinkindler.entity.bean.BookBean;
-import com.jiang.thinkindler.entity.bean.PageList;
-import com.jiang.thinkindler.net.service.DoubanService;
+import com.jiang.douban.net.service.DoubanService;
+
 
 import io.reactivex.Observable;
 

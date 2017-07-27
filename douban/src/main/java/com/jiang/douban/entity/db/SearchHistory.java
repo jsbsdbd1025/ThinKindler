@@ -1,4 +1,4 @@
-package com.jiang.thinkindler.entity.db;
+package com.jiang.douban.entity.db;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
