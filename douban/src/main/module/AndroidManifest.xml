@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ui.detail.BookDetailActivity"/>
 
         <!-- 配置APP ID -->
         <meta-data

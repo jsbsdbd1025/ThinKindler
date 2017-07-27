@@ -29,20 +29,22 @@ public abstract class BaseActivity extends CommonActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (disposables2Destroy != null) {
+            throw new IllegalStateException("onCreate called multiple times");
+        }
+        disposables2Destroy = new CompositeDisposable();
         setContentView(getLayoutId());
-
         if (unbinder == null) {
             unbinder = ButterKnife.bind(this);
         }
-
         mContext = this;
 
         //init()中只进行初始化动作
         init();
 
         initInjector();
-
         TAG = getClass().getSimpleName();
+
 
     }
 

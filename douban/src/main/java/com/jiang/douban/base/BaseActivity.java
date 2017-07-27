@@ -7,12 +7,17 @@ import android.support.annotation.Nullable;
 import com.jiang.common.base.CommonActivity;
 import com.jiang.common.base.CommonApplication;
 
+import javax.inject.Inject;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
-public abstract class BaseActivity extends CommonActivity {
+public abstract class BaseActivity<P extends BasePresenter> extends CommonActivity {
+
+    @Inject
+    protected P mPresenter;
 
     public Context mContext;
 
@@ -29,19 +34,20 @@ public abstract class BaseActivity extends CommonActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (disposables2Destroy != null) {
+            throw new IllegalStateException("onCreate called multiple times");
+        }
+        disposables2Destroy = new CompositeDisposable();
         setContentView(getLayoutId());
-
         if (unbinder == null) {
             unbinder = ButterKnife.bind(this);
         }
-
         mContext = this;
 
         //init()中只进行初始化动作
         init();
 
         initInjector();
-
         TAG = getClass().getSimpleName();
 
     }

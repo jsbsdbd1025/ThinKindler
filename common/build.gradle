@@ -2,8 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.jakewharton.butterknife'
-apply plugin: 'com.neenbedankt.android-apt'
-
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -18,6 +16,12 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -62,7 +66,9 @@ dependencies {
     compile 'jp.wasabeef:picasso-transformations:2.1.2'
 
 
-    compile("com.android.support:support-v4:$rootProject.supportLibraryVersion") { exclude module: 'support-annotations' }
+    compile("com.android.support:support-v4:$rootProject.supportLibraryVersion") {
+        exclude module: 'support-annotations'
+    }
 
     compile 'com.orhanobut:logger:1.13'
 
@@ -80,10 +86,6 @@ dependencies {
 
     compile "com.android.support.test.espresso:espresso-idling-resource:$rootProject.espressoVersion"
 
-
-    //router
-    compile "com.github.mzule.activityrouter:activityrouter:$rootProject.routerVersion"
-
     //bugly
     //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
     //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
@@ -93,7 +95,6 @@ dependencies {
     //内存泄漏监控
     debugCompile "com.squareup.leakcanary:leakcanary-android:$rootProject.leakcanaryVersion"
     releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.leakcanaryVersion"
-
 
     /*网络请求retrofit*/
     compile 'com.google.code.gson:gson:2.7'
@@ -123,10 +124,14 @@ dependencies {
     //dagger2
     provided 'org.glassfish:javax.annotation:10.0-b28'
     compile 'com.google.dagger:dagger:2.10-rc2'
-    apt 'com.google.dagger:dagger-compiler:2.10-rc2'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.10-rc2'
 
     //视图绑定 butterknife
     compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
-    apt "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+
+    //ARoute
+    compile "com.alibaba:arouter-api:$rootProject.routerVersion"
+    annotationProcessor "com.alibaba:arouter-compiler:$rootProject.routercompilerVersion"
 
 }

@@ -13,7 +13,6 @@ buildscript {
         // in the individual module build.gradle files
 
         classpath 'com.jakewharton:butterknife-gradle-plugin:8.5.1'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
@@ -82,5 +81,6 @@ ext {
 
     //需检查升级版本
     annotationProcessor = "1.1.7"
-    routerVersion = "1.2.2"
+    routerVersion = "1.2.1.1"
+    routercompilerVersion = "1.1.2.1"
 }

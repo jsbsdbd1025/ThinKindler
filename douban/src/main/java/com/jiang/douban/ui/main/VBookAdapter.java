@@ -1,4 +1,4 @@
-package com.jiang.douban.ui.main.adapter;
+package com.jiang.douban.ui.main;
 
 import android.view.LayoutInflater;
 import android.view.View;

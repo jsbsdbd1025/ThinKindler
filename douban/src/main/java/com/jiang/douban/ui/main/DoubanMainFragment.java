@@ -1,5 +1,6 @@
 package com.jiang.douban.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -12,19 +13,14 @@ import android.widget.AutoCompleteTextView;
 import com.jiang.common.entity.bean.BookBean;
 import com.jiang.common.recyclerview.BaseDelegateAdapter;
 import com.jiang.common.utils.KeyBoardUtil;
-import com.jiang.common.utils.ToastUtil;
-import com.jiang.common.widget.multistatuslayout.MultiStatusLayout;
 import com.jiang.douban.R;
 import com.jiang.douban.R2;
-import com.jiang.douban.base.BaseActivity;
 import com.jiang.douban.base.BaseFragment;
 import com.jiang.douban.data.db.HistoryUtil;
 import com.jiang.douban.injector.component.fragment.DaggerDoubanComponent;
 import com.jiang.douban.injector.module.fragment.DoubanMainModule;
 import com.jiang.douban.injector.module.http.DoubanHttpModule;
-import com.jiang.douban.ui.main.adapter.VBookAdapter;
-import com.jiang.douban.ui.main.contract.DoubanMainContract;
-import com.jiang.douban.ui.main.presenter.DoubanMainPresenter;
+import com.jiang.douban.ui.detail.BookDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,9 +49,6 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
 
     protected VBookAdapter mAdapter;
 
-    protected int mStatus;
-
-
     @Override
     public int getLayoutId() {
         return R.layout.douban_frag_main;
@@ -70,7 +63,6 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
         recyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(itemClickListener);
 
-
         edtSearch.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -83,35 +75,35 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
             }
         });
 
-//        HistoryUtil.loadAll()
-//                .subscribeOn(Schedulers.newThread())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Observer<String[]>() {
-//                    @Override
-//                    public void onSubscribe(Disposable d) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onNext(String[] strings) {
-//                        historys = strings;
-//
-//                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext,
-//                                R.layout.item_search_history, historys);
-//
-//                        edtSearch.setAdapter(adapter);
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onComplete() {
-//
-//                    }
-//                });
+        HistoryUtil.loadAll()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String[]>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(String[] strings) {
+                        historys = strings;
+
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext,
+                                R.layout.item_search_history, historys);
+
+                        edtSearch.setAdapter(adapter);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
 
 
     }
@@ -135,7 +127,10 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
 
 
     BaseDelegateAdapter.OnRecyclerViewItemClickListener itemClickListener = (view, position) -> {
-        ToastUtil.showShort("position: " + position);
+//        ToastUtil.showShort("position: " + position);
+        Intent intent = new Intent(getActivity(), BookDetailActivity.class);
+        intent.putExtra("id", datas.get(position).getId());
+        getActivity().startActivity(intent);
 //        BookDetailActivity.startAction((BaseActivity) mContext, datas.get(position).getId());
     };
 

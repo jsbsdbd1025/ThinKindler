@@ -17,6 +17,12 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName() ]
+            }
+        }
     }
     buildTypes {
         release {
@@ -53,5 +59,6 @@ dependencies {
     compile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
     testCompile "junit:junit:$rootProject.junitVersion"
 
-    annotationProcessor "com.github.mzule.activityrouter:compiler:$rootProject.annotationProcessor"
+    //ARoute
+    annotationProcessor "com.alibaba:arouter-compiler:$rootProject.routercompilerVersion"
 }

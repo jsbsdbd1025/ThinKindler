@@ -6,7 +6,6 @@ if (isModule.toBoolean()) {
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'org.greenrobot.greendao'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'com.jakewharton.butterknife'
 
 android {
@@ -22,6 +21,12 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -63,17 +68,18 @@ dependencies {
 
     testCompile "junit:junit:$rootProject.junitVersion"
 
-    annotationProcessor "com.github.mzule.activityrouter:compiler:$rootProject.annotationProcessor"
-
     //dagger2
     provided 'org.glassfish:javax.annotation:10.0-b28'
     compile 'com.google.dagger:dagger:2.10-rc2'
-    apt 'com.google.dagger:dagger-compiler:2.10-rc2'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.10-rc2'
 
     //视图绑定 butterknife
-    apt "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
 
     //orm
     compile "org.greenrobot:greendao:$rootProject.greendaoVersion"
     compile "org.greenrobot:greendao-generator:$rootProject.greendaoVersion"
+
+    //ARoute
+    annotationProcessor "com.alibaba:arouter-compiler:$rootProject.routercompilerVersion"
 }

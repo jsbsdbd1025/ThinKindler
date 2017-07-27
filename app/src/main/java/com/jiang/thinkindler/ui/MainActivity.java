@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.jiang.common.base.CommonFragment;
 import com.jiang.douban.ui.main.DoubanMainFragment;
 import com.jiang.meizi.MeiziMainFragment;
@@ -44,15 +45,17 @@ public class MainActivity extends BaseActivity {
 
         toolbar.inflateMenu(R.menu.menu_clear);
 
-        mFragments = new CommonFragment[2];
-        doubanFragment = (DoubanMainFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.frag_main_douban);
-        mFragments[0] = doubanFragment;
-        meiziFragment = (MeiziMainFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.frag_main_meizi);
-        mFragments[1] = meiziFragment;
+//        mFragments = new CommonFragment[2];
+//        doubanFragment = (DoubanMainFragment) getSupportFragmentManager()
+//                .findFragmentById(R.id.frag_main_douban);
+//        mFragments[0] = doubanFragment;
+//        meiziFragment = (MeiziMainFragment) getSupportFragmentManager()
+//                .findFragmentById(R.id.frag_main_meizi);
+//        mFragments[1] = meiziFragment;
+//
+//        displayFragmentByIndex(0);
 
-        displayFragmentByIndex(0);
+        ARouter.getInstance().build("/douban/detail").navigation();
 
         navigationView.setNavigationItemSelectedListener(onNavigationItemSelectedListener);
 

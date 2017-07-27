@@ -1,4 +1,4 @@
-package com.jiang.douban.ui.main.presenter;
+package com.jiang.douban.ui.main;
 
 import com.jiang.common.entity.bean.BookBean;
 import com.jiang.common.entity.bean.PageList;
@@ -7,7 +7,7 @@ import com.jiang.douban.data.db.HistoryUtil;
 import com.jiang.douban.net.model.DoubanModel;
 import com.jiang.douban.rx.BaseObserver;
 import com.jiang.douban.rx.RxSchedulers;
-import com.jiang.douban.ui.main.contract.DoubanMainContract;
+import com.jiang.douban.ui.main.DoubanMainContract;
 
 import javax.inject.Inject;
 
