@@ -137,8 +137,8 @@ public class BookDetailActivity extends BaseActivity<BookDetailPresenter>
 
     @Override
     public String getId() {
-//        return id;
-        return "1873231";
+        return id;
+//        return "1873231";
     }
 
 }

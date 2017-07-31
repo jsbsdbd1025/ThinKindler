@@ -1,6 +1,6 @@
 package debug;
 
-import com.jiang.douban.R;
+import com.jiang.meizi.R;
 import com.jiang.meizi.base.BaseActivity;
 
 /**

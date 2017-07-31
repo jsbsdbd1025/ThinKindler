@@ -100,8 +100,8 @@ dependencies {
     compile 'com.google.code.gson:gson:2.7'
     compile "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
-    compile "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
-//    compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+//    compile "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
+    compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
     compile "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
     compile "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
     compile 'com.github.franmontiel:PersistentCookieJar:v1.0.0'

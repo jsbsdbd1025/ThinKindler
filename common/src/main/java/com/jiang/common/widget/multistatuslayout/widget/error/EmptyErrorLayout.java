@@ -1,12 +1,12 @@
-package com.jiang.thinkindler.ui.widget;
+package com.jiang.common.widget.multistatuslayout.widget.error;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
+import com.jiang.common.R;
 import com.jiang.common.widget.multistatuslayout.ErrorType;
 import com.jiang.common.widget.multistatuslayout.MultiStatusLayout;
-import com.jiang.thinkindler.R;
 
 /**
  * Created by jiang on 2017/7/17.

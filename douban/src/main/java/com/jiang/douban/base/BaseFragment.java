@@ -7,9 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.jiang.common.base.BasePresenter;
 import com.jiang.common.base.CommonApplication;
 import com.jiang.common.base.CommonFragment;
-import com.jiang.common.injector.app.AppComponent;
 
 import javax.inject.Inject;
 

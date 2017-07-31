@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.jiang.common.base.BasePresenter;
 import com.jiang.common.base.CommonActivity;
 import com.jiang.common.base.CommonApplication;
 

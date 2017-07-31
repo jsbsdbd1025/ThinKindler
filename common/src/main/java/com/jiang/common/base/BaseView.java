@@ -14,9 +14,28 @@
  * limitations under the License.
  */
 
-package com.jiang.meizi.base;
+package com.jiang.common.base;
 
+
+import io.reactivex.disposables.Disposable;
 
 public interface BaseView {
+
+    boolean addRxStop(Disposable disposable);
+
+    boolean addRxDestroy(Disposable disposable);
+
+    void remove(Disposable disposable);
+
+    void showShortToast(String msg);
+
+    void startProgressDialog();
+
+    void startProgressDialog(String msg);
+
+    /**
+     * 停止加载进度条
+     */
+    void stopProgressDialog();
 
 }

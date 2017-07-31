@@ -1,4 +1,4 @@
-package com.jiang.douban.base;
+package com.jiang.common.base;
 
 import com.google.gson.Gson;
 

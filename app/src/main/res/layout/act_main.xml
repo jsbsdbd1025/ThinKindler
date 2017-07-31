@@ -43,7 +43,7 @@
 
         <fragment
                 android:id="@+id/frag_main_meizi"
-                android:name="com.jiang.meizi.MeiziMainFragment"
+                android:name="com.jiang.meizi.ui.main.MeiziMainFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"

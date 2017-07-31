@@ -1,4 +1,4 @@
-package com.jiang.thinkindler.ui.widget;
+package com.jiang.common.widget.multistatuslayout.widget.loading;
 
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
@@ -10,7 +10,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.jiang.common.widget.multistatuslayout.MultiStatusLayout;
-import com.jiang.thinkindler.R;
+import com.jiang.common.R;
 
 
 /**

@@ -6,8 +6,8 @@
               android:layout_height="match_parent">
 
     <fragment
-            android:id="@+id/frag_main_douban"
-            android:name="com.jiang.meizi.MeiziMainFragment"
+            android:id="@+id/frag_main_meizi"
+            android:name="com.jiang.meizi.ui.main.MeiziMainFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:layout="@layout/meizi_frag_main"/>

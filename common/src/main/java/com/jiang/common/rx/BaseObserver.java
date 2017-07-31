@@ -1,10 +1,12 @@
-package com.jiang.douban.rx;
+package com.jiang.common.rx;
 
 import android.net.ParseException;
 
 import com.google.gson.JsonParseException;
+
+import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
+import com.jiang.common.base.BaseView;
 import com.jiang.common.utils.LogUtils;
-import com.jiang.douban.base.BaseView;
 
 import org.json.JSONException;
 
@@ -14,7 +16,6 @@ import java.net.UnknownHostException;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
-import retrofit2.adapter.rxjava2.HttpException;
 
 
 /**
@@ -24,7 +25,7 @@ import retrofit2.adapter.rxjava2.HttpException;
 public abstract class BaseObserver<T> implements Observer<T> {
     private static final String TAG = BaseObserver.class.getName();
 
-    private BaseView mBaseImpl;
+    protected BaseView mBaseImpl;
     //  Activity 是否在执行onStop()时取消 订阅
     private boolean isAddInStop = false;
 
@@ -43,11 +44,6 @@ public abstract class BaseObserver<T> implements Observer<T> {
         } else { //  在onDestroy中取消订阅
             mBaseImpl.addRxDestroy(d);
         }
-    }
-
-    @Override
-    public void onNext(T t) {
-        _onNext(t);
     }
 
     @Override
@@ -73,7 +69,6 @@ public abstract class BaseObserver<T> implements Observer<T> {
     public void onComplete() {
     }
 
-    protected abstract void _onNext(T body);
 
     protected abstract void _onError(String message);
 

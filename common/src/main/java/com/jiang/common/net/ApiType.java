@@ -2,7 +2,8 @@ package com.jiang.common.net;
 
 public enum ApiType {
 
-    DOUBAN(0, "https://api.douban.com/");
+    DOUBAN(0, "https://api.douban.com/"),
+    GANK(1, "http://gank.io/");
 
     private final int id;
     private final String url;
@@ -13,7 +14,7 @@ public enum ApiType {
     }
 
     public static ApiType[] Array() {
-        return new ApiType[]{DOUBAN};
+        return new ApiType[]{DOUBAN,GANK};
     }
 
     public int getId() {

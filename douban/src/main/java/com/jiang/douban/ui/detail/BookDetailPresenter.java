@@ -1,10 +1,10 @@
 package com.jiang.douban.ui.detail;
 
 import com.jiang.common.entity.bean.BookBean;
+import com.jiang.common.rx.RxSchedulers;
 import com.jiang.common.utils.ToastUtil;
+import com.jiang.douban.base.DoubanObserver;
 import com.jiang.douban.net.model.DoubanModel;
-import com.jiang.douban.rx.BaseObserver;
-import com.jiang.douban.rx.RxSchedulers;
 
 import javax.inject.Inject;
 
@@ -35,7 +35,7 @@ public class BookDetailPresenter implements BookDetailContract.Presenter {
 
         doubanModel.getDetail(id)
                 .compose(RxSchedulers.compose())
-                .subscribe(new BaseObserver<BookBean>(mView) {
+                .subscribe(new DoubanObserver<BookBean>(mView) {
                     @Override
                     protected void _onNext(BookBean body) {
                         mView.setupView(body);

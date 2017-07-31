@@ -1,8 +1,8 @@
 package com.jiang.douban.ui.detail;
 
+import com.jiang.common.base.BasePresenter;
+import com.jiang.common.base.BaseView;
 import com.jiang.common.entity.bean.BookBean;
-import com.jiang.douban.base.BasePresenter;
-import com.jiang.douban.base.BaseView;
 
 /**
  * Created by jiang on 2017/4/14.

@@ -1,4 +1,4 @@
-package com.jiang.douban.rx;
+package com.jiang.common.rx;
 
 import java.io.Serializable;
 

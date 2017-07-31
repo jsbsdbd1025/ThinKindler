@@ -1,4 +1,4 @@
-package com.jiang.douban.rx;
+package com.jiang.common.rx;
 
 import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -24,18 +24,3 @@ public class RxSchedulers {
     }
 
 }
-
-
-
-//    @Override
-//    public ObservableSource<T> apply(Observable<T> upstream) {
-//        return upstream
-//                .subscribeOn(Schedulers.io())
-//                .doOnSubscribe(new Consumer<Disposable>() {
-//                    @Override
-//                    public void accept(@NonNull Disposable disposable) throws Exception {
-//                        // TODO: 2017/5/23 网络出错
-//                    }
-//                })
-//                .observeOn(AndroidSchedulers.mainThread());
-//    }

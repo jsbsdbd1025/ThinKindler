@@ -3,11 +3,11 @@ package com.jiang.douban.ui.main;
 import com.jiang.common.entity.bean.BookBean;
 import com.jiang.common.entity.bean.PageList;
 import com.jiang.common.utils.LogUtils;
+import com.jiang.douban.base.DoubanObserver;
 import com.jiang.douban.data.db.HistoryUtil;
 import com.jiang.douban.net.model.DoubanModel;
-import com.jiang.douban.rx.BaseObserver;
-import com.jiang.douban.rx.RxSchedulers;
-import com.jiang.douban.ui.main.DoubanMainContract;
+import com.jiang.common.rx.BaseObserver;
+import com.jiang.common.rx.RxSchedulers;
 
 import javax.inject.Inject;
 
@@ -37,7 +37,7 @@ public class DoubanMainPresenter implements DoubanMainContract.Presenter {
 
         doubanModel.searchBooks(content, start)
                 .compose(RxSchedulers.compose())
-                .subscribe(new BaseObserver<PageList<BookBean>>(mView) {
+                .subscribe(new DoubanObserver<PageList<BookBean>>(mView) {
                     @Override
                     protected void _onNext(PageList<BookBean> pageList) {
 //                        mView.setStatus(STATUS_NORMAL);
