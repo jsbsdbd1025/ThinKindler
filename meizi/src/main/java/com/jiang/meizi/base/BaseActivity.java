@@ -10,8 +10,6 @@ import com.jiang.common.base.CommonApplication;
 
 import javax.inject.Inject;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
@@ -23,8 +21,6 @@ public abstract class BaseActivity<P extends BasePresenter> extends CommonActivi
     public Context mContext;
 
     protected String TAG = null;
-
-    private Unbinder unbinder;
 
     private CompositeDisposable disposables2Stop; //管理stop取消订阅者
     private CompositeDisposable disposables2Destroy; //管理Destroy取消订阅者
@@ -40,9 +36,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends CommonActivi
         }
         disposables2Destroy = new CompositeDisposable();
         setContentView(getLayoutId());
-        if (unbinder == null) {
-            unbinder = ButterKnife.bind(this);
-        }
+
         mContext = this;
 
         //init()中只进行初始化动作

@@ -10,13 +10,9 @@ import com.jiang.common.entity.bean.BookBean;
 import com.jiang.common.utils.DisplayUtil;
 import com.jiang.common.utils.imageloader.ImageLoaderUtil;
 import com.jiang.douban.R;
-import com.jiang.douban.R2;
 import com.jiang.douban.base.BaseActivity;
-import com.jiang.douban.injector.component.acvitity.DaggerBookDetailComponent;
 import com.jiang.douban.injector.module.activity.BookDetailModule;
 import com.jiang.douban.injector.module.http.DoubanHttpModule;
-
-import butterknife.BindView;
 
 /**
  * Created by jiang on 2017/5/27.
@@ -26,33 +22,29 @@ import butterknife.BindView;
 public class BookDetailActivity extends BaseActivity<BookDetailPresenter>
         implements BookDetailContract.View {
 
-    @BindView(R2.id.sv_book_detail)
+
     NestedScrollView mScrollView;
 
-    @BindView(R2.id.toolbar)
     Toolbar toolbar;
 
-    @BindView(R2.id.toolbar_title)
     TextView tvToolTitle;
 
-    @BindView(R2.id.img_detail_cover)
     ImageView imgCover;
-    @BindView(R2.id.tv_detail_title)
+
     TextView tvTitle;
-    @BindView(R2.id.tv_detail_subtitle)
+
     TextView tvSubtitle;
-    @BindView(R2.id.tv_detail_publisher)
+
     TextView tvPublisher;
-    @BindView(R2.id.tv_detail_pubdate)
+
     TextView tvPubdate;
 
-    @BindView(R2.id.tv_detail_author)
     TextView tvAuthor;
-    @BindView(R2.id.tv_detail_author_intro)
+
     TextView tvAuthorIntro;
-    @BindView(R2.id.tv_detail_desc)
+
     TextView tvDesc;
-    @BindView(R2.id.tv_detail_catalog)
+
     TextView tvCatalog;
 
     private String id;
@@ -72,6 +64,30 @@ public class BookDetailActivity extends BaseActivity<BookDetailPresenter>
     protected void init() {
 
         id = getIntent().getStringExtra("id");
+
+        mScrollView = (NestedScrollView) findViewById(R.id.sv_book_detail);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        tvToolTitle = (TextView) findViewById(R.id.toolbar_title);
+
+        imgCover = (ImageView) findViewById(R.id.img_detail_cover);
+
+        tvTitle = (TextView) findViewById(R.id.tv_detail_title);
+
+        tvSubtitle = (TextView) findViewById(R.id.tv_detail_subtitle);
+
+        tvPublisher = (TextView) findViewById(R.id.tv_detail_publisher);
+
+        tvPubdate = (TextView) findViewById(R.id.tv_detail_pubdate);
+
+        tvAuthor = (TextView) findViewById(R.id.tv_detail_author);
+
+        tvAuthorIntro = (TextView) findViewById(R.id.tv_detail_author_intro);
+
+        tvDesc = (TextView) findViewById(R.id.tv_detail_desc);
+
+        tvCatalog = (TextView) findViewById(R.id.tv_detail_catalog);
 
         toolbar.setNavigationIcon(R.mipmap.ic_keyboard_arrow_left_white_48dp);
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
@@ -111,10 +127,10 @@ public class BookDetailActivity extends BaseActivity<BookDetailPresenter>
 
     @Override
     protected void initInjector() {
-        DaggerBookDetailComponent.builder()
-                .bookDetailModule(new BookDetailModule(this))
-                .doubanHttpModule(new DoubanHttpModule())
-                .build().inject(this);
+//        DaggerBookDetailComponent.builder()
+//                .bookDetailModule(new BookDetailModule(this))
+//                .doubanHttpModule(new DoubanHttpModule())
+//                .build().inject(this);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.jiang.douban.ui.main;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -11,21 +10,16 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
 import com.jiang.common.entity.bean.BookBean;
-import com.jiang.common.recyclerview.BaseDelegateAdapter;
 import com.jiang.common.utils.KeyBoardUtil;
 import com.jiang.douban.R;
-import com.jiang.douban.R2;
 import com.jiang.douban.base.BaseFragment;
 import com.jiang.douban.data.db.HistoryUtil;
-import com.jiang.douban.injector.component.fragment.DaggerDoubanComponent;
 import com.jiang.douban.injector.module.fragment.DoubanMainModule;
 import com.jiang.douban.injector.module.http.DoubanHttpModule;
-import com.jiang.douban.ui.detail.BookDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -38,16 +32,14 @@ import io.reactivex.schedulers.Schedulers;
 public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
         implements DoubanMainContract.View {
 
-    @BindView(R2.id.rv_book)
     RecyclerView recyclerView;
 
-    @BindView(R2.id.edt_search)
-    protected AutoCompleteTextView edtSearch;
+    AutoCompleteTextView edtSearch;
 
     private List<BookBean> datas = new ArrayList<>();
     private String[] historys;
 
-    protected VBookAdapter mAdapter;
+//    protected VBookAdapter mAdapter;
 
     @Override
     public int getLayoutId() {
@@ -57,11 +49,14 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
     @Override
     protected void init(View view) {
 
+        recyclerView = (RecyclerView) view.findViewById(R.id.rv_book);
+
+        edtSearch = (AutoCompleteTextView) view.findViewById(R.id.edt_search);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 3);
         recyclerView.setLayoutManager(gridLayoutManager);
-        mAdapter = new VBookAdapter(datas);
-        recyclerView.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener(itemClickListener);
+//        mAdapter = new VBookAdapter(datas);
+//        recyclerView.setAdapter(mAdapter);
+//        mAdapter.setOnItemClickListener(itemClickListener);
 
         edtSearch.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -110,11 +105,11 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
 
     @Override
     protected void initInjector() {
-        DaggerDoubanComponent.builder()
-                .doubanHttpModule(new DoubanHttpModule())
-                .doubanMainModule(new DoubanMainModule(this))
-                .build()
-                .inject(this);
+//        DaggerDoubanComponent.builder()
+//                .doubanHttpModule(new DoubanHttpModule())
+//                .doubanMainModule(new DoubanMainModule(this))
+//                .build()
+//                .inject(this);
     }
 
     @Override
@@ -126,22 +121,22 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
     }
 
 
-    BaseDelegateAdapter.OnRecyclerViewItemClickListener itemClickListener = (view, position) -> {
-//        ToastUtil.showShort("position: " + position);
-        Intent intent = new Intent(getActivity(), BookDetailActivity.class);
-        intent.putExtra("id", datas.get(position).getId());
-        getActivity().startActivity(intent);
-//        BookDetailActivity.startAction((BaseActivity) mContext, datas.get(position).getId());
-    };
+//    BaseDelegateAdapter.OnRecyclerViewItemClickListener itemClickListener = (view, position) -> {
+//
+//        ARouter.getInstance().build("/douban/detail")
+//                .withString("id", datas.get(position).getId())
+//                .navigation();
+//
+//    };
 
     @Override
     public void returnDatas(boolean isRefresh, List<BookBean> books) {
 
-        if (isRefresh) {
-            mAdapter.replaceAll(books);
-        } else {
-            mAdapter.addList(books);
-        }
+//        if (isRefresh) {
+//            mAdapter.replaceAll(books);
+//        } else {
+//            mAdapter.addList(books);
+//        }
 
     }
 

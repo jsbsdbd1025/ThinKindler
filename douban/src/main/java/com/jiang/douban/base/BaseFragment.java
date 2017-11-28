@@ -13,8 +13,6 @@ import com.jiang.common.base.CommonFragment;
 
 import javax.inject.Inject;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
@@ -30,7 +28,6 @@ public abstract class BaseFragment<P extends BasePresenter> extends CommonFragme
 
     protected Context mContext;
 
-    private Unbinder unbinder;
 
     private CompositeDisposable disposables2Stop; //管理stop取消订阅者
     private CompositeDisposable disposables2Destroy; //管理Destroy取消订阅者
@@ -114,9 +111,6 @@ public abstract class BaseFragment<P extends BasePresenter> extends CommonFragme
         super.onCreateView(inflater, container, savedInstanceState);
         if (rootView == null) {
             rootView = inflater.inflate(getLayoutId(), container, false);
-        }
-        if (unbinder == null) {
-            unbinder = ButterKnife.bind(this, rootView);
         }
 
         return rootView;

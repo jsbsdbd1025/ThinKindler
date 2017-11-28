@@ -7,8 +7,6 @@ import android.support.multidex.MultiDex;
 
 import com.tencent.bugly.crashreport.CrashReport;
 
-import java.util.Map;
-
 /**
  * Created by jiang on 2017/3/9.
  */
@@ -17,8 +15,7 @@ public class CommonApplication extends Application {
 
 
     protected static final String TAG = "BaseApplication";
-    // 用于存放倒计时时间
-    public static Map<String, Long> map;
+
     private static CommonApplication instance;
 
 
@@ -44,10 +41,6 @@ public class CommonApplication extends Application {
         super.onTerminate();
     }
 
-
-    public static CommonApplication getInstance() {
-        return instance;
-    }
 
     /**
      * 分包
