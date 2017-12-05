@@ -14,7 +14,8 @@
     <color name="colorWhiteHintText">#4CFFFFFF</color>
 
     <!--分割线颜色-->
-    <color name="divide_line">#1E000000</color>
+    <!--<color name="divide_line">#1E000000</color>-->
+    <color name="divide_line">#F1F1F1</color>
     <color name="divide_block">#1EFFFFFF</color>
 
 </resources>

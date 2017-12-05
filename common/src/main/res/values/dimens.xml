@@ -12,7 +12,7 @@
     <dimen name="card_radius">2dp</dimen>
 
     <!--divide-->
-    <dimen name="divide_line">1dp</dimen>
+    <dimen name="divide_line">1px</dimen>
     <dimen name="divide_block">16dp</dimen>
 
     <!--button-->
@@ -50,5 +50,7 @@
     <dimen name="avatar_final_size">40dp</dimen>
     <dimen name="avatar_final_x">8dp</dimen>
     <dimen name="toolbar_height">56dp</dimen>
+
+    <dimen name="flash_height">200dp</dimen>
 
 </resources>

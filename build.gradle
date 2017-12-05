@@ -85,4 +85,6 @@ ext {
 
     //anko
     ankoVersion = '0.10.0'
+
+    ijkplayerVersion = '0.8.4'
 }

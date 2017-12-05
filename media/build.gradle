@@ -73,6 +73,13 @@ dependencies {
     //ARoute
     annotationProcessor "com.alibaba:arouter-compiler:$rootProject.routercompilerVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    //ijkplayer
+    compile "tv.danmaku.ijk.media:ijkplayer-java:$rootProject.ijkplayerVersion"
+    compile "tv.danmaku.ijk.media:ijkplayer-armv7a:$rootProject.ijkplayerVersion"
+
+    compile 'com.github.Rukey7:IjkPlayerView:1.0.4'
+
 }
 repositories {
     mavenCentral()

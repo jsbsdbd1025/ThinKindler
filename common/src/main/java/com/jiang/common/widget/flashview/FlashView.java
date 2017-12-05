@@ -358,7 +358,7 @@ public class FlashView extends FrameLayout {
      * FixedSpeedScroller类的源码来源于网络，在此谢过贡献此代码的道友
      */
     public class FixedSpeedScroller extends Scroller {
-        private int mDuration = 5000;
+        private int mDuration = 3000;
 
         public FixedSpeedScroller(Context context) {
             super(context);
@@ -399,7 +399,7 @@ public class FlashView extends FrameLayout {
 
         protected static final int MSG_PAGE_CHANGED = 4;
 
-        protected static final long MSG_DELAY = 2000;
+        protected static final long MSG_DELAY = 3000;
 
         private WeakReference<FlashView> weakReference;
         private int currentItem = 0;
