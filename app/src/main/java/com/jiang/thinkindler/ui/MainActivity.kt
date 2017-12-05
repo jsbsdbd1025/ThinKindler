@@ -1,16 +1,21 @@
 package com.jiang.thinkindler.ui
 
+import android.content.Intent
 import android.support.design.widget.NavigationView
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
+import com.alibaba.android.arouter.launcher.ARouter
 import com.jiang.common.base.CommonFragment
+import com.jiang.douban.ui.detail.BookDetailActivity
 import com.jiang.douban.ui.main.DoubanMainFragment
 import com.jiang.meizi.ui.main.MeiziMainFragment
 import com.jiang.thinkindler.R
 import com.jiang.thinkindler.base.BaseActivity
 import org.jetbrains.anko.find
+import android.support.v4.view.GravityCompat
+
 
 class MainActivity : BaseActivity() {
 
@@ -21,28 +26,21 @@ class MainActivity : BaseActivity() {
 
     private val navigationView by lazy { find<NavigationView>(R.id.nav_main) }
 
-//    internal var onNavigationItemSelectedListener = { item ->
-//        when (item.getItemId()) {
-//            R.id.nav_douban -> displayFragmentByIndex(0)
-//            R.id.nav_meizi -> displayFragmentByIndex(1)
-//            else -> {
-//            }
-//        }
-//        true
-//    }
+    private val toolbar by lazy { find<Toolbar>(R.id.toolbar) }
 
+    private val drawer by lazy { find<DrawerLayout>(R.id.drawer_layout) }
     override fun getLayoutId(): Int {
         return R.layout.act_main
     }
 
     override fun init() {
-        val toolbar = findViewById(R.id.toolbar) as Toolbar
+
         setSupportActionBar(toolbar)
-        val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
+
         val toggle = ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close)
-        drawer?.addDrawerListener(toggle)
+        drawer.addDrawerListener(toggle)
         toggle.syncState()
 
         toolbar.inflateMenu(R.menu.menu_clear)
@@ -59,9 +57,19 @@ class MainActivity : BaseActivity() {
 
         displayFragmentByIndex(0)
 
-        //        ARouter.getInstance().build("/douban/detail").navigation();
+//        ARouter.getInstance().build("/douban/detail").navigation()
 
-//        navigationView!!.setNavigationItemSelectedListener(onNavigationItemSelectedListener)
+//        startActivity(Intent(this, BookDetailActivity::class.java))
+        navigationView.setNavigationItemSelectedListener(NavigationView.OnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.nav_douban -> displayFragmentByIndex(0)
+                R.id.nav_meizi -> displayFragmentByIndex(1)
+                else -> {
+                }
+            }
+            drawer.closeDrawer(GravityCompat.START)
+            true
+        })
 
     }
 
@@ -90,6 +98,15 @@ class MainActivity : BaseActivity() {
             }
         }
         return true
+    }
+
+    override fun onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
+
     }
 
 }

@@ -28,7 +28,6 @@ class BaseApplication : CommonApplication() {
 
     companion object {
 
-
         operator fun get(context: Context): BaseApplication {
             return context.applicationContext as BaseApplication
         }

@@ -12,7 +12,7 @@ import com.jiang.common.rx.RxSchedulers;
 import javax.inject.Inject;
 
 /**
- * Created by jiang on 2017/4/14. b
+ * Created by jiang on 2017/4/14.
  */
 
 public class DoubanMainPresenter implements DoubanMainContract.Presenter {

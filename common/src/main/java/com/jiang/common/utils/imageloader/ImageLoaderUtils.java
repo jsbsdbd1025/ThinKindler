@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.util.Util;
 import com.jiang.common.R;
 import com.jiang.common.utils.DisplayUtil;
@@ -146,7 +147,7 @@ public class ImageLoaderUtils {
         if (imageView == null) {
             throw new IllegalArgumentException("argument error");
         }
-        
+
         Glide.with(context).load(url)
 //                .skipMemoryCache(false)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -162,7 +163,7 @@ public class ImageLoaderUtils {
         if (imageView == null) {
             throw new IllegalArgumentException("argument error");
         }
-        
+
         Glide.with(context).load(url).asBitmap()
                 .format(DecodeFormat.PREFER_ARGB_8888)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -211,7 +212,7 @@ public class ImageLoaderUtils {
         if (imageView == null) {
             throw new IllegalArgumentException("argument error");
         }
-        
+
         Glide.with(context).load(url)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .error(R.drawable.ic_empty_picture)
@@ -219,5 +220,20 @@ public class ImageLoaderUtils {
                 .bitmapTransform(new RoundedCornersTransformation(context, DisplayUtil.dip2px(6), 0))
                 .into(imageView);
     }
-    
+
+    public static void display(Context context, ImageView imageView, String url, RequestListener listener) {
+        if (imageView == null) {
+            return;
+        }
+
+        Glide.with(context.getApplicationContext()).load(url)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .placeholder(R.drawable.ic_image_loading)
+                .error(R.drawable.ic_empty_picture)
+                .listener(listener)
+                .into(imageView);
+
+    }
+
+
 }

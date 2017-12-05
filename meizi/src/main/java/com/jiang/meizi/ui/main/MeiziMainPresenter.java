@@ -42,15 +42,18 @@ public class MeiziMainPresenter implements MeiziMainContract.Presenter {
                 .subscribe(new GankObserver(mView) {
                     @Override
                     protected void _onError(String message) {
+                        mView.stopProgressDialog();
                         mView.showShortToast(message);
                     }
 
                     @Override
                     protected void _onNext(JsonArray data) {
+
                         List<PhotoBean> datas = gson.fromJson(data, new TypeToken<List<PhotoBean>>() {
                         }.getType());
                         mView.returnDatas(true, datas);
 
+                        mView.stopProgressDialog();
                     }
                 });
 

@@ -11,6 +11,7 @@ import com.jiang.common.utils.DisplayUtil;
 import com.jiang.common.utils.imageloader.ImageLoaderUtil;
 import com.jiang.douban.R;
 import com.jiang.douban.base.BaseActivity;
+import com.jiang.douban.injector.component.acvitity.DaggerBookDetailComponent;
 import com.jiang.douban.injector.module.activity.BookDetailModule;
 import com.jiang.douban.injector.module.http.DoubanHttpModule;
 
@@ -127,10 +128,10 @@ public class BookDetailActivity extends BaseActivity<BookDetailPresenter>
 
     @Override
     protected void initInjector() {
-//        DaggerBookDetailComponent.builder()
-//                .bookDetailModule(new BookDetailModule(this))
-//                .doubanHttpModule(new DoubanHttpModule())
-//                .build().inject(this);
+        DaggerBookDetailComponent.builder()
+                .bookDetailModule(new BookDetailModule(this))
+                .doubanHttpModule(new DoubanHttpModule())
+                .build().inject(this);
     }
 
     @Override
@@ -141,8 +142,8 @@ public class BookDetailActivity extends BaseActivity<BookDetailPresenter>
         tvToolTitle.setAlpha(0);
         tvTitle.setText(book.getTitle());
         tvSubtitle.setText(book.getSubtitle());
-        tvPublisher.setText("出版社:" + book.getPublisher());
-        tvPubdate.setText("出版时间:" + book.getPubdate());
+        tvPublisher.setText(String.format("出版社:%s", book.getPublisher()));
+        tvPubdate.setText(String.format("出版时间:%s", book.getPubdate()));
         if (book.getAuthor() != null && book.getAuthor().size() > 0) {
             tvAuthor.setText(book.getAuthor().get(0));
             tvAuthorIntro.setText(book.getAuthor_intro());

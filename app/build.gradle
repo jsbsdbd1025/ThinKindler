@@ -21,9 +21,15 @@ android {
 
         multiDexEnabled true
 
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [moduleName: project.getName()]
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                arguments = [moduleName: project.getName()]
+//            }
+//        }
+
+        kapt {
+            arguments {
+                arg("moduleName", project.getName())
             }
         }
 
@@ -63,51 +69,44 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    if (isModule.toBoolean()) {
-        implementation project(':common')
-    } else {
+    implementation project(':common')
+
+    if (!isModule.toBoolean()) {
         implementation project(':douban')
         implementation project(':meizi')
     }
 
-
     implementation "com.android.support:design:$rootProject.supportLibraryVersion"
-
     implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
-
     implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
-
     implementation "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
-
     testImplementation "junit:junit:$rootProject.junitVersion"
     testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
     testImplementation 'org.robolectric:robolectric:3.0'
-
     testImplementation "com.github.fabioCollini:DaggerMock:$rootProject.daggerMockVersion"
 
-//    implementation "com.android.support:design:$rootProject.supportLibraryVersion"
-//    implementation "com.android.support:support-v4:$rootProject.supportLibraryVersion"
-//    implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
-//    implementation "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
+    //    implementation "com.android.support:design:$rootProject.supportLibraryVersion"
 
+    //    implementation "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+
+    //    implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+
+    //    implementation "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
     androidTestImplementation "com.android.support.test:runner:$rootProject.runnerVersion"
-    androidTestImplementation "com.android.support.test:rules:'$rootProject.rulesVersion"
+    androidTestImplementation "com.android.support.test:rules:\'$rootProject.rulesVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-intents:$rootProject.espressoVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$rootProject.espressoVersion"
-
     implementation "com.android.support.test.espresso:espresso-idling-resource:$rootProject.espressoVersion"
-
     compileOnly 'org.glassfish:javax.annotation:10.0-b28'
+
     //dagger2
-    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
-    implementation "com.google.dagger:dagger:$rootProject.dagger2Version"
-//    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
 
     //ARoute
-    annotationProcessor "com.alibaba:arouter-compiler:$rootProject.routercompilerVersion"
+    kapt "com.alibaba:arouter-compiler:$rootProject.routercompilerVersion"
 
     //kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -127,6 +126,7 @@ dependencies {
     //分析卡顿
     debugImplementation 'com.github.markzhai:blockcanary-android:1.5.0'
     releaseImplementation 'com.github.markzhai:blockcanary-no-op:1.5.0'
+
 }
 repositories {
     mavenCentral()

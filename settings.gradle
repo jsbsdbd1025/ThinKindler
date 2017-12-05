@@ -1,1 +1,1 @@
-include ':app', ':common', ':douban', ':meizi'
+include ':app', ':common', ':douban', ':meizi', ':media'

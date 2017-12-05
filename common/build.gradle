@@ -91,7 +91,7 @@ dependencies {
 
     //dagger2
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
-    implementation "com.google.dagger:dagger:$rootProject.dagger2Version"
+    api "com.google.dagger:dagger:$rootProject.dagger2Version"
 //    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
 
     //BRAVH

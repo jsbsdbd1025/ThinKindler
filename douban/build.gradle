@@ -64,25 +64,25 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api project(':common')
+    implementation project(':common')
 
     testImplementation "junit:junit:$rootProject.junitVersion"
 
     compileOnly 'org.glassfish:javax.annotation:10.0-b28'
 
     //dagger2
-    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
     implementation "com.google.dagger:dagger:$rootProject.dagger2Version"
-//    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
 
     //orm
     implementation "org.greenrobot:greendao:$rootProject.greendaoVersion"
     implementation "org.greenrobot:greendao-generator:$rootProject.greendaoVersion"
 
     //ARoute
-    annotationProcessor "com.alibaba:arouter-compiler:$rootProject.routercompilerVersion"
+    kapt "com.alibaba:arouter-compiler:$rootProject.routercompilerVersion"
 
     implementation 'com.alibaba.android:vlayout:1.2.0@aar'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
 
 repositories {

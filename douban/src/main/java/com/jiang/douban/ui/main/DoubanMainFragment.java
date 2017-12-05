@@ -9,15 +9,17 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jiang.common.entity.bean.BookBean;
 import com.jiang.common.utils.KeyBoardUtil;
 import com.jiang.douban.R;
 import com.jiang.douban.base.BaseFragment;
 import com.jiang.douban.data.db.HistoryUtil;
+import com.jiang.douban.injector.component.fragment.DaggerDoubanComponent;
 import com.jiang.douban.injector.module.fragment.DoubanMainModule;
 import com.jiang.douban.injector.module.http.DoubanHttpModule;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observer;
@@ -36,10 +38,9 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
 
     AutoCompleteTextView edtSearch;
 
-    private List<BookBean> datas = new ArrayList<>();
     private String[] historys;
 
-//    protected VBookAdapter mAdapter;
+    protected BookAdapter mAdapter;
 
     @Override
     public int getLayoutId() {
@@ -54,9 +55,9 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
         edtSearch = (AutoCompleteTextView) view.findViewById(R.id.edt_search);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 3);
         recyclerView.setLayoutManager(gridLayoutManager);
-//        mAdapter = new VBookAdapter(datas);
-//        recyclerView.setAdapter(mAdapter);
-//        mAdapter.setOnItemClickListener(itemClickListener);
+        mAdapter = new BookAdapter(R.layout.item_grid_book);
+        recyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(itemClickListener);
 
         edtSearch.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -64,7 +65,9 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
                 if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
                     KeyBoardUtil.closeKeybord(edtSearch, mContext);
 
-                    mPresenter.doSearch(getSearchContent(), 0);
+                    if (mPresenter != null) {
+                        mPresenter.doSearch(getSearchContent(), 0);
+                    }
                 }
                 return false;
             }
@@ -105,11 +108,11 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
 
     @Override
     protected void initInjector() {
-//        DaggerDoubanComponent.builder()
-//                .doubanHttpModule(new DoubanHttpModule())
-//                .doubanMainModule(new DoubanMainModule(this))
-//                .build()
-//                .inject(this);
+        DaggerDoubanComponent.builder()
+                .doubanHttpModule(new DoubanHttpModule())
+                .doubanMainModule(new DoubanMainModule(this))
+                .build()
+                .inject(this);
     }
 
     @Override
@@ -121,22 +124,24 @@ public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
     }
 
 
-//    BaseDelegateAdapter.OnRecyclerViewItemClickListener itemClickListener = (view, position) -> {
-//
-//        ARouter.getInstance().build("/douban/detail")
-//                .withString("id", datas.get(position).getId())
-//                .navigation();
-//
-//    };
+    BaseQuickAdapter.OnItemClickListener itemClickListener = new BaseQuickAdapter.OnItemClickListener() {
+        @Override
+        public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+            ARouter.getInstance().build("/douban/detail")
+                    .withString("id", mAdapter.getData().get(position).getId())
+                    .navigation();
+        }
+    };
+
 
     @Override
     public void returnDatas(boolean isRefresh, List<BookBean> books) {
 
-//        if (isRefresh) {
-//            mAdapter.replaceAll(books);
-//        } else {
-//            mAdapter.addList(books);
-//        }
+        if (isRefresh) {
+            mAdapter.setNewData(books);
+        } else {
+            mAdapter.addData(books);
+        }
 
     }
 
