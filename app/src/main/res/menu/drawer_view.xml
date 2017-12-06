@@ -27,6 +27,11 @@
                 android:icon="@mipmap/ic_launcher"
                 android:title="妹子"/>
 
+        <item
+            android:id="@+id/nav_bilibili"
+            android:icon="@mipmap/ic_launcher"
+            android:title="哔哩哔哩"/>
+
     </group>
 
     <item android:title="Sub items">

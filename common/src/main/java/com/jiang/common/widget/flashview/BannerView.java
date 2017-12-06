@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jiang.common.R;
+import com.jiang.common.utils.imageloader.ImageLoaderOptions;
+import com.jiang.common.utils.imageloader.ImageLoaderUtil;
 import com.jiang.common.utils.imageloader.ImageLoaderUtils;
 
 /**
@@ -58,7 +60,10 @@ public class BannerView extends FrameLayout {
         if (TextUtils.isEmpty(data.getImageUrl())) {
             imgBackgroud.setImageResource(R.drawable.ph_error);
         } else {
-            ImageLoaderUtils.display(context, imgBackgroud, data.getImageUrl());
+
+            ImageLoaderOptions options = new ImageLoaderOptions();
+            ImageLoaderUtil.getInstance().display(imgBackgroud, data.getImageUrl(), context,
+                    options);
         }
     }
 }

@@ -16,9 +16,15 @@ public class ImageLoaderOptions {
 
     public final static int SHAPE_ROUND_CORNER = 2;
 
+    public final static int DEFAULT_ROUNDED_CORNE_RADIUS = 6;
 
     private int shape = SHAPE_RECTANGLE;
 
+    private int targetWidth;
+
+    private int targetHeight;
+
+    private int radius = DEFAULT_ROUNDED_CORNE_RADIUS;
     @IdRes
     private int placeHolder = R.drawable.ph_error;
 
@@ -54,5 +60,29 @@ public class ImageLoaderOptions {
 
     public void setDrawableText(String drawableText) {
         this.drawableText = drawableText;
+    }
+
+    public int getTargetWidth() {
+        return targetWidth;
+    }
+
+    public void setTargetWidth(int targetWidth) {
+        this.targetWidth = targetWidth;
+    }
+
+    public int getTargetHeight() {
+        return targetHeight;
+    }
+
+    public void setTargetHeight(int targetHeight) {
+        this.targetHeight = targetHeight;
+    }
+
+    public int getRadius() {
+        return radius;
+    }
+
+    public void setRadius(int radius) {
+        this.radius = radius;
     }
 }

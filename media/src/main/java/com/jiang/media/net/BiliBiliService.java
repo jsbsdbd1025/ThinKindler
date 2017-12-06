@@ -1,6 +1,7 @@
 package com.jiang.media.net;
 
 import com.jiang.media.entity.BiliBiliBannerBean;
+import com.jiang.media.entity.BiliBiliRecommend;
 import com.jiang.media.entity.BiliBiliResponse;
 import com.jiang.media.entity.RankInfo;
 
@@ -31,4 +32,11 @@ public interface BiliBiliService {
      */
     @GET("x/banner?plat=4&build=411007&channel=bilih5")
     Observable<BiliBiliResponse<List<BiliBiliBannerBean>>> getRecommendedBannerInfo();
+
+    /**
+     * 首页推荐数据
+     */
+    @GET("x/show/old?platform=android&device=&build=412001")
+    Observable<BiliBiliResponse<List<BiliBiliRecommend>>> getRecommendedInfo();
+
 }

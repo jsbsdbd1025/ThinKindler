@@ -1,2 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jiang.media" />
+    package="com.jiang.media">
+
+    <application>
+        <activity android:name=".ui.detail.BrowserActivity" />
+        <activity android:name=".ui.detail.VideoDetailActivity" />
+    </application>
+</manifest>

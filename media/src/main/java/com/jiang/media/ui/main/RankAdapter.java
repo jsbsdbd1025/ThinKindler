@@ -1,7 +1,11 @@
 package com.jiang.media.ui.main;
 
+import android.widget.ImageView;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.jiang.common.utils.DisplayUtil;
+import com.jiang.common.utils.imageloader.ImageLoader;
 import com.jiang.common.utils.imageloader.ImageLoaderOptions;
 import com.jiang.common.utils.imageloader.ImageLoaderUtil;
 import com.jiang.media.R;
@@ -18,8 +22,14 @@ public class RankAdapter extends BaseQuickAdapter<RankInfo.RankBean.ListBean, Ba
 
     @Override
     protected void convert(BaseViewHolder helper, RankInfo.RankBean.ListBean item) {
-        ImageLoaderUtil.getInstance().display(helper.getView(R.id.img_item_header), item.getPic(), mContext,
-                new ImageLoaderOptions(ImageLoaderOptions.SHAPE_ROUND_CORNER));
+
+        ImageView imageView = helper.getView(R.id.img_item_header);
+        ImageLoaderOptions options = new ImageLoaderOptions(ImageLoaderOptions.SHAPE_ROUND_CORNER);
+        options.setTargetWidth(DisplayUtil.dip2px(150));
+        options.setTargetHeight(DisplayUtil.dip2px(90));
+
+        ImageLoaderUtil.getInstance().display(imageView, item.getPic(), mContext,
+                options);
 
         helper.setText(R.id.tv_item_title, item.getTitle())
                 .setText(R.id.tv_item_author, item.getAuthor())

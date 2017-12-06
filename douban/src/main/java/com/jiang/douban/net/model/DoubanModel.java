@@ -14,7 +14,7 @@ import io.reactivex.Observable;
 
 public class DoubanModel extends BaseModel {
 
-    private static final String BOOK_LIST = "id,title,image";
+    private static final String BOOK_LIST = "id,title,image,images";
 
     private DoubanService mDoubanService;
 

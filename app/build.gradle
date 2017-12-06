@@ -76,6 +76,7 @@ dependencies {
     if (!isModule.toBoolean()) {
         implementation project(':douban')
         implementation project(':meizi')
+        implementation project(':media')
     }
 
     implementation "com.android.support:design:$rootProject.supportLibraryVersion"

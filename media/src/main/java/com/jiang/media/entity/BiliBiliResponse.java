@@ -1,5 +1,7 @@
 package com.jiang.media.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -16,6 +18,7 @@ public class BiliBiliResponse<T> {
 
 
     private int code;
+    @SerializedName(value = "result", alternate = "data")
     private T data;
 
     public int getCode() {
@@ -33,4 +36,5 @@ public class BiliBiliResponse<T> {
     public void setData(T data) {
         this.data = data;
     }
+
 }

@@ -15,13 +15,14 @@ import com.jiang.thinkindler.R
 import com.jiang.thinkindler.base.BaseActivity
 import org.jetbrains.anko.find
 import android.support.v4.view.GravityCompat
+import com.jiang.media.ui.main.BiliBiliMainFragment
 
 
 class MainActivity : BaseActivity() {
 
     private lateinit var doubanFragment: DoubanMainFragment
     private lateinit var meiziFragment: MeiziMainFragment
-
+    private lateinit var bilibiliFragment: BiliBiliMainFragment
     private lateinit var mFragments: Array<CommonFragment?>
 
     private val navigationView by lazy { find<NavigationView>(R.id.nav_main) }
@@ -45,7 +46,7 @@ class MainActivity : BaseActivity() {
 
         toolbar.inflateMenu(R.menu.menu_clear)
 
-        mFragments = arrayOfNulls<CommonFragment>(2)
+        mFragments = arrayOfNulls<CommonFragment>(3)
 
         doubanFragment = supportFragmentManager
                 .findFragmentById(R.id.frag_main_douban) as DoubanMainFragment
@@ -54,6 +55,10 @@ class MainActivity : BaseActivity() {
         meiziFragment = supportFragmentManager
                 .findFragmentById(R.id.frag_main_meizi) as MeiziMainFragment
         mFragments[1] = meiziFragment
+
+        bilibiliFragment = supportFragmentManager
+                .findFragmentById(R.id.frag_main_bilibili) as BiliBiliMainFragment
+        mFragments[2] = bilibiliFragment
 
         displayFragmentByIndex(0)
 
@@ -64,6 +69,7 @@ class MainActivity : BaseActivity() {
             when (it.itemId) {
                 R.id.nav_douban -> displayFragmentByIndex(0)
                 R.id.nav_meizi -> displayFragmentByIndex(1)
+                R.id.nav_bilibili -> displayFragmentByIndex(2)
                 else -> {
                 }
             }

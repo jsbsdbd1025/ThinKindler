@@ -7,6 +7,10 @@ package com.jiang.common.widget.flashview;
 public class BannerBean {
     private String imageUrl;
 
+    private String title;
+
+    private String value;
+
     public BannerBean() {
     }
 
@@ -20,5 +24,21 @@ public class BannerBean {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 }

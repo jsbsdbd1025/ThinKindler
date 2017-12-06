@@ -51,6 +51,6 @@
     <dimen name="avatar_final_x">8dp</dimen>
     <dimen name="toolbar_height">56dp</dimen>
 
-    <dimen name="flash_height">200dp</dimen>
+    <dimen name="flash_height">120dp</dimen>
 
 </resources>

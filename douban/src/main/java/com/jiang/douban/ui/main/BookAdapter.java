@@ -34,7 +34,7 @@ public class BookAdapter extends BaseQuickAdapter<BookBean, BaseViewHolder> {
     @Override
     protected void convert(BaseViewHolder helper, BookBean item) {
         helper.setText(R.id.tv_item_name, item.getTitle());
-        ImageLoaderUtil.getInstance().display(helper.getView(R.id.img_item_pic), item.getImage(), mContext, null);
+        ImageLoaderUtil.getInstance().display(helper.getView(R.id.img_item_pic), item.getImages().getLarge(), mContext, null);
 
     }
 
