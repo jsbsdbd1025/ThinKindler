@@ -1,18 +1,12 @@
 package com.jiang.douban.ui.main;
 
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-import com.alibaba.android.vlayout.LayoutHelper;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.jiang.common.entity.bean.BookBean;
-
 import com.jiang.common.utils.imageloader.ImageLoaderUtil;
 import com.jiang.douban.R;
-
 
 import java.util.List;
 

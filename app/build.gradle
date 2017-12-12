@@ -7,10 +7,10 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
-//    aaptOptions {
-//        cruncherEnabled = false
-//        useNewCruncher = false
-//    }
+    aaptOptions {
+        cruncherEnabled = false
+        useNewCruncher = false
+    }
     defaultConfig {
         applicationId "com.jiang.thinkindler"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -66,10 +66,16 @@ android {
         exclude 'META-INF/NOTICE.txt'
     }
 
+    dexOptions {
+        dexInProcess false
+        preDexLibraries false
+        javaMaxHeapSize "8g"//越大越好
+    }
+
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+//    implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     implementation project(':common')
 
@@ -79,24 +85,13 @@ dependencies {
         implementation project(':media')
     }
 
-    implementation "com.android.support:design:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
     testImplementation "junit:junit:$rootProject.junitVersion"
     testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
     testImplementation 'org.robolectric:robolectric:3.0'
     testImplementation "com.github.fabioCollini:DaggerMock:$rootProject.daggerMockVersion"
 
-    //    implementation "com.android.support:design:$rootProject.supportLibraryVersion"
-
-    //    implementation "com.android.support:support-v4:$rootProject.supportLibraryVersion"
-
-    //    implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
-
-    //    implementation "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
     androidTestImplementation "com.android.support.test:runner:$rootProject.runnerVersion"
-    androidTestImplementation "com.android.support.test:rules:\'$rootProject.rulesVersion"
+    androidTestImplementation "com.android.support.test:rules:$rootProject.rulesVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-intents:$rootProject.espressoVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$rootProject.espressoVersion"

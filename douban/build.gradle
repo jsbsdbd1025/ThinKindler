@@ -67,7 +67,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+//    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':common')
 
     testImplementation "junit:junit:$rootProject.junitVersion"
@@ -85,7 +85,6 @@ dependencies {
     //ARoute
     kapt "com.alibaba:arouter-compiler:$rootProject.routercompilerVersion"
 
-    implementation 'com.alibaba.android:vlayout:1.2.0@aar'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
 

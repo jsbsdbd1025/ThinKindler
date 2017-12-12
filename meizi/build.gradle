@@ -56,10 +56,11 @@ android {
     lintOptions {
         abortOnError false
     }
+
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+//    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':common')
 
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
