@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+
     aaptOptions {
         cruncherEnabled = false
         useNewCruncher = false
@@ -49,8 +49,28 @@ android {
         }
     }
 
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+
+        // Move the build types to build-types/<type>
+        // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...
+        // This moves them out of them default location under src/<type>/... which would
+        // conflict with src/ being used by the main source set.
+        // Adding new build types or product flavors should be accompanied
+        // by a similar customization.
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+    }
+
     lintOptions {
+
+        checkReleaseBuilds false
         abortOnError false
+        checkReleaseBuilds false
+        // 防止在发布的时候出现因MissingTranslation导致Build Failed!
+        disable 'MissingTranslation'
     }
 
     compileOptions {
@@ -64,12 +84,12 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/rxjava.properties'
     }
 
+    //设置虚拟机堆内存空间大小，避免在编译期间OOM
     dexOptions {
-        dexInProcess false
-        preDexLibraries false
-        javaMaxHeapSize "8g"//越大越好
+        javaMaxHeapSize "4g"
     }
 
 }
@@ -85,17 +105,6 @@ dependencies {
         implementation project(':media')
     }
 
-    testImplementation "junit:junit:$rootProject.junitVersion"
-    testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
-    testImplementation 'org.robolectric:robolectric:3.0'
-    testImplementation "com.github.fabioCollini:DaggerMock:$rootProject.daggerMockVersion"
-
-    androidTestImplementation "com.android.support.test:runner:$rootProject.runnerVersion"
-    androidTestImplementation "com.android.support.test:rules:$rootProject.rulesVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$rootProject.espressoVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$rootProject.espressoVersion"
-    implementation "com.android.support.test.espresso:espresso-idling-resource:$rootProject.espressoVersion"
     compileOnly 'org.glassfish:javax.annotation:10.0-b28'
 
     //dagger2
@@ -123,7 +132,4 @@ dependencies {
     debugImplementation 'com.github.markzhai:blockcanary-android:1.5.0'
     releaseImplementation 'com.github.markzhai:blockcanary-no-op:1.5.0'
 
-}
-repositories {
-    mavenCentral()
 }

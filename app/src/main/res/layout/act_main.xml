@@ -7,9 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:showIn="@layout/act_main">
@@ -32,30 +30,11 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <fragment
-            android:id="@+id/frag_main_douban"
-            android:name="com.jiang.douban.ui.main.DoubanMainFragment"
+        <FrameLayout
+            android:id="@+id/ly_main_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:layout="@layout/douban_frag_main" />
-
-        <fragment
-            android:id="@+id/frag_main_meizi"
-            android:name="com.jiang.meizi.ui.main.MeiziMainFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:layout="@layout/meizi_frag_main" />
-
-        <fragment
-            android:id="@+id/frag_main_bilibili"
-            android:name="com.jiang.media.ui.main.BiliBiliMainFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:layout="@layout/bilibili_frag_main" />
-
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </android.support.design.widget.CoordinatorLayout>
 

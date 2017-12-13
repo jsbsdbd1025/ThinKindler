@@ -23,7 +23,7 @@ allprojects {
         mavenCentral()
         jcenter()
         maven { url "https://jitpack.io" }
-        google()
+        maven { url 'https://maven.google.com' }
     }
 
     apply plugin: 'checkstyle'
@@ -48,7 +48,7 @@ ext {
     // Sdk and tools
     minSdkVersion = 18
     targetSdkVersion = 22
-    compileSdkVersion = 26
+    compileSdkVersion = 25
     buildToolsVersion = '26.0.2'
 
     // App dependencies
@@ -78,8 +78,8 @@ ext {
 
     //需检查升级版本
     annotationProcessor = "1.1.7"
-    routerVersion = "1.2.1.1"
-    routercompilerVersion = "1.1.2.1"
+    routerVersion = "1.2.4"
+    routercompilerVersion = "1.1.4"
 
     //anko
     ankoVersion = '0.10.0'

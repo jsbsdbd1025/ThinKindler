@@ -1,35 +1,29 @@
 package com.jiang.thinkindler.ui
 
-import android.content.Intent
 import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
+import android.support.v4.util.ArrayMap
+import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import com.alibaba.android.arouter.launcher.ARouter
-import com.jiang.common.base.CommonFragment
-import com.jiang.douban.ui.detail.BookDetailActivity
-import com.jiang.douban.ui.main.DoubanMainFragment
-import com.jiang.meizi.ui.main.MeiziMainFragment
 import com.jiang.thinkindler.R
 import com.jiang.thinkindler.base.BaseActivity
 import org.jetbrains.anko.find
-import android.support.v4.view.GravityCompat
-import com.jiang.media.ui.main.BiliBiliMainFragment
 
 
 class MainActivity : BaseActivity() {
-
-    private lateinit var doubanFragment: DoubanMainFragment
-    private lateinit var meiziFragment: MeiziMainFragment
-    private lateinit var bilibiliFragment: BiliBiliMainFragment
-    private lateinit var mFragments: Array<CommonFragment?>
 
     private val navigationView by lazy { find<NavigationView>(R.id.nav_main) }
 
     private val toolbar by lazy { find<Toolbar>(R.id.toolbar) }
 
     private val drawer by lazy { find<DrawerLayout>(R.id.drawer_layout) }
+
+    private var fragments = ArrayMap<String, Fragment>()
+
     override fun getLayoutId(): Int {
         return R.layout.act_main
     }
@@ -46,35 +40,22 @@ class MainActivity : BaseActivity() {
 
         toolbar.inflateMenu(R.menu.menu_clear)
 
-        mFragments = arrayOfNulls<CommonFragment>(3)
-
-        doubanFragment = supportFragmentManager
-                .findFragmentById(R.id.frag_main_douban) as DoubanMainFragment
-        mFragments[0] = doubanFragment
-
-        meiziFragment = supportFragmentManager
-                .findFragmentById(R.id.frag_main_meizi) as MeiziMainFragment
-        mFragments[1] = meiziFragment
-
-        bilibiliFragment = supportFragmentManager
-                .findFragmentById(R.id.frag_main_bilibili) as BiliBiliMainFragment
-        mFragments[2] = bilibiliFragment
-
-        displayFragmentByIndex(0)
-
-//        ARouter.getInstance().build("/douban/detail").navigation()
-
-//        startActivity(Intent(this, BookDetailActivity::class.java))
-        navigationView.setNavigationItemSelectedListener(NavigationView.OnNavigationItemSelectedListener {
+        navigationView.setNavigationItemSelectedListener({
             when (it.itemId) {
-                R.id.nav_douban -> displayFragmentByIndex(0)
-                R.id.nav_meizi -> displayFragmentByIndex(1)
-                R.id.nav_bilibili -> displayFragmentByIndex(2)
+                R.id.nav_douban -> displayFragmentByURL("/douban/main")
+                R.id.nav_meizi -> displayFragmentByURL("/meizi/main")
+                R.id.nav_bilibili -> displayFragmentByURL("/bilibili/main")
                 else -> {
                 }
             }
             drawer.closeDrawer(GravityCompat.START)
             true
+        })
+
+        //默认首页
+        navigationView.post({
+            navigationView.menu.findItem(R.id.nav_douban)?.isChecked = true
+            displayFragmentByURL("/douban/main")
         })
 
     }
@@ -83,17 +64,25 @@ class MainActivity : BaseActivity() {
 
     }
 
-    private fun displayFragmentByIndex(index: Int) {
-        // 通过这个底部容器Item的index能够获取到对应的Fragment，需要将所有的Fragment对号放好（使用集合）
-        val ft = supportFragmentManager.beginTransaction()
-        for (i in mFragments.indices) {
-            if (i == index) {
-                ft.show(mFragments[i])
+    private fun displayFragmentByURL(url: String) {
+
+        val transaction = supportFragmentManager.beginTransaction()
+        if (fragments[url] == null) {
+            val fragment = (ARouter.getInstance().build(url).navigation() as Fragment?) ?: return
+            fragments.put(url, fragment)
+            transaction.add(R.id.ly_main_container, fragments[url])
+        }
+
+        for (entry in fragments.entries) {
+            if (entry.key == url) {
+                transaction.show(entry.value)
             } else {
-                ft.hide(mFragments[i])
+                transaction.hide(entry.value)
             }
         }
-        ft.commit()
+
+        transaction.commit()
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

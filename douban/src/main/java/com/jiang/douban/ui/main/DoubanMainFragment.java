@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jiang.common.entity.bean.BookBean;
@@ -31,6 +32,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by jiang on 2017/7/26.
  */
 
+@Route(path = "/douban/main")
 public class DoubanMainFragment extends BaseFragment<DoubanMainPresenter>
         implements DoubanMainContract.View {
 

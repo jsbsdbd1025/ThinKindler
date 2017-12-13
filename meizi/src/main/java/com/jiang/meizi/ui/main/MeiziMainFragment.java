@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jiang.common.widget.multistatuslayout.MultiStatusLayout;
 import com.jiang.meizi.R;
 import com.jiang.meizi.base.BaseFragment;
@@ -18,7 +19,7 @@ import java.util.List;
 /**
  * Created by jiang on 2017/7/26.
  */
-
+@Route(path = "/meizi/main")
 public class MeiziMainFragment extends BaseFragment<MeiziMainPresenter>
         implements MeiziMainContract.View {
 

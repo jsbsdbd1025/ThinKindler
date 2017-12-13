@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jiang.common.net.Api;
 import com.jiang.common.net.ApiType;
@@ -35,6 +36,7 @@ import io.reactivex.functions.Function;
  * Created by knowing on 2017/12/5.
  */
 
+@Route(path = "/bilibili/main")
 public class BiliBiliMainFragment extends BaseFragment {
 
     private RecyclerView mRecyclerView;
