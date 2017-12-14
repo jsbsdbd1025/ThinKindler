@@ -98,6 +98,21 @@ dependencies {
 
     //BRAVH
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.21'
+
+    //内存泄漏监控
+    debugApi "com.squareup.leakcanary:leakcanary-android:$rootProject.leakcanaryVersion"
+    releaseApi "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.leakcanaryVersion"
+
+    //分析卡顿
+    debugApi 'com.github.markzhai:blockcanary-android:1.5.0'
+    releaseApi 'com.github.markzhai:blockcanary-no-op:1.5.0'
+
+    //eventbus
+    api "org.greenrobot:eventbus:$rootProject.eventbusVersion"
+
+    //ImageView
+    api 'com.alexvasilkov:gesture-views:2.4.0'
+
 }
 repositories {
     mavenCentral()

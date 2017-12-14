@@ -64,6 +64,7 @@ ext {
     greendaoVersion = "3.2.0"
     vlayoutVersion = "1.0.7"
     dagger2Version = "2.13"
+    eventbusVersion = "3.1.1"
 
 //    UI test
     runnerVersion = "0.5"

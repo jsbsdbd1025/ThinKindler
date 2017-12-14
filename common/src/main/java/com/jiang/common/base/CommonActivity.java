@@ -65,20 +65,20 @@ public abstract class CommonActivity extends AppCompatActivity {
     @Override
     public void startActivity(Intent intent) {
         super.startActivity(intent);
-        overridePendingTransition(R.anim.aim_common_right_in, R.anim.aim_common_left_out);
+//        overridePendingTransition(R.anim.aim_common_right_in, R.anim.aim_common_left_out);
     }
 
     @Override
     public void startActivityForResult(Intent intent, int requestCode) {
         super.startActivityForResult(intent, requestCode);
-        overridePendingTransition(R.anim.aim_common_right_in, R.anim.aim_common_left_out);
+//        overridePendingTransition(R.anim.aim_common_right_in, R.anim.aim_common_left_out);
     }
 
     @Override
     public void finish() {
         AppManager.getAppManager().removeActivity(this);
         super.finish();
-        overridePendingTransition(0, R.anim.aim_common_right_out);
+//        overridePendingTransition(0, R.anim.aim_common_right_out);
     }
 
     /**

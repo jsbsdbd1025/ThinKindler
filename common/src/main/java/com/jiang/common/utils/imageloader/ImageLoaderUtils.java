@@ -1,6 +1,7 @@
 package com.jiang.common.utils.imageloader;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.util.Util;
 import com.jiang.common.R;
@@ -228,12 +230,9 @@ public class ImageLoaderUtils {
 
         Glide.with(context.getApplicationContext()).load(url)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .placeholder(R.drawable.ic_image_loading)
-                .error(R.drawable.ic_empty_picture)
                 .listener(listener)
                 .into(imageView);
 
     }
-
 
 }

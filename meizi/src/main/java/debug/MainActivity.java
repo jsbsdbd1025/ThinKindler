@@ -1,5 +1,6 @@
 package debug;
 
+import com.jiang.common.widget.ToolBarBuilder;
 import com.jiang.meizi.R;
 import com.jiang.meizi.base.BaseActivity;
 
@@ -16,7 +17,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void init() {
-
+        new ToolBarBuilder(this)
+                .setTitle("首页");
     }
 
     @Override
