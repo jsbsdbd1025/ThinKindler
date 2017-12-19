@@ -117,3 +117,17 @@ dependencies {
 repositories {
     mavenCentral()
 }
+
+task makeJar(type: Copy) {
+    delete 'build/libs/common.jar'
+
+    from('build/intermediates/bundles/release/')
+
+    into('build/libs/')
+
+    include('classes.jar')
+
+    rename('classes.jar', 'common.jar')
+}
+
+makeJar.dependsOn(build)

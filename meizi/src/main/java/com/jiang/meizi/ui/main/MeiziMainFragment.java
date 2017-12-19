@@ -50,6 +50,8 @@ public class MeiziMainFragment extends BaseFragment<MeiziMainPresenter>
     @Override
     protected void init(View view) {
 
+        EventBus.getDefault().register(this);
+
         StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(SPAN_COUNT,
                 StaggeredGridLayoutManager.VERTICAL);
 
@@ -110,14 +112,6 @@ public class MeiziMainFragment extends BaseFragment<MeiziMainPresenter>
         // Fullscreen activity requested to show or hide original image
         mMultiStatusLayout.setVisibility(event.isVisiable() ? View.VISIBLE : View.INVISIBLE);
     }
-
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
-
 
     @Override
     public void onDestroy() {

@@ -1,5 +1,13 @@
 package debug;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+
 import com.jiang.common.widget.ToolBarBuilder;
 import com.jiang.meizi.R;
 import com.jiang.meizi.base.BaseActivity;
@@ -19,6 +27,7 @@ public class MainActivity extends BaseActivity {
     protected void init() {
         new ToolBarBuilder(this)
                 .setTitle("首页");
+
     }
 
     @Override

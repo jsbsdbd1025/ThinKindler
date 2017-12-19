@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2015 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,32 +13,29 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-      android:tint="#ff7908">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
         <item
-                android:id="@+id/nav_douban"
-                android:icon="@mipmap/ic_launcher"
-                android:title="豆瓣"/>
+            android:id="@+id/nav_douban"
+            android:icon="@mipmap/ic_douban_launcher"
+            android:title="豆瓣" />
         <item
-                android:id="@+id/nav_meizi"
-                android:icon="@mipmap/ic_launcher"
-                android:title="妹子"/>
+            android:id="@+id/nav_meizi"
+            android:icon="@mipmap/ic_gank_launcher"
+            android:title="妹子" />
 
         <item
             android:id="@+id/nav_bilibili"
-            android:icon="@mipmap/ic_launcher"
-            android:title="哔哩哔哩"/>
+            android:icon="@mipmap/ic_bili_launcher"
+            android:title="哔哩哔哩" />
 
     </group>
 
     <item android:title="Sub items">
         <menu>
-            <item
-                    android:title="Sub item 1"/>
-            <item
-                    android:title="Sub item 2"/>
+            <item android:title="Sub item 1" />
+            <item android:title="Sub item 2" />
 
         </menu>
     </item>

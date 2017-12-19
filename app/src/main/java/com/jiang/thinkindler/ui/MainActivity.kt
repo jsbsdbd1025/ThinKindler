@@ -52,6 +52,8 @@ class MainActivity : BaseActivity() {
             true
         })
 
+        //关闭item图标着色
+        navigationView.itemIconTintList = null
         //默认首页
         navigationView.post({
             navigationView.menu.findItem(R.id.nav_douban)?.isChecked = true

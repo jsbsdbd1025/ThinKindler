@@ -46,6 +46,8 @@ public class MeiziHDActivity extends CommonActivity {
 
         setContentView(R.layout.act_meizi_hd);
 
+        EventBus.getDefault().register(this);
+
         image = (GestureImageView) findViewById(R.id.single_image_to);
         background = findViewById(R.id.single_image_to_back);
 
@@ -143,13 +145,6 @@ public class MeiziHDActivity extends CommonActivity {
             image.getPositionAnimator().exit(true);
         }
     }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
-
 
     @Override
     protected void onDestroy() {
